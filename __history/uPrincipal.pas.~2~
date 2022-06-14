@@ -1,0 +1,40 @@
+unit uPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+
+type
+  TfrmPrincipal = class(TForm)
+    mainPrincipal: TMainMenu;
+    Cadastro1: TMenuItem;
+    MOVIMENTAO1: TMenuItem;
+    RELATORIO1: TMenuItem;
+    CLIENTE1: TMenuItem;
+    N1: TMenuItem;
+    CATEGORIA1: TMenuItem;
+    PRODUTO1: TMenuItem;
+    N2: TMenuItem;
+    FECHAR1: TMenuItem;
+    VENDAS1: TMenuItem;
+    CLIENTE2: TMenuItem;
+    CLIENTE3: TMenuItem;
+    PRODUTO2: TMenuItem;
+    N3: TMenuItem;
+    VENDAPORDATA1: TMenuItem;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+end.
