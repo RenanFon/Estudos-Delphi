@@ -4,7 +4,7 @@ object frmTelaHeranca: TfrmTelaHeranca
   BorderStyle = bsDialog
   Caption = 'Informe Aqui o Titulo'
   ClientHeight = 619
-  ClientWidth = 1012
+  ClientWidth = 995
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,29 +13,40 @@ object frmTelaHeranca: TfrmTelaHeranca
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object pgcPrincipal: TPageControl
     Left = 0
     Top = 0
-    Width = 1012
+    Width = 995
     Height = 544
     ActivePage = TabListagem
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 1012
     object TabListagem: TTabSheet
       Caption = 'Listagem'
       object pnlListagemTopo: TPanel
         Left = 0
         Top = 0
-        Width = 1004
+        Width = 987
         Height = 81
         Align = alTop
         TabOrder = 0
+        ExplicitWidth = 1004
+        object lblIndice: TLabel
+          Left = 3
+          Top = 14
+          Width = 78
+          Height = 13
+          Caption = 'Campo Pesquisa'
+        end
         object mskPesquisar: TMaskEdit
-          Left = 8
-          Top = 17
+          Left = 1
+          Top = 33
           Width = 353
           Height = 21
           TabOrder = 0
@@ -43,8 +54,8 @@ object frmTelaHeranca: TfrmTelaHeranca
           TextHint = 'Digite Sua Pesquisa'
         end
         object btnPesquisar: TBitBtn
-          Left = 384
-          Top = 15
+          Left = 377
+          Top = 31
           Width = 75
           Height = 25
           Caption = '&Pesquisar'
@@ -54,7 +65,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       object grdListagem: TDBGrid
         Left = 0
         Top = 81
-        Width = 1004
+        Width = 987
         Height = 435
         Align = alClient
         DataSource = dtsListagem
@@ -64,6 +75,7 @@ object frmTelaHeranca: TfrmTelaHeranca
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        OnTitleClick = grdListagemTitleClick
       end
     end
     object TabManutencao: TTabSheet
@@ -74,10 +86,14 @@ object frmTelaHeranca: TfrmTelaHeranca
   object btnlRodape: TPanel
     Left = 0
     Top = 544
-    Width = 1012
+    Width = 995
     Height = 75
     Align = alBottom
     TabOrder = 1
+    ExplicitWidth = 1012
+    DesignSize = (
+      995
+      75)
     object btnNovo: TBitBtn
       Left = 12
       Top = 20
@@ -124,13 +140,15 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnApagarClick
     end
     object btnFechar: TBitBtn
-      Left = 883
+      Left = 866
       Top = 20
       Width = 94
       Height = 33
+      Anchors = [akTop, akRight]
       Caption = '&Fechar'
       TabOrder = 5
       OnClick = btnFecharClick
+      ExplicitLeft = 883
     end
     object btnNavigator: TDBNavigator
       Left = 575

@@ -27,6 +27,7 @@ type
     btnNavigator: TDBNavigator;
     qryListagem: TZQuery;
     dtsListagem: TDataSource;
+    lblIndice: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
@@ -34,6 +35,9 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure btnApagarClick(Sender: TObject);
     procedure BtnAlterarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure grdListagemTitleClick(Column: TColumn);
   private
     { Private declarations }
     EstadoDoCadastro : TestadoDoCadastro;
@@ -43,10 +47,12 @@ type
                                           navegador : TDBNavigator;pgcPrincipal : TPageControl;
                                           flag:Boolean);
     procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: integer);
+    function RetornarCampoTraduzido(Campo: String): string;
 
 
   public
     { Public declarations }
+    indiceAtual : String;
   end;
 
 var
@@ -90,6 +96,24 @@ procedure TfrmTelaHeranca.ControlarIndiceTab(pgcPrincipal : TPageControl; indice
 
   end;
 
+function TfrmTelaHeranca.RetornarCampoTraduzido(Campo : String): string;
+begin
+    var i : INTEGER;
+
+    for I := 0 to qryListagem.Fields.Count -1 do
+        begin
+            if qryListagem.Fields[i].FieldName = campo then
+                begin
+                  Result := qryListagem.Fields[i].DisplayLabel;
+                   Break;
+                end;
+
+        end;
+
+
+
+end;
+
 procedure TfrmTelaHeranca.BtnAlterarClick(Sender: TObject);
 begin
      ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,false);
@@ -131,11 +155,33 @@ begin
       EstadoDoCadastro := ecNenhum;
 end;
 
+procedure TfrmTelaHeranca.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+    qryListagem.Close;
+end;
+
 procedure TfrmTelaHeranca.FormCreate(Sender: TObject);
 begin
      qryListagem.Connection := dtmPrincipal.conexaoDB;
      dtsListagem.DataSet :=  qryListagem;
      grdListagem.DataSource := dtsListagem;
+end;
+
+procedure TfrmTelaHeranca.FormShow(Sender: TObject);
+begin
+    if (qryListagem.SQL.Text <> emptystr) then
+        begin
+          qryListagem.Open;
+        end;
+
+end;
+
+procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
+begin
+     indiceAtual := Column.FieldName;
+     qryListagem.IndexFieldNames:= indiceAtual;
+     lblIndice.Caption := RetornarCampoTraduzido(indiceAtual);
+
 end;
 
 end.
