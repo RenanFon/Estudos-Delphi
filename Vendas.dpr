@@ -5,7 +5,9 @@ uses
   uPrincipal in 'uPrincipal.pas' {frmPrincipal},
   udtmConexao in 'DataModule\udtmConexao.pas' {dtmPrincipal: TDataModule},
   uTelaHeranca in 'Herança\uTelaHeranca.pas' {frmTelaHeranca},
-  uCadCategoria in 'Cadastro\uCadCategoria.pas' {frmCadCategoria};
+  uCadCategoria in 'Cadastro\uCadCategoria.pas' {frmCadCategoria},
+  Enter in 'terceiros\Enter.pas',
+  uEnum in 'Herança\uEnum.pas';
 
 {$R *.res}
 

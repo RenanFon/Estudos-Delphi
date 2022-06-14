@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao, Enter;
 
 type
   TfrmPrincipal = class(TForm)
@@ -27,8 +27,10 @@ type
     procedure menuFECHARClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CATEGORIA1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
+    TeclaEnter : TMREnter;
   public
     { Public declarations }
   end;
@@ -49,11 +51,21 @@ begin
     frmCadCategoria.Release;
 end;
 
+procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+     FreeandNil(TeclaEnter);
+     FreeAndNil(dtmPrincipal);
+end;
+
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
      dtmPrincipal := TdtmPrincipal.create(self);
      dtmPrincipal.conexaoDB.SQLHourGlass := true;
      dtmPrincipal.conexaoDB.Connected := true;
+
+     TeclaEnter := TMREnter.Create(Self);
+     TeclaEnter.FocusEnabled := True;
+     TeclaEnter.FocusColor := clInfoBk;
 end;
 
 procedure TfrmPrincipal.menuFECHARClick(Sender: TObject);
