@@ -51,6 +51,7 @@ type
     function RetornarCampoTraduzido(Campo: String): string;
     procedure ExibirLabelIndice(campo: String; aLabel: Tlabel);
     function ExisteCampoObrigatório: Boolean;
+    procedure DesabilitarEditPK;
 
 
   public
@@ -148,13 +149,14 @@ end;
         begin
             if Components[i] is TLabeledEdit then
                 BEGIN
-                    if (TLabeledEdit (components[i]).Tag = 1)
+                    if (TLabeledEdit (components[i]).Tag = 2)
                     and (TLabeledEdit(components[i]).Text = EmptyStr) then
                         Begin
                               messageDlG(TLabeledEdit(components[i]).EditLabel.Caption   +
                              ' Este é um campo Obrigatorio',mtInformation,[mbOK],0);
-
+                          TLabeledEdit(components[i]).SetFocus;
                           Result := True;
+                          Break;
                         End;
 
                 END;
@@ -163,7 +165,23 @@ end;
  end;
 
 
+procedure TfrmTelaHeranca.DesabilitarEditPK;
+   var i : integer;
 
+ begin
+    for I := 0 to ComponentCount -1 do
+        begin
+            if Components[i] is TLabeledEdit then
+                BEGIN
+                    if (TLabeledEdit (components[i]).Tag = 1) then
+                   begin
+                       TLabeledEdit (components[i]).Enabled := false;
+                       Break;
+                   end;
+                end;
+
+        END;
+  end;
 
 
 procedure TfrmTelaHeranca.ExibirLabelIndice(campo:String;aLabel:Tlabel);
@@ -247,6 +265,7 @@ begin
           qryListagem.Open;
         end;
         ControlarIndiceTab(pgcPrincipal,0);
+        DesabilitarEditPK;
        ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,
                        btnApagar,btnNavigator,pgcPrincipal,true);
 
