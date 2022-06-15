@@ -55,6 +55,8 @@ type
   public
     { Public declarations }
     indiceAtual : String;
+    function excluir:Boolean ; virtual;
+     function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
   end;
 
 var
@@ -98,13 +100,33 @@ procedure TfrmTelaHeranca.ControlarIndiceTab(pgcPrincipal : TPageControl; indice
 
   end;
 
+
+ {$region METODOS VIRTUAIS}
+function TfrmTelaHeranca.excluir: Boolean;
+begin
+    showmessage('DELETADO');
+     Result := True;
+end;
+function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ;
+begin
+     if (EstadoDoCadastro =ecInserir) then
+              showmessage('Inserir')
+     else if (EstadoDoCadastro =ecAlterar) then
+             showmessage('Alterar');
+
+             Result := True;
+end;
+
+
+
+{$endregion}
 function TfrmTelaHeranca.RetornarCampoTraduzido(Campo : String): string;
 begin
     var i : INTEGER;
 
     for I := 0 to qryListagem.Fields.Count -1 do
         begin
-            if qryListagem.Fields[i].FieldName = campo then
+            if lowercase(qryListagem.Fields[i].FieldName) = lowercase(campo) then
                 begin
                   Result := qryListagem.Fields[i].DisplayLabel;
                    Break;
@@ -135,8 +157,11 @@ end;
 
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
+       if excluir then
+       begin
       ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,true);
        EstadoDoCadastro := ecNenhum;
+       end;
 end;
 
 procedure TfrmTelaHeranca.btnCancelarClick(Sender: TObject);
@@ -154,6 +179,8 @@ end;
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
       try
+      if Gravar(EstadoDoCadastro) then
+          begin
      ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,True);
       ControlarIndiceTab(pgcPrincipal,0);
           if (EstadoDoCadastro =ecInserir) then
@@ -162,7 +189,7 @@ begin
               showmessage('Alterar')
           else
               showmessage('não foi feliz');
-
+           end;
       finally
       end;
       EstadoDoCadastro := ecNenhum;
@@ -192,6 +219,9 @@ begin
           ExibirLabelIndice(indiceAtual,lblIndice);
           qryListagem.Open;
         end;
+
+       ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,
+                       btnApagar,btnNavigator,pgcPrincipal,true);
 
 end;
 
