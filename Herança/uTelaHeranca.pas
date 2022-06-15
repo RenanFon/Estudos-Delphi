@@ -50,13 +50,14 @@ type
     procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: integer);
     function RetornarCampoTraduzido(Campo: String): string;
     procedure ExibirLabelIndice(campo: String; aLabel: Tlabel);
+    function ExisteCampoObrigatório: Boolean;
 
 
   public
     { Public declarations }
     indiceAtual : String;
     function excluir:Boolean ; virtual;
-     function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
+    function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
   end;
 
 var
@@ -107,7 +108,7 @@ begin
     showmessage('DELETADO');
      Result := True;
 end;
-function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ;
+function TfrmTelaHeranca.Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ;
 begin
      if (EstadoDoCadastro =ecInserir) then
               showmessage('Inserir')
@@ -137,6 +138,32 @@ begin
 
 
 end;
+
+ function  TfrmTelaHeranca.ExisteCampoObrigatório:Boolean;
+ var i : integer;
+
+ begin
+    Result := False;
+    for I := 0 to ComponentCount -1 do
+        begin
+            if Components[i] is TLabeledEdit then
+                BEGIN
+                    if (TLabeledEdit (components[i]).Tag = 1)
+                    and (TLabeledEdit(components[i]).Text = EmptyStr) then
+                        Begin
+                              messageDlG(TLabeledEdit(components[i]).EditLabel.Caption   +
+                             ' Este é um campo Obrigatorio',mtInformation,[mbOK],0);
+
+                          Result := True;
+                        End;
+
+                END;
+
+        end;
+ end;
+
+
+
 
 
 procedure TfrmTelaHeranca.ExibirLabelIndice(campo:String;aLabel:Tlabel);
@@ -178,17 +205,13 @@ end;
 
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
+      if (ExisteCampoObrigatório) then abort;
+
       try
       if Gravar(EstadoDoCadastro) then
           begin
-     ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,True);
-      ControlarIndiceTab(pgcPrincipal,0);
-          if (EstadoDoCadastro =ecInserir) then
-              showmessage('Inserir')
-          else if (EstadoDoCadastro =ecAlterar) then
-              showmessage('Alterar')
-          else
-              showmessage('não foi feliz');
+             ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,True);
+             ControlarIndiceTab(pgcPrincipal,0);
            end;
       finally
       end;
@@ -213,13 +236,17 @@ end;
 
 procedure TfrmTelaHeranca.FormShow(Sender: TObject);
 begin
+
+
+
+
     if (qryListagem.SQL.Text <> emptystr) then
         begin
           qryListagem.IndexFieldNames := indiceAtual;
           ExibirLabelIndice(indiceAtual,lblIndice);
           qryListagem.Open;
         end;
-
+        ControlarIndiceTab(pgcPrincipal,0);
        ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,
                        btnApagar,btnNavigator,pgcPrincipal,true);
 
