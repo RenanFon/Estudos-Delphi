@@ -26,7 +26,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     ActivePage = TabListagem
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1012
     object TabListagem: TTabSheet
       Caption = 'Listagem'
       object pnlListagemTopo: TPanel
@@ -36,7 +35,6 @@ object frmTelaHeranca: TfrmTelaHeranca
         Height = 81
         Align = alTop
         TabOrder = 0
-        ExplicitWidth = 1004
         object lblIndice: TLabel
           Left = 3
           Top = 14
@@ -52,6 +50,7 @@ object frmTelaHeranca: TfrmTelaHeranca
           TabOrder = 0
           Text = ''
           TextHint = 'Digite Sua Pesquisa'
+          OnChange = mskPesquisarChange
         end
         object btnPesquisar: TBitBtn
           Left = 377
@@ -60,6 +59,7 @@ object frmTelaHeranca: TfrmTelaHeranca
           Height = 25
           Caption = '&Pesquisar'
           TabOrder = 1
+          Visible = False
         end
       end
       object grdListagem: TDBGrid
@@ -69,6 +69,7 @@ object frmTelaHeranca: TfrmTelaHeranca
         Height = 435
         Align = alClient
         DataSource = dtsListagem
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -90,7 +91,6 @@ object frmTelaHeranca: TfrmTelaHeranca
     Height = 75
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 1012
     DesignSize = (
       995
       75)
@@ -148,7 +148,6 @@ object frmTelaHeranca: TfrmTelaHeranca
       Caption = '&Fechar'
       TabOrder = 5
       OnClick = btnFecharClick
-      ExplicitLeft = 883
     end
     object btnNavigator: TDBNavigator
       Left = 575

@@ -38,6 +38,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure grdListagemTitleClick(Column: TColumn);
+    procedure mskPesquisarChange(Sender: TObject);
   private
     { Private declarations }
     EstadoDoCadastro : TestadoDoCadastro;
@@ -48,6 +49,7 @@ type
                                           flag:Boolean);
     procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: integer);
     function RetornarCampoTraduzido(Campo: String): string;
+    procedure ExibirLabelIndice(campo: String; aLabel: Tlabel);
 
 
   public
@@ -114,6 +116,17 @@ begin
 
 end;
 
+
+procedure TfrmTelaHeranca.ExibirLabelIndice(campo:String;aLabel:Tlabel);
+begin
+   aLabel.Caption := RetornarCampoTraduzido(campo);
+
+
+
+
+
+end;
+
 procedure TfrmTelaHeranca.BtnAlterarClick(Sender: TObject);
 begin
      ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,false);
@@ -162,15 +175,21 @@ end;
 
 procedure TfrmTelaHeranca.FormCreate(Sender: TObject);
 begin
-     qryListagem.Connection := dtmPrincipal.conexaoDB;
-     dtsListagem.DataSet :=  qryListagem;
-     grdListagem.DataSource := dtsListagem;
+     qryListagem.Connection     := dtmPrincipal.conexaoDB;
+     dtsListagem.DataSet        := qryListagem;
+     grdListagem.DataSource     := dtsListagem;
+     grdListagem.Options        :=[dgTitles,dgIndicator,dgColumnResize,
+     dgColLines,dgRowLines,dgTabs,
+     dgRowSelect,dgAlwaysShowSelection,dgCancelOnExit,
+     dgTitleClick,dgTitleHotTrack]
 end;
 
 procedure TfrmTelaHeranca.FormShow(Sender: TObject);
 begin
     if (qryListagem.SQL.Text <> emptystr) then
         begin
+          qryListagem.IndexFieldNames := indiceAtual;
+          ExibirLabelIndice(indiceAtual,lblIndice);
           qryListagem.Open;
         end;
 
@@ -178,9 +197,15 @@ end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
 begin
-     indiceAtual := Column.FieldName;
+     indiceAtual                := Column.FieldName;
      qryListagem.IndexFieldNames:= indiceAtual;
-     lblIndice.Caption := RetornarCampoTraduzido(indiceAtual);
+     ExibirLabelIndice(indiceAtual, lblIndice);
+
+end;
+
+procedure TfrmTelaHeranca.mskPesquisarChange(Sender: TObject);
+begin
+     qryListagem.Locate(indiceAtual, TMaskEdit(sender).Text, [loPartialKey]);
 
 end;
 
