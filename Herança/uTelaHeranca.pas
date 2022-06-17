@@ -42,8 +42,6 @@ type
     procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
-    EstadoDoCadastro : TestadoDoCadastro;
-
     procedure ControlarBotoes(btnNovo,btnAlterar,btnCanecelar,
                                           btnGravar,btnApagar : TBitBtn;
                                           navegador : TDBNavigator;pgcPrincipal : TPageControl;
@@ -58,8 +56,9 @@ type
 
   public
     { Public declarations }
+    EstadoDoCadastro : TestadoDoCadastro;
     indiceAtual : String;
-    function excluir:Boolean ; virtual;
+    function Apagar:Boolean ; virtual;
     function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
   end;
 
@@ -107,7 +106,7 @@ procedure TfrmTelaHeranca.ControlarIndiceTab(pgcPrincipal : TPageControl; indice
 
 
  {$region METODOS VIRTUAIS}
-function TfrmTelaHeranca.excluir: Boolean;
+function TfrmTelaHeranca.Apagar: Boolean;
 begin
     showmessage('DELETADO');
      Result := True;
@@ -220,7 +219,7 @@ procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
 
     Try
-       if (excluir) then
+       if (Apagar) then
           begin
             ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,true);
              EstadoDoCadastro := ecNenhum;
