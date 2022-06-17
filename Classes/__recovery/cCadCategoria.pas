@@ -38,12 +38,11 @@ implementation
 
 constructor TCategoria.Create;
 begin
-    showmessage('Fui Criado');
+
 end;
 
 destructor TCategoria.Destroy;
 begin
-     showmessage('Fui Eliminado');
   inherited;
 end;
 

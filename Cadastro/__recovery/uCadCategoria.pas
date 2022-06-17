@@ -35,6 +35,7 @@ procedure TfrmCadCategoria.btnGravarClick(Sender: TObject);
 begin
   oCategoria.codigo := 100;
   oCategoria.descricao := '1,2,3,testando';
+  showmessage(oCategoria.descricao);
   inherited;
 
 end;

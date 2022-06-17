@@ -16,6 +16,7 @@ type
     edtDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnGravarClick(Sender: TObject);
   private
     { Private declarations }
     oCategoria:TCategoria;
@@ -29,6 +30,14 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmCadCategoria.btnGravarClick(Sender: TObject);
+begin
+  oCategoria.codigo := 100;
+  oCategoria.descricao := '1,2,3,testando';
+  inherited;
+
+end;
 
 procedure TfrmCadCategoria.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
