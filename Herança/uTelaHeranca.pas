@@ -53,6 +53,7 @@ type
     procedure ExibirLabelIndice(campo: String; aLabel: Tlabel);
     function ExisteCampoObrigatório: Boolean;
     procedure DesabilitarEditPK;
+    procedure LimparEdits;
 
 
   public
@@ -76,6 +77,7 @@ procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
      ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,false);
      EstadoDoCadastro := ecInserir;
+     LimparEdits;
 end;
 
 procedure TfrmTelaHeranca.ControlarBotoes(btnNovo,btnAlterar,btnCanecelar,
@@ -184,15 +186,28 @@ procedure TfrmTelaHeranca.DesabilitarEditPK;
         END;
   end;
 
+  procedure TfrmTelaHeranca.LimparEdits;
+   var i : integer;
+
+ begin
+    for I := 0 to ComponentCount -1 do
+        begin
+            if (Components[i] is TLabeledEdit) then
+                BEGIN
+                   TLabeledEdit (components[i]).Text := EmptyStr;
+                end
+            else if (Components[i] is TEdit) then
+                BEGIN
+                    TEdit(Components[i]).Text := '';
+                END;
+
+        END;
+  end;
+
 
 procedure TfrmTelaHeranca.ExibirLabelIndice(campo:String;aLabel:Tlabel);
 begin
    aLabel.Caption := RetornarCampoTraduzido(campo);
-
-
-
-
-
 end;
 
 procedure TfrmTelaHeranca.BtnAlterarClick(Sender: TObject);
@@ -209,6 +224,7 @@ begin
           begin
             ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,true);
              EstadoDoCadastro := ecNenhum;
+             LimparEdits;
           end
        else
           begin
@@ -218,8 +234,6 @@ begin
           end;
        Finally
           EstadoDoCadastro := ecNenhum;
-
-
     End;
 end;
 
@@ -228,6 +242,7 @@ begin
       ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,True);
       ControlarIndiceTab(pgcPrincipal,0);
        EstadoDoCadastro := ecNenhum;
+       LimparEdits;
 end;
 
 procedure TfrmTelaHeranca.btnFecharClick(Sender: TObject);
@@ -245,6 +260,7 @@ begin
              ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,True);
              ControlarIndiceTab(pgcPrincipal,0);
              EstadoDoCadastro := ecNenhum;
+             LimparEdits;
            end
       Else
           begin
@@ -254,7 +270,6 @@ begin
 
       finally
       end;
-
 end;
 
 procedure TfrmTelaHeranca.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -275,10 +290,6 @@ end;
 
 procedure TfrmTelaHeranca.FormShow(Sender: TObject);
 begin
-
-
-
-
     if (qryListagem.SQL.Text <> emptystr) then
         begin
           qryListagem.IndexFieldNames := indiceAtual;
@@ -289,7 +300,6 @@ begin
         DesabilitarEditPK;
        ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,
                        btnApagar,btnNavigator,pgcPrincipal,true);
-
 end;
 
 procedure TfrmTelaHeranca.grdListagemDblClick(Sender: TObject);
@@ -298,17 +308,15 @@ begin
 end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
-begin
-     indiceAtual                := Column.FieldName;
-     qryListagem.IndexFieldNames:= indiceAtual;
-     ExibirLabelIndice(indiceAtual, lblIndice);
-
-end;
+     begin
+        indiceAtual                := Column.FieldName;
+        qryListagem.IndexFieldNames:= indiceAtual;
+        ExibirLabelIndice(indiceAtual, lblIndice);
+     end;
 
 procedure TfrmTelaHeranca.mskPesquisarChange(Sender: TObject);
-begin
-     qryListagem.Locate(indiceAtual, TMaskEdit(sender).Text, [loPartialKey]);
+    begin
+        qryListagem.Locate(indiceAtual, TMaskEdit(sender).Text, [loPartialKey]);
 
-end;
-
+    end;
 end.
