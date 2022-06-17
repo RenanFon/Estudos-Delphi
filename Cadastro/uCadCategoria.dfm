@@ -38,7 +38,7 @@ inherited frmCadCategoria: TfrmCadCategoria
         Left = 24
         Top = 112
         Width = 697
-        Height = 25
+        Height = 21
         EditLabel.Width = 46
         EditLabel.Height = 13
         EditLabel.Caption = 'Descri'#231#227'o'

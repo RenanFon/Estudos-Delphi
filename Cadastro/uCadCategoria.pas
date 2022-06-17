@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,cCadCategoria;
 
 type
   TfrmCadCategoria = class(TfrmTelaHeranca)
@@ -15,8 +15,10 @@ type
     edtCategoriaID: TLabeledEdit;
     edtDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
+    oCategoria:TCategoria;
   public
     { Public declarations }
   end;
@@ -28,9 +30,19 @@ implementation
 
 {$R *.dfm}
 
+procedure TfrmCadCategoria.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if Assigned(oCategoria) then
+    begin
+        FreeAndNil(oCategoria);
+    end;
+end;
+
 procedure TfrmCadCategoria.FormCreate(Sender: TObject);
 begin
   inherited;
+        oCategoria  := TCategoria.Create;
         indiceAtual := 'descricao';
 end;
 
