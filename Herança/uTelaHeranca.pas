@@ -39,6 +39,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure grdListagemTitleClick(Column: TColumn);
     procedure mskPesquisarChange(Sender: TObject);
+    procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
     EstadoDoCadastro : TestadoDoCadastro;
@@ -202,11 +203,24 @@ end;
 
 procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
 begin
-       if excluir then
-       begin
-      ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,true);
-       EstadoDoCadastro := ecNenhum;
-       end;
+
+    Try
+       if (excluir) then
+          begin
+            ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,true);
+             EstadoDoCadastro := ecNenhum;
+          end
+       else
+          begin
+             MessageDlg('Erro na Exclusão ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+
+
+          end;
+       Finally
+          EstadoDoCadastro := ecNenhum;
+
+
+    End;
 end;
 
 procedure TfrmTelaHeranca.btnCancelarClick(Sender: TObject);
@@ -230,10 +244,17 @@ begin
           begin
              ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,True);
              ControlarIndiceTab(pgcPrincipal,0);
-           end;
+             EstadoDoCadastro := ecNenhum;
+           end
+      Else
+          begin
+              MessageDlg('Erro na Gravação ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+
+          end;
+
       finally
       end;
-      EstadoDoCadastro := ecNenhum;
+
 end;
 
 procedure TfrmTelaHeranca.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -269,6 +290,11 @@ begin
        ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,
                        btnApagar,btnNavigator,pgcPrincipal,true);
 
+end;
+
+procedure TfrmTelaHeranca.grdListagemDblClick(Sender: TObject);
+begin
+    btnCancelar.Click;
 end;
 
 procedure TfrmTelaHeranca.grdListagemTitleClick(Column: TColumn);
