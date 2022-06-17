@@ -16,7 +16,6 @@ type
     edtDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnGravarClick(Sender: TObject);
   private
     { Private declarations }
     oCategoria:TCategoria;
@@ -40,23 +39,21 @@ end;
 
 function TfrmCadCategoria.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
 begin
+    if edtCategoriaID.Text <> '' then
+        oCategoria.codigo := strtoint(edtCategoriaID.Text)
+     else
+         oCategoria.codigo := 0;
+
+    oCategoria.descricao:= edtDescricao.Text;
+
     if(EstadoDoCadastro = ecInserir ) then
-        Result := oCategoria.Gravar
+        Result := oCategoria.Inserir
      else if(EstadoDoCadastro = ecAlterar) then
         Result := oCategoria.Atualizar
 
 end;
 
 {$endregion}
-
-procedure TfrmCadCategoria.btnGravarClick(Sender: TObject);
-begin
-  oCategoria.codigo := 100;
-  oCategoria.descricao := '1,2,3,testando';
-  showmessage(oCategoria.descricao);
-  inherited;
-
-end;
 
 procedure TfrmCadCategoria.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

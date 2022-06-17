@@ -25,7 +25,7 @@ type
         public
             constructor Create(aConexao: TZConnection );
             destructor Destroy; override;
-            function  Gravar:Boolean;
+            function  Inserir:Boolean;
             function Atualizar: Boolean;
             function Seleciona(id:integer):Boolean;
             function Apagar: Boolean;
@@ -62,7 +62,7 @@ begin
      showmessage('Atualizado');
 end;
 
-function TCategoria.Gravar: Boolean;
+function TCategoria.Inserir: Boolean;
 begin
      showmessage('gravado');
 end;
