@@ -3,67 +3,67 @@ unit uTelaHeranca;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls,
-  Vcl.ExtCtrls, Data.DB, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset,udtmConexao,uEnum;
+      Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+      Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls,
+      Vcl.ExtCtrls, Data.DB, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons,
+      ZAbstractRODataset, ZAbstractDataset, ZDataset,udtmConexao,uEnum;
 
 type
-  TfrmTelaHeranca = class(TForm)
-    pgcPrincipal: TPageControl;
-    btnlRodape: TPanel;
-    TabListagem: TTabSheet;
-    TabManutencao: TTabSheet;
-    pnlListagemTopo: TPanel;
-    mskPesquisar: TMaskEdit;
-    btnPesquisar: TBitBtn;
-    grdListagem: TDBGrid;
-    btnNovo: TBitBtn;
-    BtnAlterar: TBitBtn;
-    btnCancelar: TBitBtn;
-    btnGravar: TBitBtn;
-    btnApagar: TBitBtn;
-    btnFechar: TBitBtn;
-    btnNavigator: TDBNavigator;
-    qryListagem: TZQuery;
-    dtsListagem: TDataSource;
-    lblIndice: TLabel;
-    procedure FormCreate(Sender: TObject);
-    procedure btnFecharClick(Sender: TObject);
-    procedure btnNovoClick(Sender: TObject);
-    procedure btnCancelarClick(Sender: TObject);
-    procedure btnGravarClick(Sender: TObject);
-    procedure btnApagarClick(Sender: TObject);
-    procedure BtnAlterarClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure grdListagemTitleClick(Column: TColumn);
-    procedure mskPesquisarChange(Sender: TObject);
-    procedure grdListagemDblClick(Sender: TObject);
+       TfrmTelaHeranca = class(TForm)
+       pgcPrincipal: TPageControl;
+        btnlRodape: TPanel;
+       TabListagem: TTabSheet;
+       TabManutencao: TTabSheet;
+       pnlListagemTopo: TPanel;
+       mskPesquisar: TMaskEdit;
+       btnPesquisar: TBitBtn;
+       grdListagem: TDBGrid;
+       btnNovo: TBitBtn;
+       BtnAlterar: TBitBtn;
+       btnCancelar: TBitBtn;
+       btnGravar: TBitBtn;
+       btnApagar: TBitBtn;
+       btnFechar: TBitBtn;
+       btnNavigator: TDBNavigator;
+       qryListagem: TZQuery;
+       dtsListagem: TDataSource;
+       lblIndice: TLabel;
+       procedure FormCreate(Sender: TObject);
+       procedure btnFecharClick(Sender: TObject);
+       procedure btnNovoClick(Sender: TObject);
+       procedure btnCancelarClick(Sender: TObject);
+       procedure btnGravarClick(Sender: TObject);
+       procedure btnApagarClick(Sender: TObject);
+       procedure BtnAlterarClick(Sender: TObject);
+       procedure FormShow(Sender: TObject);
+       procedure FormClose(Sender: TObject; var Action: TCloseAction);
+       procedure grdListagemTitleClick(Column: TColumn);
+       procedure mskPesquisarChange(Sender: TObject);
+       procedure grdListagemDblClick(Sender: TObject);
   private
-    { Private declarations }
-    procedure ControlarBotoes(btnNovo,btnAlterar,btnCanecelar,
-                                          btnGravar,btnApagar : TBitBtn;
-                                          navegador : TDBNavigator;pgcPrincipal : TPageControl;
-                                          flag:Boolean);
-    procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: integer);
-    function RetornarCampoTraduzido(Campo: String): string;
-    procedure ExibirLabelIndice(campo: String; aLabel: Tlabel);
-    function ExisteCampoObrigatório: Boolean;
-    procedure DesabilitarEditPK;
-    procedure LimparEdits;
+        { Private declarations }
+       procedure ControlarBotoes(btnNovo,btnAlterar,btnCanecelar,
+                                              btnGravar,btnApagar : TBitBtn;
+                                              navegador : TDBNavigator;pgcPrincipal : TPageControl;
+                                              flag:Boolean);
+       procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: integer);
+       function RetornarCampoTraduzido(Campo: String): string;
+       procedure ExibirLabelIndice(campo: String; aLabel: Tlabel);
+       function ExisteCampoObrigatório: Boolean;
+       procedure DesabilitarEditPK;
+       procedure LimparEdits;
 
 
   public
-    { Public declarations }
-    EstadoDoCadastro : TestadoDoCadastro;
-    indiceAtual : String;
-    function Apagar:Boolean ; virtual;
-    function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
+        { Public declarations }
+        EstadoDoCadastro : TestadoDoCadastro;
+        indiceAtual : String;
+        function Apagar:Boolean ; virtual;
+        function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
   end;
 
 var
-  frmTelaHeranca: TfrmTelaHeranca;
+     frmTelaHeranca: TfrmTelaHeranca;
 
 implementation
 
@@ -229,8 +229,6 @@ begin
        else
           begin
              MessageDlg('Erro na Exclusão ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
-
-
           end;
        Finally
           EstadoDoCadastro := ecNenhum;

@@ -67,30 +67,54 @@ begin
 end;
 
 function TCategoria.Inserir: Boolean;
-   Var QryGravar: TZquery;
+   Var Qry: TZquery;
     begin
         try
             Result := True;
-            QryGravar := TZquery.Create(nil);
-            QryGravar.Connection := conexaoDB;
-            QryGravar.SQL.Clear;
-            QryGravar.SQL.Add('INSERT INTO categorias(descricao) VALUES (:descricao)');
-            QryGravar.ParamByName('descricao').Value :=Self.F_descricao;
+            Qry := TZquery.Create(nil);
+            Qry.Connection := conexaoDB;
+            Qry.SQL.Clear;
+            Qry.SQL.Add('INSERT INTO categorias(descricao) VALUES (:descricao)');
+            Qry.ParamByName('descricao').Value :=Self.F_descricao;
                 try
-                    QryGravar.ExecSQL;
-                 Except
+                    Qry.ExecSQL;
+                Except
                      Result:= False;
                 end;
         finally
-            if Assigned(QryGravar) then
-            FreeAndNil(QryGravar);
+            if Assigned(Qry) then
+            FreeAndNil(Qry);
         end;
 
     end;
 
 function TCategoria.Seleciona(id: integer): Boolean;
 begin
-    result := true;
+    Var Qry: TZquery;
+    begin
+        try
+            Result := True;
+            Qry := TZquery.Create(nil);
+            Qry.Connection := conexaoDB;
+            Qry.SQL.Clear;
+            Qry.SQL.Add('SELECT categoriaID,'+
+                         '      descricao   '+
+                         'FROM categorias  ' +
+                         'WHERE categoriaID = categoriaID');
+            Qry.ParamByName('categoriaID').Value := id;
+                try
+                    Qry.Open;
+                    Self.F_categoriaID := Qry.FieldByName('categoriaID').AsInteger;
+                    self.F_descricao   := Qry.FieldByName('descricao').AsString;
+                Except
+                     Result:= False;
+                end;
+        finally
+            if Assigned(Qry) then
+            FreeAndNil(Qry);
+        end;
+
+    end;
 end;
 {$endregion}
 
