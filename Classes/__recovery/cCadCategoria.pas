@@ -100,7 +100,7 @@ begin
             Qry.SQL.Add('SELECT categoriaID,'+
                          '      descricao   '+
                          'FROM categorias  ' +
-                         'WHERE categoriaID = categoriaID');
+                         'WHERE categoriaID = :categoriaID');
             Qry.ParamByName('categoriaID').AsInteger:= id;
                 try
                     Qry.Open;
