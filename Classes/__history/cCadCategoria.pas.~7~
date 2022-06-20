@@ -74,6 +74,7 @@ function TCategoria.Inserir: Boolean;
             QryGravar.Connection := conexaoDB;
             QryGravar.SQL.Clear;
             QryGravar.SQL.Add('INSERT INTO categorias(descricao) VALUES (:descricao)');
+
         finally
             if Assigned(QryGravar) then
             FreeAndNil(QryGravar);

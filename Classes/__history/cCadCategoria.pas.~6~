@@ -9,11 +9,7 @@ uses
     vcl.ExtActns,
     vcl.Dialogs,
     ZAbstractConnection,
-    ZConnection,
-    ZAbstractRODataset,
-    ZAbstractDataset,
-    ZDataset,
-    System.SysUtils;
+    ZConnection;
 
 type
     TCategoria = class
@@ -67,26 +63,9 @@ begin
 end;
 
 function TCategoria.Inserir: Boolean;
-   Var QryGravar: TZquery;
-    begin
-        try
-            Result := True;
-            QryGravar := TZquery.Create(nil);
-            QryGravar.Connection := conexaoDB;
-            QryGravar.SQL.Clear;
-            QryGravar.SQL.Add('INSERT INTO categorias(descricao) VALUES (:descricao)');
-            QryGravar.ParamByName('descricao').Value :=Self.F_descricao;
-                try
-                    QryGravar.ExecSQL;
-                 Except
-                     Result:= False;
-                end;
-        finally
-            if Assigned(QryGravar) then
-            FreeAndNil(QryGravar);
-        end;
-
-    end;
+begin
+     showmessage('gravado');
+end;
 
 function TCategoria.Seleciona(id: integer): Boolean;
 begin
