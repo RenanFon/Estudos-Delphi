@@ -3,6 +3,7 @@ inherited frmCadCategoria: TfrmCadCategoria
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
+    ActivePage = TabManutencao
     inherited TabListagem: TTabSheet
       inherited grdListagem: TDBGrid
         Columns = <
@@ -48,12 +49,12 @@ inherited frmCadCategoria: TfrmCadCategoria
   end
   inherited btnlRodape: TPanel
     inherited btnNovo: TBitBtn
-      Left = 24
-      ExplicitLeft = 24
+      Left = 30
+      ExplicitLeft = 30
     end
     inherited BtnAlterar: TBitBtn
-      Left = 128
-      ExplicitLeft = 128
+      Left = 129
+      ExplicitLeft = 129
     end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()

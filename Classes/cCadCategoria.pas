@@ -57,13 +57,62 @@ end;
 
 function TCategoria.Apagar: Boolean;
 begin
-     showmessage('apagado');
-     result := true;
+    Var Qry: TZquery;
+    begin
+        if messageDlg('Apagar o Registro : '+#13+#13+
+                      'Código: '+IntToStr(F_categoriaID)+#13+
+                      'Descricao:'+F_descricao,mtConfirmation,[mbYes,mbNo],0)=mrNo then
+             BEGIN
+                 Result := false;
+                 abort;
+             END;
+
+        try
+            Result := True;
+            Qry := TZquery.Create(nil);
+            Qry.Connection := conexaoDB;
+            Qry.SQL.Clear;
+            Qry.SQL.Add('DELETE FROM categorias   '+
+                         ' WHERE categoriaID = :categoriaID');
+            Qry.ParamByName('categoriaID').AsInteger:= F_categoriaID;
+                try
+                    Qry.ExecSQL;
+                Except
+                     Result:= False;
+                end;
+        finally
+            if Assigned(Qry) then
+            FreeAndNil(Qry);
+        end;
+
+    end;
 end;
 
 function TCategoria.Atualizar: Boolean;
 begin
-     showmessage('Atualizado');
+    Var Qry: TZquery;
+    begin
+        try
+            Result := True;
+            Qry := TZquery.Create(nil);
+            Qry.Connection := conexaoDB;
+            Qry.SQL.Clear;
+            Qry.SQL.Add('UPDATE categorias   '+
+                         ' SET descricao = :descricao ' +
+                         ' WHERE categoriaID = :categoriaID');
+            Qry.ParamByName('categoriaID').AsInteger:= self.F_categoriaID;
+            Qry.ParamByName('descricao').AsString   := self.F_descricao;
+                try
+                    Qry.ExecSQL;
+                Except
+                     Result:= False;
+                end;
+        finally
+            if Assigned(Qry) then
+            FreeAndNil(Qry);
+        end;
+
+    end;
 end;
 
 function TCategoria.Inserir: Boolean;
@@ -100,8 +149,8 @@ begin
             Qry.SQL.Add('SELECT categoriaID,'+
                          '      descricao   '+
                          'FROM categorias  ' +
-                         'WHERE categoriaID = categoriaID');
-            Qry.ParamByName('categoriaID').Value := id;
+                         'WHERE categoriaID = :categoriaID');
+            Qry.ParamByName('categoriaID').AsInteger:= id;
                 try
                     Qry.Open;
                     Self.F_categoriaID := Qry.FieldByName('categoriaID').AsInteger;

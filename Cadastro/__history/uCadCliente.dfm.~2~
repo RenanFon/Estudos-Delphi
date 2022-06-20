@@ -1,0 +1,57 @@
+inherited frmCadCliente: TfrmCadCliente
+  Caption = 'Cadastro de Clientes'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pgcPrincipal: TPageControl
+    ActivePage = TabManutencao
+    inherited TabManutencao: TTabSheet
+      object Label1: TLabel
+        Left = 674
+        Top = 101
+        Width = 19
+        Height = 13
+        Caption = 'CEP'
+      end
+      object edtCategoriaID: TLabeledEdit
+        Tag = 1
+        Left = 24
+        Top = 56
+        Width = 121
+        Height = 21
+        EditLabel.Width = 33
+        EditLabel.Height = 13
+        EditLabel.Caption = 'C'#243'digo'
+        MaxLength = 10
+        NumbersOnly = True
+        TabOrder = 0
+      end
+      object edtDescricao: TLabeledEdit
+        Tag = 2
+        Left = 24
+        Top = 120
+        Width = 545
+        Height = 21
+        EditLabel.Width = 46
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Descri'#231#227'o'
+        MaxLength = 30
+        TabOrder = 1
+      end
+      object edtCEP: TMaskEdit
+        Left = 674
+        Top = 120
+        Width = 120
+        Height = 21
+        EditMask = '99.999-999;1;_'
+        MaxLength = 10
+        TabOrder = 2
+        Text = '  .   -   '
+      end
+    end
+  end
+  inherited btnlRodape: TPanel
+    inherited btnNavigator: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+end
