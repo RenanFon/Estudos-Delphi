@@ -32,10 +32,13 @@ var
 implementation
 
 {$R *.dfm}
- {$region override}
+ {$region 'FUNCTIONS'}
 function TfrmCadCategoria.Apagar: Boolean;
 begin
-    Result := oCategoria.Apagar;
+    if oCategoria.Seleciona(qryListagem.FieldByName('categoriaID').AsInteger) then
+        BEGIN
+            Result := oCategoria.Apagar(qryListagem.FieldByName('categoriaID').AsInteger);
+        END;
 end;
 
 function TfrmCadCategoria.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
