@@ -188,9 +188,9 @@ function TCliente.Selecionar(id: Integer): Boolean;
             Qry.Connection := conexaoDB;
             Qry.SQL.Clear;
             Qry.SQL.Add(' SELECT clienteId,' +
-                         '   nome,'             +
+                         '  nome,'             +
                          '  endereco,'         +
-                         '   cidade,'           +
+                         '  cidade,'           +
                          '  bairro,'           +
                          '  estado,'           +
                          '  cep,'              +

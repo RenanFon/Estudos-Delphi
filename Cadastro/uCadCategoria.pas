@@ -85,10 +85,10 @@ begin
 end;
 
 procedure TfrmCadCategoria.FormCreate(Sender: TObject);
-begin
-  inherited;
+    begin
+      inherited;
         oCategoria  := TCategoria.Create(dtmPrincipal.conexaoDB);
         indiceAtual := 'descricao';
-end;
+    end;
 
 end.
