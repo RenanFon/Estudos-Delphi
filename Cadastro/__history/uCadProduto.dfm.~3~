@@ -55,8 +55,8 @@ inherited frmCadProduto: TfrmCadProduto
         Caption = 'Valor'
       end
       object Label3: TLabel
-        Left = 184
-        Top = 341
+        Left = 192
+        Top = 344
         Width = 56
         Height = 13
         Caption = 'Quantidade'
@@ -107,7 +107,7 @@ inherited frmCadProduto: TfrmCadProduto
         Width = 121
         Height = 21
         DisplayFormat = ',0.00;- ,0.00'
-        TabOrder = 5
+        TabOrder = 4
       end
       object lkpCategoria: TDBLookupComboBox
         Left = 584
@@ -117,7 +117,7 @@ inherited frmCadProduto: TfrmCadProduto
         KeyField = 'categoriaId'
         ListField = 'descricao'
         ListSource = dtsCategoria
-        TabOrder = 4
+        TabOrder = 5
       end
     end
   end
