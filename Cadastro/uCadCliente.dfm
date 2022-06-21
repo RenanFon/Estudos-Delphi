@@ -161,7 +161,6 @@
     end
   end
   inherited qryListagem: TZQuery
-    Active = True
     SQL.Strings = (
       ''
       'SELECT '
@@ -177,60 +176,50 @@
       #9#9'dataNascimento'
       #9'FROM clientes;')
     object qryListagemclienteId: TIntegerField
-      DisplayLabel = 'C'#243'digo'
       FieldName = 'clienteId'
       Required = True
     end
     object qryListagemnome: TWideStringField
-      DisplayLabel = 'Nome'
       FieldName = 'nome'
       Required = True
       Size = 60
     end
     object qryListagemendereco: TWideStringField
-      DisplayLabel = 'Endere'#231'o'
       FieldName = 'endereco'
       Required = True
       Size = 60
     end
     object qryListagemcidade: TWideStringField
-      DisplayLabel = 'Cidade'
       FieldName = 'cidade'
       Required = True
       Size = 50
     end
     object qryListagembairro: TWideStringField
-      DisplayLabel = 'Bairro'
       FieldName = 'bairro'
       Required = True
       Size = 40
     end
     object qryListagemestado: TWideStringField
-      DisplayLabel = 'Estado'
       FieldName = 'estado'
       Required = True
       Size = 2
     end
     object qryListagemcep: TWideStringField
-      DisplayLabel = 'CEP'
       FieldName = 'cep'
       Required = True
       Size = 10
     end
     object qryListagemtelefone: TWideStringField
-      DisplayLabel = 'Telefone'
       FieldName = 'telefone'
       Required = True
       Size = 14
     end
     object qryListagememail: TWideStringField
-      DisplayLabel = 'E-mail'
       FieldName = 'email'
       Required = True
       Size = 100
     end
     object qryListagemdataNascimento: TDateTimeField
-      DisplayLabel = 'Data de Nascimento'
       FieldName = 'dataNascimento'
       Required = True
     end

@@ -79,8 +79,8 @@ var Qry : TZQuery;
             Qry := TZQuery.Create(nil);
             Qry.Connection := ConexaoDB;
             Qry.SQL.Clear;
-            Qry.SQL.Add('DELETE FROM clintes '+
-                        'WHERE clienteId= :clienteId');
+            Qry.SQL.Add('DELETE FROM clientes '+
+                        'WHERE clienteId = :clienteId');
             Qry.ParamByName('clienteId').AsInteger :=F_clienteId;
             try
                 Qry.ExecSQL;
@@ -100,9 +100,10 @@ begin
     Result := True;
     Qry.Connection := ConexaoDB;
     Qry.SQL.Clear;
-    Qry.SQL.Add(' UPDATE          cliente '+
+    Qry.SQL.Add(' UPDATE          clientes '+
                 ' SET  nome         = :nome '+
                 ' ,endereco         = :endereco '+
+                ' ,cidade           = :cidade '+
                 ' ,bairro           = :bairro ' +
                 ' ,estado           = :estado '+
                 ' ,cep              = :cep '+
@@ -132,14 +133,94 @@ end;
 
 
 function TCliente.Inserir: Boolean;
+var Qry : TZQuery;
 begin
+     try
+     Result := TRue;
+     Qry := TZQuery.Create(nil);
+     Qry.Connection := conexaoDB;
+     Qry.SQL.Clear;
+     Qry.SQL.Add(' INSERT INTO clientes(nome,'+
+							  '	    endereco,'+
+                              '	    cidade,' +
+                              '	    bairro,' +
+							  '	    estado,'    +
+							  '	    cep,'        +
+							  '	    telefone,'    +
+							  '	    email,'        +
+							  '     dataNascimento)' +
+			'  VALUES               (:nome,'       +
+							  '	    :endereco,'    +
+							  '	    :cidade,'  +
+							  '	    :bairro,'   +
+							  '	    :estado,'    +
+							  ' 	:cep,'       +
+							  '     :telefone,'   +
+							  '	    :email,' +
+							  '	    :dataNascimento)');
 
+    Qry.ParamByName('nome').AsString                 :=self.F_nome;
+    Qry.ParamByName('endereco').AsString             := self.F_endereco;
+    Qry.ParamByName('cidade').AsString               := self.F_cidade;
+    Qry.ParamByName('bairro').AsString               := self.F_bairro;
+    Qry.ParamByName('estado').AsString               := self.F_estado;
+    Qry.ParamByName('cep').AsString                  := self.F_cep;
+    Qry.ParamByName('telefone').AsString             := self.F_telefone;
+    Qry.ParamByName('email').AsString                := self.F_email;
+    Qry.ParamByName('dataNascimento').AsDateTime     :=self.F_dataNascimento;
+     try
+       Qry.ExecSQL
+    Except
+       Result := false;
+    end
+   finally
+        if Assigned(Qry) then
+              FreeAndNil(Qry);
+    end;
 end;
 
 function TCliente.Selecionar(id: Integer): Boolean;
-begin
+ var Qry : TZQuery;
+    begin
+        try
+            Result := TRue;
+            Qry := TZQuery.Create(nil);
+            Qry.Connection := conexaoDB;
+            Qry.SQL.Clear;
+            Qry.SQL.Add(' SELECT clienteId,' +
+                         '   nome,'             +
+                         '  endereco,'         +
+                         '   cidade,'           +
+                         '  bairro,'           +
+                         '  estado,'           +
+                         '  cep,'              +
+                         '  telefone,'         +
+                         '  email,'            +
+                         '  dataNascimento'    +
+	                     '  FROM clientes'     +
+                         '  WHERE clienteId = :clienteId');
+            Qry.ParamByName('clienteId').AsInteger := id;
+        try
+           Qry.Open;
+           Self.F_clienteId          :=Qry.FieldByName('clienteId').AsInteger;
+           self.F_nome               :=Qry.FieldByName('nome').AsString;
+           self.F_endereco           :=Qry.FieldByName('endereco').AsString;
+           self.F_cidade             :=Qry.FieldByName('cidade').AsString;
+           self.F_bairro             :=Qry.FieldByName('bairro').AsString;
+           self.F_estado             :=Qry.FieldByName('estado').AsString;
+           self.F_cep                :=Qry.FieldByName('cep').AsString;
+           self.F_telefone           :=Qry.FieldByName('telefone').AsString;
+           self.F_email              := Qry.FieldByName('email').AsString;
+           self.F_dataNascimento     := Qry.FieldByName('dataNascimento').AsDateTime;
+        Except
+           Result := False;
+        end;
 
-end;
+        finally
+          if assigned(Qry) then
+            FreeAndNil(Qry);
+        end;
+    end;
 
 {$endregion}
 
