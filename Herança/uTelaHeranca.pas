@@ -6,7 +6,8 @@ uses
       Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
       Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls,
       Vcl.ExtCtrls, Data.DB, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Buttons,
-      ZAbstractRODataset, ZAbstractDataset, ZDataset,udtmConexao,uEnum;
+      ZAbstractRODataset, ZAbstractDataset, ZDataset,udtmConexao,uEnum,
+  RxToolEdit, RxCurrEdit;
 
 type
        TfrmTelaHeranca = class(TForm)
@@ -194,12 +195,37 @@ procedure TfrmTelaHeranca.DesabilitarEditPK;
             if (Components[i] is TLabeledEdit) then
                 BEGIN
                    TLabeledEdit (components[i]).Text := EmptyStr;
-                end
+                END
+
             else if (Components[i] is TEdit) then
                 BEGIN
                     TEdit(Components[i]).Text := '';
-                END;
+                END
 
+            else if (Components[i] is TMaskEdit) then
+                BEGIN
+                    TMaskEdit(Components[i]).Text := '';
+                END
+
+            else if (Components[i] is TMemo) then
+                BEGIN
+                    TMemo(Components[i]).Text := '';
+                END
+
+            else if (Components[i] is TDBLookupComboBox) then
+                BEGIN
+                    TDBLookupComboBox(Components[i]).KeyValue := null;
+                END
+
+            else if (Components[i] is TCurrencyEdit) then
+                BEGIN
+                     TCurrencyEdit(Components[i]).Value := 0 ;
+                END
+
+            else if (Components[i] is TDateEdit) then
+                BEGIN
+                    TDateEdit(Components[i]).Date := 0;
+                END;
         END;
   end;
 

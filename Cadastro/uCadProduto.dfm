@@ -61,6 +61,13 @@ inherited frmCadProduto: TfrmCadProduto
         Height = 13
         Caption = 'Quantidade'
       end
+      object Label4: TLabel
+        Left = 584
+        Top = 101
+        Width = 47
+        Height = 13
+        Caption = 'C'#233'tegoria'
+      end
       object edtProdutoId: TLabeledEdit
         Tag = 1
         Left = 24

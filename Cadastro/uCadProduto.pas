@@ -31,6 +31,7 @@ type
     dtsCategoria: TDataSource;
     qryCategoriacategoriaId: TIntegerField;
     qryCategoriadescricao: TWideStringField;
+    Label4: TLabel;
     procedure BtnAlterarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao, Enter;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao, Enter, uFrmAtualizaDb;
 
 type
   TfrmPrincipal = class(TForm)
@@ -33,6 +33,7 @@ type
   private
     { Private declarations }
     TeclaEnter : TMREnter;
+    procedure AtualizacaoDoBanco(aForm: TFrmAtualizaDb);
   public
     { Public declarations }
   end;
@@ -67,15 +68,21 @@ begin
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
-begin
-     dtmPrincipal := TdtmPrincipal.create(self);
-     dtmPrincipal.conexaoDB.SQLHourGlass := true;
-     dtmPrincipal.conexaoDB.Connected := true;
+    begin
+         frmAtualizaDB := TfrmAtualizaDB.Create(Self);
+         frmAtualizaDB.Show;
+         frmAtualizaDB.Refresh;
 
-     TeclaEnter := TMREnter.Create(Self);
-     TeclaEnter.FocusEnabled := True;
-     TeclaEnter.FocusColor := clInfoBk;
-end;
+         dtmPrincipal := TdtmPrincipal.create(self);
+         dtmPrincipal.conexaoDB.SQLHourGlass := true;
+         dtmPrincipal.conexaoDB.Connected := true;
+         TeclaEnter := TMREnter.Create(Self);
+         TeclaEnter.FocusEnabled := True;
+         TeclaEnter.FocusColor := clInfoBk;
+
+         AtualizacaoDoBanco(frmAtualizaDB);
+         frmAtualizaDB.free;
+    end;
 
 procedure TfrmPrincipal.menuFECHARClick(Sender: TObject);
 begin
@@ -88,5 +95,36 @@ procedure TfrmPrincipal.PRODUTO1Click(Sender: TObject);
         frmCadProduto.ShowModal;
         frmCadProduto.Release;
     end;
+
+procedure TfrmPrincipal.AtualizacaoDoBanco(aForm:TFrmAtualizaDb);
+    BEGIN
+        aForm.chkConexao.Checked := true;
+        aForm.Refresh;
+
+        dtmPrincipal.qryScriptCategoria.ExecSQL;
+        aForm.chkCategoria.Checked := True;
+        aForm.Refresh;
+        Sleep(300);
+
+        dtmPrincipal.qryScriptCategoriaProdutos.ExecSQL;
+        aForm.chkProduto.Checked := True;
+        aForm.Refresh;
+        sleep(300);
+
+        dtmPrincipal.qryScriptClientes.ExecSQL;
+        aForm.chkCliente.Checked := True;
+        aForm.Refresh;
+        sleep(300);
+
+        dtmPrincipal.qryScriptVendas.ExecSQL;
+        aForm.chkVendas.Checked := True;
+        aForm.Refresh;
+        sleep(300);
+
+        dtmPrincipal.qryScriptItensVendas.ExecSQL;
+        aForm.chkItennsVendas.Checked := True;
+        aForm.Refresh;
+        sleep(300);
+    END;
 
 end.
