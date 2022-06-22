@@ -69,15 +69,15 @@ var qry : TZQuery;
         qry := TZQuery.Create(nil);
         qry.Connection := conexaoDB;
         qry.SQL.Clear;
-        qry.SQL.Add('INSERT INTO produtos   (nome, '+
+        qry.SQL.Add('INSERT INTO produtos(nome, '+
                              '               descricao,  '+
                              '               valor,        '+
                              '               quantidade,    '+
                              '               categoriaId)  ' +
-                             '  VALUES    (  :nome          '+
-                             '               :descricao     '+
-                             '               :valor        ' +
-                             '               :quantidade   ' +
+                             '  VALUES(      :nome,          '+
+                             '               :descricao,     '+
+                             '               :valor,        ' +
+                             '               :quantidade,   ' +
                              '               :categoriaId )') ;
         qry.ParamByName('nome').AsString          :=self.F_nome;
         qry.ParamByName('descricao').AsString     :=self.F_descricao;
@@ -100,26 +100,32 @@ var qry:TZQuery;
     begin
         try
             Result := true;
+            qry:=TZQuery.Create(nil);
             qry.Connection := conexaoDB;
             qry.SQL.Clear;
-            qry.SQL.add('  SELECT produtoId,   '+
-                        '  nome,         '      +
-		                '  descricao,    '      +
-		                '  valor,        '      +
-		                '  quantidade,   '      +
-		                '  categoriaId   '      +
-                        '  FROM produtos '      +
-                        '  WHERE produtoId = produtoId;');
+            qry.SQL.add('SELECT produtoId,'+
+                        '  nome,         '+
+		                '  descricao,    '+
+		                '  valor,        '+
+		                '  quantidade,   '+
+		                '  categoriaId   '+
+                        '  FROM produtos '+
+                        '  WHERE produtoId = :produtoId ');
             qry.ParamByName('produtoId').AsInteger :=id;
             try
                qry.Open;
                Self.F_produtoId         :=qry.FieldByName('produtoId').AsInteger;
-
+               Self.F_nome              :=qry.FieldByName('nome').AsString;
+               self.F_descricao         :=qry.FieldByName('descricao').AsString;
+               self.F_valor             :=qry.FieldByName('valor').AsFloat;
+               self.F_quantidade        :=qry.FieldByName('quantidade').AsFloat;
+               self.F_categoriaId       :=qry.FieldByName('categoriaId').AsInteger;
             Except
-
+               Result := False;
             end;
         finally
-
+             if Assigned(qry) then
+                FreeAndNil(qry);
         end;
     end;
 
@@ -140,7 +146,7 @@ function Tproduto.Apagar: Boolean;
         qry.Connection := ConexaoDb;
         qry.SQL.Clear;
         qry.SQL.Add('DELETE FROM produtos '+
-                    'WHERE produtoId =: produtoId' );
+                    'WHERE produtoId = :produtoId' );
         qry.ParamByName('produtoId').AsInteger:= F_produtoId;
         Try
            qry.ExecSQL;
@@ -168,16 +174,14 @@ var qry:TZQuery;
                         '  ,descricao         = :descricao '+
                         '  ,valor             = :valor      '+
                         '  ,quantidade        = :quantidade '+
-                        '  ,categoriaI        = :categoriaId'+
-                        'WHERE produtoId      = :categoria'
-            );
-            qry.ParamByName('produtoId').AsInteger :=self.F_produtoId;
-            qry.ParamByName('nome').AsString       :=self.F_nome;
-            qry.ParamByName('descricao').AsString  :=self.F_descricao;
-            qry.ParamByName('valor').AsFloat       :=self.F_valor;
-            qry.ParamByName('quantidade').AsFloat  :=self.F_quantidade;
-            qry.ParamByName('categoria').AsInteger :=self.F_categoriaId;
-
+                        '  ,categoriaId       = :categoriaId'+
+                        '  WHERE produtoId    = :produtoId' );
+            qry.ParamByName('produtoId').AsInteger   :=self.F_produtoId;
+            qry.ParamByName('nome').AsString         :=self.F_nome;
+            qry.ParamByName('descricao').AsString    :=self.F_descricao;
+            qry.ParamByName('valor').AsFloat         :=self.F_valor;
+            qry.ParamByName('quantidade').AsFloat    :=self.F_quantidade;
+            qry.ParamByName('categoriaId').AsInteger :=self.F_categoriaId;
             try
                qry.ExecSQL;
             Except

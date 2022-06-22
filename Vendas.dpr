@@ -20,6 +20,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmCadProduto, frmCadProduto);
   Application.Run;
 end.
