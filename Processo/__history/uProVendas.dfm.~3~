@@ -1,0 +1,112 @@
+inherited frmProVendas: TfrmProVendas
+  Caption = 'Vendas'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pgcPrincipal: TPageControl
+    ActivePage = TabManutencao
+    inherited TabListagem: TTabSheet
+      inherited grdListagem: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'vendaId'
+            Width = 125
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'clienteId'
+            Width = 102
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'nome'
+            Width = 287
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'datavenda'
+            Width = 184
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'totalVenda'
+            Width = 349
+            Visible = True
+          end>
+      end
+    end
+    inherited TabManutencao: TTabSheet
+      object Clinte: TLabel
+        Left = 168
+        Top = 31
+        Width = 27
+        Height = 13
+        Caption = 'Clinte'
+      end
+      object edtVendasId: TLabeledEdit
+        Tag = 1
+        Left = 8
+        Top = 48
+        Width = 121
+        Height = 21
+        EditLabel.Width = 70
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Numero Venda'
+        MaxLength = 10
+        NumbersOnly = True
+        TabOrder = 0
+      end
+      object lkpCategoria: TDBLookupComboBox
+        Left = 168
+        Top = 48
+        Width = 329
+        Height = 21
+        KeyField = 'categoriaId'
+        ListField = 'descricao'
+        TabOrder = 1
+      end
+    end
+  end
+  inherited btnlRodape: TPanel
+    inherited btnNavigator: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  inherited qryListagem: TZQuery
+    SQL.Strings = (
+      
+        'SELECT vendas.vendaId,vendas.clienteId,clientes.nome,vendas.data' +
+        'venda,vendas.totalVenda'
+      
+        #9#9'FROM vendas INNER JOIN clientes ON clientes.clienteId = vendas' +
+        '.clienteId;')
+    object qryListagemvendaId: TIntegerField
+      DisplayLabel = 'Numero Venda'
+      FieldName = 'vendaId'
+      Required = True
+    end
+    object qryListagemclienteId: TIntegerField
+      DisplayLabel = 'C'#243'digo Cliente'
+      FieldName = 'clienteId'
+      Required = True
+    end
+    object qryListagemnome: TWideStringField
+      DisplayLabel = 'Nome do Cliente'
+      FieldName = 'nome'
+      Required = True
+      Size = 60
+    end
+    object qryListagemdatavenda: TDateTimeField
+      DisplayLabel = 'Data Venda'
+      FieldName = 'datavenda'
+    end
+    object qryListagemtotalVenda: TFloatField
+      DisplayLabel = 'Total da Venda'
+      FieldName = 'totalVenda'
+    end
+  end
+end
