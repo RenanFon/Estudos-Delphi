@@ -28,8 +28,16 @@ type
     edtValor: TCurrencyEdit;
     Label2: TLabel;
     DBGrid1: TDBGrid;
-    DBLookupComboBox1: TDBLookupComboBox;
+    lkpProduto: TDBLookupComboBox;
     Produto: TLabel;
+    edtUnitario: TCurrencyEdit;
+    edtQuantidade: TCurrencyEdit;
+    edtTotalProduto: TCurrencyEdit;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
   private
     { Private declarations }
   public

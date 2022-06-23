@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao, Enter, uFrmAtualizaDb;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao, Enter, uFrmAtualizaDb, uProVendas;
 
 type
   TfrmPrincipal = class(TForm)
@@ -30,6 +30,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure CLIENTE1Click(Sender: TObject);
     procedure PRODUTO1Click(Sender: TObject);
+    procedure VENDAS1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter : TMREnter;
@@ -94,6 +95,13 @@ procedure TfrmPrincipal.PRODUTO1Click(Sender: TObject);
         frmCadProduto:= TfrmCadProduto.Create(Self);
         frmCadProduto.ShowModal;
         frmCadProduto.Release;
+    end;
+
+procedure TfrmPrincipal.VENDAS1Click(Sender: TObject);
+    begin
+        frmProVendas := TfrmProVendas.Create(self);
+        frmProVendas.ShowModal;
+        frmProVendas.Release;
     end;
 
 procedure TfrmPrincipal.AtualizacaoDoBanco(aForm:TFrmAtualizaDb);
