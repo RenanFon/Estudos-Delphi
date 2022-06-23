@@ -58,7 +58,7 @@ type
 
   public
         { Public declarations }
-        EstadoDoCadastro : TestadoDoCadastro;
+        EstadoDoCadastro : TEstadoDoCadastro;
         indiceAtual : String;
         function Apagar:Boolean ; virtual;
         function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
@@ -116,13 +116,14 @@ begin
 end;
 function TfrmTelaHeranca.Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ;
 begin
-     if (EstadoDoCadastro =ecInserir) then
-              showmessage('Inserir')
-     else if (EstadoDoCadastro =ecAlterar) then
-             showmessage('Alterar');
-
-             Result := True;
+   if (EstadoDoCadastro=ecInserir) then
+       showmessage('Inserir')
+   else if (EstadoDoCadastro=ecAlterar) then
+       showmessage('Alterado')
+   else
+      showmessage('Nada aconteceu');
 end;
+
 
 
 
@@ -278,22 +279,20 @@ end;
 
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
-      if (ExisteCampoObrigatório) then abort;
+if (ExisteCampoObrigatório) then abort;
+   Try
+    if Gravar(EstadoDoCadastro) then begin
+       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);
+       ControlarIndiceTab(pgcPrincipal, 0);
+       EstadoDoCadastro:=ecNenhum;
+       LimparEdits;
+       QryListagem.Refresh;
+    end
+    else
 
-      try
-      if Gravar(EstadoDoCadastro) then
-          begin
-             ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,True);
-             ControlarIndiceTab(pgcPrincipal,0);
-             EstadoDoCadastro := ecNenhum;
-             LimparEdits;
-             qryListagem.Refresh;
-           end
-      Else
-          begin
-              MessageDlg('Erro na Gravação ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
-
-          end;
+        begin
+             MessageDlg('Erro ao Gravar', mtWarning,[mbOK],0);
+        end;
 
       finally
       end;

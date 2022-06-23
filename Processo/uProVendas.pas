@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,udtmConexao, uDtmVenda,
-  RxToolEdit, RxCurrEdit;
+  RxToolEdit, RxCurrEdit,cProVendas,uEnum;
 
 type
   TfrmProVendas = class(TfrmTelaHeranca)
@@ -17,7 +17,7 @@ type
     qryListagemdatavenda: TDateTimeField;
     qryListagemtotalVenda: TFloatField;
     edtVendasId: TLabeledEdit;
-    lkpCategoria: TDBLookupComboBox;
+    lkpCliente: TDBLookupComboBox;
     Clinte: TLabel;
     edtDataVenda: TDateEdit;
     Label1: TLabel;
@@ -25,7 +25,7 @@ type
     Panel2: TPanel;
     Panel3: TPanel;
     Panel4: TPanel;
-    edtValor: TCurrencyEdit;
+    edtValorTotal: TCurrencyEdit;
     Label2: TLabel;
     lkpProduto: TDBLookupComboBox;
     Produto: TLabel;
@@ -42,9 +42,14 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DBGrid1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure btnNovoClick(Sender: TObject);
+    procedure BtnAlterarClick(Sender: TObject);
   private
     { Private declarations }
     dtmVenda :TdtmVenda;
+    oVenda:Tvenda;
+    function Gravar(EstadoDoCadastro:TEstadoDoCadastro):boolean; override;
+    function apagar:Boolean;override;
   public
     { Public declarations }
   end;
@@ -56,6 +61,49 @@ implementation
 
 {$R *.dfm}
 
+function TfrmProVendas.Gravar(EstadoDoCadastro: TEstadoDoCadastro): boolean;
+    begin
+      Result:=False;
+      if edtVendasId.Text<>EmptyStr then
+         oVenda.VendaId:=StrToInt(edtVendasId.Text)
+      else
+         oVenda.VendaId:=0;
+
+      oVenda.ClienteId        := lkpCliente.KeyValue;
+      oVenda.DataVenda        :=edtDataVenda.Date;
+      oVenda.TotalVenda       :=edtValorTotal.Value;
+
+       if(EstadoDoCadastro = ecInserir) then
+          Result := oVenda.Inserir
+       else if(EstadoDoCadastro = ecAlterar) then
+          Result := oVenda.Atualizar;
+    end;
+
+function TfrmProVendas.apagar: Boolean;
+   begin
+       Result := oVenda.Apagar(qryListagem.FieldByName('vendaId').AsInteger);
+
+    end;
+
+procedure TfrmProVendas.BtnAlterarClick(Sender: TObject);
+begin
+    if oVenda.Selecionar(qryListagem.FieldByName('vendaId').AsInteger) then
+
+    Begin
+        edtVendasId.Text    :=IntToStr(oVenda.VendaId);
+        lkpCliente.KeyValue :=oVenda.ClienteId;
+        edtDataVenda.Date   :=oVenda.DataVenda;
+        edtValorTotal.Value :=ovenda.TotalVenda;
+    End;
+
+end;
+
+procedure TfrmProVendas.btnNovoClick(Sender: TObject);
+    begin
+      inherited;
+      edtDataVenda.Date := date;
+      lkpCliente.SetFocus;
+    end;
 
 procedure TfrmProVendas.DBGrid1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -69,15 +117,17 @@ begin
   inherited;
    if Assigned(dtmVenda) then
         FreeAndNil(dtmVenda);
-
+   if Assigned(oVenda) then
+        FreeAndNil(oVenda);
 end;
 
 procedure TfrmProVendas.FormCreate(Sender: TObject);
-begin
-  inherited;
-  dtmVenda := TdtmVenda.Create(self);
+    begin
+      inherited;
+      dtmVenda := TdtmVenda.Create(self);
+      oVenda := Tvenda.Create(dtmPrincipal.conexaoDB);
 
-
-end;
+      indiceAtual := 'nome';
+    end;
 
 end.

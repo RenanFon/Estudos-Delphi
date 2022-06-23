@@ -6,10 +6,12 @@ inherited frmProVendas: TfrmProVendas
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     Width = 1034
+    ExplicitWidth = 1034
     inherited TabListagem: TTabSheet
       ExplicitWidth = 1026
       inherited pnlListagemTopo: TPanel
         Width = 1026
+        ExplicitWidth = 1026
       end
       inherited grdListagem: TDBGrid
         Width = 1026
@@ -51,9 +53,9 @@ inherited frmProVendas: TfrmProVendas
       object Clinte: TLabel
         Left = 193
         Top = 36
-        Width = 27
+        Width = 33
         Height = 13
-        Caption = 'Clinte'
+        Caption = 'Cliente'
       end
       object Label1: TLabel
         Left = 792
@@ -75,7 +77,8 @@ inherited frmProVendas: TfrmProVendas
         NumbersOnly = True
         TabOrder = 0
       end
-      object lkpCategoria: TDBLookupComboBox
+      object lkpCliente: TDBLookupComboBox
+        Tag = 1
         Left = 193
         Top = 53
         Width = 505
@@ -102,7 +105,6 @@ inherited frmProVendas: TfrmProVendas
         Height = 428
         Align = alBottom
         TabOrder = 3
-        ExplicitTop = 86
         object Panel2: TPanel
           Left = 1
           Top = 1
@@ -110,9 +112,6 @@ inherited frmProVendas: TfrmProVendas
           Height = 65
           Align = alTop
           TabOrder = 0
-          ExplicitLeft = 2
-          ExplicitTop = -4
-          ExplicitWidth = 985
           object Produto: TLabel
             Left = 35
             Top = 8
@@ -248,7 +247,6 @@ inherited frmProVendas: TfrmProVendas
           Height = 310
           Align = alClient
           TabOrder = 1
-          ExplicitWidth = 985
           object dbGridItensVendas: TDBGrid
             Left = 1
             Top = 1
@@ -304,7 +302,6 @@ inherited frmProVendas: TfrmProVendas
           Height = 51
           Align = alBottom
           TabOrder = 2
-          ExplicitWidth = 985
           object Label2: TLabel
             Left = 779
             Top = 19
@@ -318,7 +315,7 @@ inherited frmProVendas: TfrmProVendas
             Font.Style = [fsBold]
             ParentFont = False
           end
-          object edtValor: TCurrencyEdit
+          object edtValorTotal: TCurrencyEdit
             Left = 883
             Top = 14
             Width = 86
@@ -349,8 +346,10 @@ inherited frmProVendas: TfrmProVendas
   end
   inherited btnlRodape: TPanel
     Width = 1034
+    ExplicitWidth = 1034
     inherited btnFechar: TBitBtn
       Left = 905
+      ExplicitLeft = 905
     end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()
