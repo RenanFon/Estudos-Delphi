@@ -23,7 +23,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TdtmVenda, dtmVenda);
-  Application.CreateForm(TfrmProVendas, frmProVendas);
   Application.Run;
 end.

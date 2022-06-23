@@ -27,7 +27,6 @@ type
     Panel4: TPanel;
     edtValor: TCurrencyEdit;
     Label2: TLabel;
-    DBGrid1: TDBGrid;
     lkpProduto: TDBLookupComboBox;
     Produto: TLabel;
     edtUnitario: TCurrencyEdit;
@@ -38,8 +37,14 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    dbGridItensVendas: TDBGrid;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DBGrid1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
+    dtmVenda :TdtmVenda;
   public
     { Public declarations }
   end;
@@ -51,5 +56,28 @@ implementation
 
 {$R *.dfm}
 
+
+procedure TfrmProVendas.DBGrid1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+    begin
+        inherited;
+        BloqueiaCTRL_DBL_DBGrid(Key,Shift);
+    end;
+
+procedure TfrmProVendas.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+   if Assigned(dtmVenda) then
+        FreeAndNil(dtmVenda);
+
+end;
+
+procedure TfrmProVendas.FormCreate(Sender: TObject);
+begin
+  inherited;
+  dtmVenda := TdtmVenda.Create(self);
+
+
+end;
 
 end.

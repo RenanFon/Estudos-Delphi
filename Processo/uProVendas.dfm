@@ -6,7 +6,6 @@ inherited frmProVendas: TfrmProVendas
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     Width = 1034
-    ActivePage = TabManutencao
     inherited TabListagem: TTabSheet
       ExplicitWidth = 1026
       inherited pnlListagemTopo: TPanel
@@ -250,19 +249,21 @@ inherited frmProVendas: TfrmProVendas
           Align = alClient
           TabOrder = 1
           ExplicitWidth = 985
-          object DBGrid1: TDBGrid
+          object dbGridItensVendas: TDBGrid
             Left = 1
             Top = 1
             Width = 1022
             Height = 308
             Align = alClient
             DataSource = dtmVenda.dtsItensVenda
+            Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgCancelOnExit]
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            OnKeyDown = DBGrid1KeyDown
             Columns = <
               item
                 Expanded = False
