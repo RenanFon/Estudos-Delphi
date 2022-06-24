@@ -64,7 +64,7 @@ function Tvenda.Apagar(id:integer): Boolean;
 var qry:TZQuery;
     begin
         if messageDlg('Apagar o Registro : '+#13+#13+
-        'Venda Nro:'+IntToStr(vendaId),mtConfirmation,[mbYes,mbNo],0)=mrNo then
+        'Venda Nro:'+IntToStr(Id),mtConfirmation,[mbYes,mbNo],0)=mrNo then
          begin
              Result := false;
              abort;
@@ -78,15 +78,15 @@ var qry:TZQuery;
              //apaga os itens primeiro
              qry.SQL.Clear;
              qry.SQL.Add(' DELETE FROM vendasItens '+
-                         ' WHERE vendaId = :vendaId ');
-             qry.ParamByName('vendaId').AsInteger := vendaid;
+                         ' WHERE vendaId = :Id ');
+             qry.ParamByName('Id').AsInteger := vendaid;
              try
                  qry.ExecSQL;
                  //apaga a tabela master
                  qry.SQL.Clear;
                  qry.SQL.Add('DELETE FROM vendas '+
-                             ' WHERE vendaId = :vendaId');
-                 qry.ParamByName('vendaId').AsInteger := vendaid;
+                             ' WHERE vendaId = :Id');
+                 qry.ParamByName('Id').AsInteger := id;
                  qry.ExecSQL;
                  ConexaoDB.commit;
              Except
@@ -109,13 +109,13 @@ var qry : TZQuery;
              qry.SQL.Clear;
              qry.SQL.Add('UPDATE vendas ' +
                         ' SET clienteId = :clienteId '+
-                        '  ,dataVenda = : datavenda '+
+                        '  ,dataVenda = :datavenda '+
                         '  ,totalvenda = :totalvenda'+
                         ' WHERE vendaId = :vendaId');
              qry.ParamByName('vendaId').AsInteger    :=self.F_vendaId;
              qry.ParamByName('clienteId').AsInteger  :=self.F_clienteId;
              qry.ParamByName('dataVenda').AsDateTime :=self.F_dataVenda;
-             qry.ParamByName('totaVenda').AsFloat    :=Self.F_totalVenda;
+             qry.ParamByName('totalVenda').AsFloat    :=Self.F_totalVenda;
 
              try
                 qry.ExecSQL;
@@ -183,7 +183,7 @@ var qry:TZQuery;
                  '     ,dataVenda      ' +
                  '     ,totalVenda     ' +
                  '   FROM vendas   '+
-                 '   WHERE vendaId =: vendaId' );
+                 '   WHERE vendaId = :vendaId' );
            qry.ParamByName('vendaId').AsInteger := Id;
 
            try

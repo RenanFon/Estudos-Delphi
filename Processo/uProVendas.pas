@@ -87,15 +87,19 @@ function TfrmProVendas.apagar: Boolean;
 
 procedure TfrmProVendas.BtnAlterarClick(Sender: TObject);
 begin
-    if oVenda.Selecionar(qryListagem.FieldByName('vendaId').AsInteger) then
-
-    Begin
+    if oVenda.Selecionar(qryListagem.FieldByName('vendaId').AsInteger) then Begin
         edtVendasId.Text    :=IntToStr(oVenda.VendaId);
         lkpCliente.KeyValue :=oVenda.ClienteId;
         edtDataVenda.Date   :=oVenda.DataVenda;
         edtValorTotal.Value :=ovenda.TotalVenda;
-    End;
+    End
+    else
+       begin
+            btnCancelar.Click;
+            abort;
+       end;
 
+     inherited;
 end;
 
 procedure TfrmProVendas.btnNovoClick(Sender: TObject);
