@@ -238,6 +238,7 @@ inherited frmProVendas: TfrmProVendas
               C1BBBBBBB8B8B8FF00FFDBDBDBBEBEBE969696848484858585898989989898BE
               BEBED6D6D6D8D8D8D0D0D0C8C8C8C1C1C1BBBBBBB8B8B8FF00FF}
             TabOrder = 4
+            OnClick = btnRemoverClick
           end
         end
         object Panel3: TPanel
@@ -261,6 +262,7 @@ inherited frmProVendas: TfrmProVendas
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            OnDblClick = dbGridItensVendasDblClick
             OnKeyDown = DBGrid1KeyDown
             Columns = <
               item

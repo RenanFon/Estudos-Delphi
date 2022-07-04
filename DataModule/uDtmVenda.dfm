@@ -77,11 +77,6 @@ object dtmVenda: TdtmVenda
       DisplayLabel = 'Total Do Produto'
       FieldName = 'ValorTotalProduto'
     end
-    object cdsItensvendaValorTotalVenda: TAggregateField
-      FieldName = 'ValorTotalVenda'
-      DisplayName = ''
-      Expression = 'SUM(ValorTotalProduto)'
-    end
   end
   object dtsCliente: TDataSource
     DataSet = qryCliente

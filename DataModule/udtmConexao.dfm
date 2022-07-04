@@ -91,7 +91,7 @@ object dtmPrincipal: TdtmPrincipal
     Connection = conexaoDB
     SQL.Strings = (
       'CREATE TABLE IF NOT EXISTS vendasItens('
-      #9#9'vendaId INT PRIMARY KEY NOT NULL,'
+      '    vendaId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,'
       #9#9'produtoId INT NOT NULL,'
       #9#9'valorUnitario DECIMAL(18,5) DEFAULT 0.00000,'
       #9#9'quantidade DECIMAL(18,5) DEFAULT 0.00000,'

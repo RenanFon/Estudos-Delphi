@@ -25,7 +25,6 @@ type
     cdsItensvendaQuantidade: TFloatField;
     cdsItensvendaValorUnitario: TFloatField;
     cdsItensvendaValorTotalProduto: TFloatField;
-    cdsItensvendaValorTotalVenda: TAggregateField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -60,5 +59,6 @@ procedure TdtmVenda.DataModuleDestroy(Sender: TObject);
         qryCliente.Close;
         qryProdutos.Close;
     end;
+
 
 end.

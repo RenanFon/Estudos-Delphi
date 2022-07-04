@@ -20,13 +20,13 @@
     <Transaction>2022/06/17 09:54:14.000.274,=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
     <Transaction>2022/06/17 09:56:16.000.088,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Classes\cCadCategoria.pas</Transaction>
     <Transaction>2022/06/20 12:22:05.000.183,=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
-    <Transaction>2022/06/20 12:23:04.000.765,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Cadastro\uCadCliente.dfm=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.dfm</Transaction>
     <Transaction>2022/06/20 12:23:04.000.765,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Cadastro\uCadCliente.pas=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
+    <Transaction>2022/06/20 12:23:04.000.765,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Cadastro\uCadCliente.dfm=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.dfm</Transaction>
     <Transaction>2022/06/20 14:13:10.000.756,=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
     <Transaction>2022/06/20 14:13:39.000.315,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Classes\cCadCliente.pas=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
     <Transaction>2022/06/21 12:23:46.000.136,=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
-    <Transaction>2022/06/21 12:24:08.000.866,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Cadastro\uCadProduto.pas=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
     <Transaction>2022/06/21 12:24:08.000.866,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Cadastro\uCadProduto.dfm=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.dfm</Transaction>
+    <Transaction>2022/06/21 12:24:08.000.866,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Cadastro\uCadProduto.pas=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
     <Transaction>2022/06/21 14:41:44.000.988,=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
     <Transaction>2022/06/21 14:42:16.000.786,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Classes\cCadProduto.pas=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
     <Transaction>2022/06/22 11:58:14.000.041,=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
@@ -41,6 +41,8 @@
     <Transaction>2022/06/22 14:59:22.000.314,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Processo\uProVendas.dfm=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.dfm</Transaction>
     <Transaction>2022/06/23 09:55:27.000.523,=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
     <Transaction>2022/06/23 09:56:20.000.806,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Classes\cProVendas.pas</Transaction>
+    <Transaction>2022/07/04 15:29:34.556,=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
+    <Transaction>2022/07/04 15:32:35.375,C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Classes\cControleEstoque.pas=C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Cadastro"/>
@@ -55,6 +57,7 @@
     <File Path="Classes\cCadCliente.pas"/>
     <File Path="Classes\cCadProduto.pas"/>
     <File Path="Classes\cProVendas.pas"/>
+    <File Path="Classes\cControleEstoque.pas"/>
     <File Path="DataModule"/>
     <File Path="DataModule\udtmConexao.pas"/>
     <File Path="DataModule\udtmConexao.dfm"/>
