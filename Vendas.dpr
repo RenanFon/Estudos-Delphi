@@ -17,7 +17,13 @@ uses
   uDtmVenda in 'DataModule\uDtmVenda.pas' {dtmVenda: TDataModule},
   uProVendas in 'Processo\uProVendas.pas' {frmProVendas},
   cProVendas in 'Classes\cProVendas.pas',
-  cControleEstoque in 'Classes\cControleEstoque.pas';
+  cControleEstoque in 'Classes\cControleEstoque.pas',
+  uRelCliente in 'Relatorio\uRelCliente.pas' {frmRelCliente},
+  uRelCadProdutoComGrupoCategoria in 'Relatorio\uRelCadProdutoComGrupoCategoria.pas' {frmRelCadProdutoComGrupoCategoria},
+  uRelCategoria in 'Relatorio\uRelCategoria.pas' {frmRelCategoria},
+  uRelClienteFicha in 'Relatorio\uRelClienteFicha.pas' {frmRelClienteFicha},
+  uRelCadProduto in 'Relatorio\uRelCadProduto.pas' {frmRelCadProduto},
+  uSelecionarData in 'Processo\uSelecionarData.pas' {frmSelecionarData};
 
 {$R *.res}
 
@@ -25,5 +31,10 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmRelCategoria, frmRelCategoria);
+  Application.CreateForm(TfrmRelClienteFicha, frmRelClienteFicha);
+  Application.CreateForm(TfrmRelClienteFicha, frmRelClienteFicha);
+  Application.CreateForm(TfrmRelCadProduto, frmRelCadProduto);
+  Application.CreateForm(TfrmSelecionarData, frmSelecionarData);
   Application.Run;
 end.

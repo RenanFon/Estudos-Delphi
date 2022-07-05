@@ -1,0 +1,478 @@
+object frmRelClienteFicha: TfrmRelClienteFicha
+  Left = 0
+  Top = 0
+  Caption = 'frmRelClienteFicha'
+  ClientHeight = 662
+  ClientWidth = 1195
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object relatorio: TRLReport
+    Left = 104
+    Top = -8
+    Width = 794
+    Height = 1123
+    DataSource = dtsCliente
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object Cabecalho: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 123
+      BandType = btHeader
+      object RLLabel1: TRLLabel
+        Left = 342
+        Top = 125
+        Width = 224
+        Height = 22
+        Caption = 'Listagem de Categorias'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -19
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLLabel2: TRLLabel
+        Left = 2
+        Top = 47
+        Width = 166
+        Height = 22
+        Caption = 'Ficha De Clientes'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -19
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object RLDraw1: TRLDraw
+        Left = 0
+        Top = 75
+        Width = 718
+        Height = 48
+        Align = faBottom
+        DrawKind = dkLine
+      end
+    end
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 393
+      Width = 718
+      Height = 80
+      BandType = btFooter
+      object RLDraw2: TRLDraw
+        Left = 0
+        Top = 0
+        Width = 718
+        Height = 48
+        Align = faTop
+        DrawKind = dkLine
+      end
+      object RLSystemInfo1: TRLSystemInfo
+        Left = 3
+        Top = 48
+        Width = 65
+        Height = 16
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        Info = itFullDate
+        ParentFont = False
+        Text = ''
+      end
+      object RLSystemInfo2: TRLSystemInfo
+        Left = 640
+        Top = 46
+        Width = 20
+        Height = 16
+        Info = itPageNumber
+        Text = ''
+      end
+      object RLSystemInfo3: TRLSystemInfo
+        Left = 690
+        Top = 46
+        Width = 25
+        Height = 16
+        Info = itLastPageNumber
+        Text = ''
+      end
+      object RLLabel3: TRLLabel
+        Left = 666
+        Top = 46
+        Width = 18
+        Height = 18
+        Caption = '/'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = []
+        ParentFont = False
+      end
+      object RLLabel4: TRLLabel
+        Left = 590
+        Top = 46
+        Width = 49
+        Height = 16
+        Caption = 'Pagina'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+    object RLBand2: TRLBand
+      Left = 38
+      Top = 225
+      Width = 718
+      Height = 168
+      object RLDBText1: TRLDBText
+        Left = 87
+        Top = 14
+        Width = 52
+        Height = 16
+        DataField = 'clienteId'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 297
+        Top = 14
+        Width = 36
+        Height = 16
+        DataField = 'nome'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLDBText3: TRLDBText
+        Left = 495
+        Top = 62
+        Width = 35
+        Height = 16
+        DataField = 'email'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLDBText4: TRLDBText
+        Left = 500
+        Top = 14
+        Width = 49
+        Height = 16
+        DataField = 'telefone'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLLabel5: TRLLabel
+        Left = 6
+        Top = 11
+        Width = 60
+        Height = 21
+        Caption = 'C'#243'digo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object descricao: TRLLabel
+        Left = 218
+        Top = 11
+        Width = 49
+        Height = 19
+        Caption = 'Nome'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLLabel8: TRLLabel
+        Left = 3
+        Top = 48
+        Width = 78
+        Height = 19
+        Caption = 'Endere'#231'o'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLDBText5: TRLDBText
+        Left = 87
+        Top = 48
+        Width = 57
+        Height = 16
+        DataField = 'endereco'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLLabel9: TRLLabel
+        Left = 3
+        Top = 83
+        Width = 58
+        Height = 19
+        Caption = 'Cidade'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLDBText6: TRLDBText
+        Left = 87
+        Top = 83
+        Width = 42
+        Height = 16
+        DataField = 'cidade'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLLabel10: TRLLabel
+        Left = 6
+        Top = 117
+        Width = 51
+        Height = 19
+        Caption = 'Bairro'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLDBText7: TRLDBText
+        Left = 88
+        Top = 118
+        Width = 36
+        Height = 16
+        DataField = 'bairro'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLLabel11: TRLLabel
+        Left = 218
+        Top = 61
+        Width = 58
+        Height = 19
+        Caption = 'Estado'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLDBText8: TRLDBText
+        Left = 297
+        Top = 64
+        Width = 43
+        Height = 16
+        DataField = 'estado'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLLabel12: TRLLabel
+        Left = 218
+        Top = 115
+        Width = 38
+        Height = 19
+        Caption = 'CEP'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLDBText9: TRLDBText
+        Left = 297
+        Top = 120
+        Width = 25
+        Height = 16
+        DataField = 'cep'
+        DataSource = dtsCliente
+        Text = ''
+      end
+      object RLLabel7: TRLLabel
+        Left = 409
+        Top = 14
+        Width = 70
+        Height = 19
+        Caption = 'Telefone'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLLabel6: TRLLabel
+        Left = 409
+        Top = 62
+        Width = 51
+        Height = 19
+        Caption = 'E-mail'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLLabel13: TRLLabel
+        Left = 409
+        Top = 115
+        Width = 157
+        Height = 19
+        Caption = 'Data de Nascimento'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Transparent = False
+      end
+      object RLDBText10: TRLDBText
+        Left = 583
+        Top = 118
+        Width = 98
+        Height = 16
+        DataField = 'dataNascimento'
+        DataSource = dtsCliente
+        Text = ''
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Top = 161
+      Width = 718
+      Height = 64
+      BandType = btColumnHeader
+      object RLPanel1: TRLPanel
+        Left = 0
+        Top = 0
+        Width = 718
+        Height = 64
+        Align = faClient
+        Color = clSilver
+        ParentColor = False
+        Transparent = False
+      end
+    end
+  end
+  object qryClienteFicha: TZQuery
+    Connection = dtmPrincipal.conexaoDB
+    Active = True
+    SQL.Strings = (
+      #9'SELECT clientes.clienteId,'
+      #9#9'clientes.nome,'
+      #9#9'clientes.endereco,'
+      #9#9'clientes.cidade,'
+      #9#9'clientes.bairro,'
+      #9#9'clientes.estado,'
+      #9#9'clientes.cep,'
+      #9#9'clientes.telefone,'
+      #9#9'clientes.email,'
+      #9#9'clientes.dataNascimento'
+      #9#9'FROM clientes'
+      '                                ORDER BY nome ;'
+      ''
+      '')
+    Params = <>
+    Left = 464
+    Top = 56
+    object qryClienteFichaclienteId: TIntegerField
+      FieldName = 'clienteId'
+      Required = True
+    end
+    object qryClienteFichanome: TWideStringField
+      FieldName = 'nome'
+      Required = True
+      Size = 60
+    end
+    object qryClienteFichaendereco: TWideStringField
+      FieldName = 'endereco'
+      Required = True
+      Size = 60
+    end
+    object qryClienteFichacidade: TWideStringField
+      FieldName = 'cidade'
+      Required = True
+      Size = 50
+    end
+    object qryClienteFichabairro: TWideStringField
+      FieldName = 'bairro'
+      Required = True
+      Size = 40
+    end
+    object qryClienteFichaestado: TWideStringField
+      FieldName = 'estado'
+      Required = True
+      Size = 2
+    end
+    object qryClienteFichacep: TWideStringField
+      FieldName = 'cep'
+      Required = True
+      Size = 10
+    end
+    object qryClienteFichatelefone: TWideStringField
+      FieldName = 'telefone'
+      Required = True
+      Size = 14
+    end
+    object qryClienteFichaemail: TWideStringField
+      FieldName = 'email'
+      Required = True
+      Size = 100
+    end
+    object qryClienteFichadataNascimento: TDateTimeField
+      FieldName = 'dataNascimento'
+      Required = True
+    end
+  end
+  object dtsCliente: TDataSource
+    DataSet = qryClienteFicha
+    Left = 512
+    Top = 56
+  end
+  object RLPDFFilter1: TRLPDFFilter
+    DocumentInfo.Creator = 
+      'FortesReport Community Edition v4.0.0.1 \251 Copyright '#169' 1999-20' +
+      '21 Fortes Inform'#225'tica'
+    DisplayName = 'Documento PDF'
+    Left = 568
+    Top = 56
+  end
+end

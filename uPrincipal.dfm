@@ -3,7 +3,7 @@ object frmPrincipal: TfrmPrincipal
   Top = 0
   Caption = 'Menu Principal'
   ClientHeight = 548
-  ClientWidth = 957
+  ClientWidth = 1212
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -56,18 +56,28 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'RELATORIO'
       object CLIENTE2: TMenuItem
         Caption = 'CLIENTE'
+        OnClick = CLIENTE2Click
       end
       object CLIENTE3: TMenuItem
         Caption = '-'
       end
       object PRODUTO2: TMenuItem
         Caption = 'PRODUTO'
+        OnClick = PRODUTO2Click
       end
       object N3: TMenuItem
         Caption = '-'
       end
       object VENDAPORDATA1: TMenuItem
         Caption = 'VENDA POR DATA'
+      end
+      object Categoria2: TMenuItem
+        Caption = 'CATEGORIA'
+        OnClick = Categoria2Click
+      end
+      object FICHADOCLIENTE1: TMenuItem
+        Caption = 'FICHA DO CLIENTE'
+        OnClick = FICHADOCLIENTE1Click
       end
     end
   end
