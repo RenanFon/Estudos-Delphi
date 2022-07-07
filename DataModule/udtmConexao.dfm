@@ -7,6 +7,7 @@ object dtmPrincipal: TdtmPrincipal
     Catalog = ''
     Properties.Strings = (
       'controls_cp=CP_UTF16')
+    TransactIsolationLevel = tiReadCommitted
     Connected = True
     SQLHourGlass = True
     HostName = 'localhost'
@@ -102,5 +103,20 @@ object dtmPrincipal: TdtmPrincipal
     Params = <>
     Left = 576
     Top = 144
+  end
+  object qryScriptUsuario: TZQuery
+    Connection = conexaoDB
+    SQL.Strings = (
+      #9'CREATE TABLE IF NOT EXISTS usuarios('
+      #9#9#9#9#9#9'usuarioId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,'
+      #9#9#9#9#9#9'nome VARCHAR(50) NOT NULL,'
+      #9#9#9#9#9#9'senha VARCHAR(40) NOT NULL'
+      #9#9#9#9
+      #9#9#9#9
+      #9#9#9#9');'
+      #9#9#9#9)
+    Params = <>
+    Left = 472
+    Top = 192
   end
 end

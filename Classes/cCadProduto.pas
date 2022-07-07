@@ -85,10 +85,13 @@ var qry : TZQuery;
         qry.ParamByName('quantidade').AsFloat     :=self.F_quantidade;
         qry.ParamByName('categoriaId').AsInteger  := self.F_categoriaId;
         try
-           qry.ExecSQL;
+          conexaoDB.StartTransaction;
+          Qry.ExecSQL;
+          conexaoDB.Commit;
         Except
-            Result:=False;
-        end
+          conexaoDB.Rollback;
+          Result:= False;
+          end;
     finally
         if assigned(qry) then
              FreeAndNil(qry);
@@ -148,11 +151,14 @@ function Tproduto.Apagar: Boolean;
         qry.SQL.Add('DELETE FROM produtos '+
                     'WHERE produtoId = :produtoId' );
         qry.ParamByName('produtoId').AsInteger:= F_produtoId;
-        Try
-           qry.ExecSQL;
+        try
+          conexaoDB.StartTransaction;
+          Qry.ExecSQL;
+          conexaoDB.Commit;
         Except
-            Result := False;
-        End;
+          conexaoDB.Rollback;
+          Result:= False;
+        end;
 
     Finally
        if Assigned(qry) then
@@ -182,12 +188,15 @@ var qry:TZQuery;
             qry.ParamByName('valor').AsFloat         :=self.F_valor;
             qry.ParamByName('quantidade').AsFloat    :=self.F_quantidade;
             qry.ParamByName('categoriaId').AsInteger :=self.F_categoriaId;
-            try
-               qry.ExecSQL;
-            Except
-                Result := false;
-            end;
-         finally
+           try
+              conexaoDB.StartTransaction;
+              Qry.ExecSQL;
+              conexaoDB.Commit;
+          Except
+              conexaoDB.Rollback;
+              Result:= False;
+              end;
+          finally
             if  assigned(qry) then
                 FreeAndNil(qry);
          end;

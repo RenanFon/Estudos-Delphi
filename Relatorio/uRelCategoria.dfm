@@ -208,6 +208,7 @@ object frmRelCategoria: TfrmRelCategoria
   end
   object qryCategoria: TZQuery
     Connection = dtmPrincipal.conexaoDB
+    Active = True
     SQL.Strings = (
       
         'SELECT categoriaId, descricao FROM categorias ORDER BY descricao' +

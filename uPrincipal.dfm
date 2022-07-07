@@ -2,7 +2,7 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Menu Principal'
-  ClientHeight = 548
+  ClientHeight = 547
   ClientWidth = 1212
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,8 +15,22 @@ object frmPrincipal: TfrmPrincipal
   WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object stbPrincipal: TStatusBar
+    Left = 0
+    Top = 528
+    Width = 1212
+    Height = 19
+    Panels = <
+      item
+        Width = 150
+      end>
+    ExplicitLeft = 176
+    ExplicitTop = 520
+    ExplicitWidth = 0
+  end
   object mainPrincipal: TMainMenu
     Left = 896
     Top = 8
@@ -38,6 +52,17 @@ object frmPrincipal: TfrmPrincipal
         OnClick = PRODUTO1Click
       end
       object N2: TMenuItem
+        Caption = '-'
+      end
+      object USUARIO1: TMenuItem
+        Caption = 'USUARIO'
+        OnClick = USUARIO1Click
+      end
+      object ALTERARSENHA1: TMenuItem
+        Caption = 'ALTERAR SENHA'
+        OnClick = ALTERARSENHA1Click
+      end
+      object N4: TMenuItem
         Caption = '-'
       end
       object menuFECHAR: TMenuItem
@@ -70,6 +95,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object VENDAPORDATA1: TMenuItem
         Caption = 'VENDA POR DATA'
+        OnClick = VENDAPORDATA1Click
       end
       object Categoria2: TMenuItem
         Caption = 'CATEGORIA'

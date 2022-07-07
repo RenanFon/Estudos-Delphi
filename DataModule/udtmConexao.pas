@@ -14,6 +14,7 @@ type
     qryScriptCategoriaProdutos: TZQuery;
     qryScriptVendas: TZQuery;
     qryScriptItensVendas: TZQuery;
+    qryScriptUsuario: TZQuery;
   private
     { Private declarations }
   public

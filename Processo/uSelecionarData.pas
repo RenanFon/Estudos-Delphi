@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,
+  Vcl.Controls, Vcl.Forms,System.DateUtils, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,
   RxToolEdit;
 
 type
@@ -15,6 +15,7 @@ type
     Label2: TLabel;
     BitBtn1: TBitBtn;
     procedure BitBtn1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -38,11 +39,17 @@ procedure TfrmSelecionarData.BitBtn1Click(Sender: TObject);
             end;
          if (edtDataFinal.Date=0) or (edtDataInicio.Date=0) then
             begin
-                MessageDlg('Data inicial oufinal é um campo obrigatorio ',TMsgDlgType.mtInformation,[MBOK],0);
+                MessageDlg('Data inicial ou final são campos obrigatorios ',TMsgDlgType.mtInformation,[MBOK],0);
                 edtDataFinal.setFOCUS;
                 abort;
             end;
+        Close;
+    end;
 
+procedure TfrmSelecionarData.FormShow(Sender: TObject);
+    begin
+        edtDataInicio.Date := startOfTheMonth(Date);
+        edtDataFinal.Date  := EndOfTheMonth(Date);
     end;
 
 end.

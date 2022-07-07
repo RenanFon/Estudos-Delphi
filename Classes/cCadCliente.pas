@@ -82,11 +82,14 @@ var Qry : TZQuery;
             Qry.SQL.Add('DELETE FROM clientes '+
                         'WHERE clienteId = :clienteId');
             Qry.ParamByName('clienteId').AsInteger :=F_clienteId;
-            try
-                Qry.ExecSQL;
-            Except
-                Result:= false;
-            end;
+           try
+                    conexaoDB.StartTransaction;
+                    Qry.ExecSQL;
+                    conexaoDB.Commit;
+                Except
+                     conexaoDB.Rollback;
+                     Result:= False;
+                end;
          finally
             if Assigned(Qry) then
                 FreeAndNil(Qry);
@@ -120,11 +123,14 @@ begin
     Qry.ParamByName('telefone').AsString             := self.F_telefone;
     Qry.ParamByName('email').AsString                := self.F_email;
     Qry.ParamByName('dataNascimento').AsDateTime     :=self.F_dataNascimento;
-    try
-       Qry.ExecSQL
-    Except
-       Result := false;
-    end
+                 try
+                    conexaoDB.StartTransaction;
+                    Qry.ExecSQL;
+                    conexaoDB.Commit;
+                Except
+                     conexaoDB.Rollback;
+                     Result:= False;
+                end;
     finally
         if Assigned(Qry) then
               FreeAndNil(Qry);
@@ -168,11 +174,14 @@ begin
     Qry.ParamByName('telefone').AsString             := self.F_telefone;
     Qry.ParamByName('email').AsString                := self.F_email;
     Qry.ParamByName('dataNascimento').AsDateTime     :=self.F_dataNascimento;
-     try
-       Qry.ExecSQL
-    Except
-       Result := false;
-    end
+                try
+                    conexaoDB.StartTransaction;
+                    Qry.ExecSQL;
+                    conexaoDB.Commit;
+                Except
+                     conexaoDB.Rollback;
+                     Result:= False;
+                end;
    finally
         if Assigned(Qry) then
               FreeAndNil(Qry);

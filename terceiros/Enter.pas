@@ -166,6 +166,7 @@ begin
     Add('TDBLookupComboBox');
     Add('TLabeledEdit');
 
+
   end;
 
   if not( csDesigning in ComponentState ) then

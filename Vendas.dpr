@@ -19,11 +19,19 @@ uses
   cProVendas in 'Classes\cProVendas.pas',
   cControleEstoque in 'Classes\cControleEstoque.pas',
   uRelCliente in 'Relatorio\uRelCliente.pas' {frmRelCliente},
-  uRelCadProdutoComGrupoCategoria in 'Relatorio\uRelCadProdutoComGrupoCategoria.pas' {frmRelCadProdutoComGrupoCategoria},
   uRelCategoria in 'Relatorio\uRelCategoria.pas' {frmRelCategoria},
   uRelClienteFicha in 'Relatorio\uRelClienteFicha.pas' {frmRelClienteFicha},
   uRelCadProduto in 'Relatorio\uRelCadProduto.pas' {frmRelCadProduto},
-  uSelecionarData in 'Processo\uSelecionarData.pas' {frmSelecionarData};
+  uSelecionarData in 'Processo\uSelecionarData.pas' {frmSelecionarData},
+  uRelCadProdutosComGrupoCategoria in 'Relatorio\uRelCadProdutosComGrupoCategoria.pas' {frmRelCadProdutosComGrupoCategoria},
+  uRelProVenda in 'Relatorio\uRelProVenda.pas' {frmRelProVenda},
+  uRelProVendaPorData in 'Relatorio\uRelProVendaPorData.pas' {frmRelProVendaPorData},
+  uFuncaoCriptografia in 'Herança\uFuncaoCriptografia.pas',
+  ucadUsuario in 'Cadastro\ucadUsuario.pas' {frmCadUsuario},
+  cUsuario in 'Classes\cUsuario.pas',
+  uLogin in 'login\uLogin.pas' {frmLogin},
+  uAlterarSenha in 'login\uAlterarSenha.pas' {frmAlterarSenha},
+  cUsuarioLogado in 'Classes\cUsuarioLogado.pas';
 
 {$R *.res}
 
@@ -31,10 +39,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmRelCategoria, frmRelCategoria);
-  Application.CreateForm(TfrmRelClienteFicha, frmRelClienteFicha);
-  Application.CreateForm(TfrmRelClienteFicha, frmRelClienteFicha);
-  Application.CreateForm(TfrmRelCadProduto, frmRelCadProduto);
-  Application.CreateForm(TfrmSelecionarData, frmSelecionarData);
   Application.Run;
 end.

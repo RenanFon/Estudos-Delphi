@@ -149,6 +149,7 @@ var qry : TZQuery;
                             End;
                         cds.Next;
                     end;
+                 ConexaoDB.Commit;
              Except
                  Result := false;
                  ConexaoDB.Rollback;
@@ -182,9 +183,12 @@ var qry : TZQuery;
            qry.ParamByName('Quantidade').AsFloat    := cds.FieldByName('quantidade').AsFloat;
            qry.ParamByName('TotalProduto').AsFloat  := cds.FieldByName('valorTotalProduto').AsFloat;
            try
+                ConexaoDB.StartTransaction;
                 qry.ExecSQL;
+                ConexaoDB.Commit;
                 BaixarEstoque(cds.FieldByName('produtoId').AsInteger, cds.FieldByName('quantidade').AsFloat);
            Except
+                ConexaoDB.Rollback;
                 Result := false;
            end;
 
@@ -291,8 +295,11 @@ var Qry:TZQuery;
                         '   AND produtoId NOT IN ('+InNot(cds)+') ');
         Qry.ParamByName('vendaId').AsInteger            := Self.F_vendaId;
             try
+                ConexaoDB.StartTransaction;
                 Qry.ExecSQL;
+                ConexaoDB.Commit;
             except
+                ConexaoDB.Rollback;
                 Result:= false;
             end;
 
@@ -340,9 +347,12 @@ var qry : TZQuery;
         qry.ParamByName('quantidade').AsFloat        :=cds.FieldByName('quantidade').AsFloat;
         qry.ParamByName('totalProduto').AsFloat      :=cds.FieldByName('valorTotalProduto').AsFloat;
         try
+            ConexaoDB.StartTransaction;
            qry.ExecSQL;
+           ConexaoDB.Commit;
            BaixarEstoque(cds.FieldByName('produtoId').AsInteger, cds.FieldByName('quantidade').AsFloat);
         Except
+            ConexaoDB.Rollback;
             Result := False;
         end;
        finally

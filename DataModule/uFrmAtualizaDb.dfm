@@ -576,6 +576,14 @@ object frmAtualizaDB: TfrmAtualizaDB
         Caption = 'Itens Vendas'
         TabOrder = 5
       end
+      object chkUsuarios: TCheckBox
+        Left = 296
+        Top = 183
+        Width = 97
+        Height = 17
+        Caption = 'Usuarios'
+        TabOrder = 6
+      end
     end
   end
 end
