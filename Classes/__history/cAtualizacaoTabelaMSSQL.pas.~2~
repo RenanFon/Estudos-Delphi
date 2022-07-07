@@ -1,0 +1,118 @@
+unit cAtualizacaoTabelaMSSQL;
+
+interface
+
+uses System.Classes,
+     Vcl.Controls,
+     Vcl.ExtCtrls,
+     Vcl.Dialogs,
+     ZAbstractConnection,
+     ZConnection,
+     ZAbstractRODataset,
+     ZAbstractDataset,
+     ZDataset,
+     System.SysUtils,
+     cAtualizacaoBancoDeDados;
+
+     type
+  TAtualizacaoTableMSSQL = class(TAtualizaBancoDados)
+
+  private
+    function  TabelaExiste(aNomeTabela:String):Boolean;
+
+  protected
+
+  public
+    constructor Create(aConexao:TZConnection);
+    destructor Destroy; override;
+
+    procedure Categoria;
+    procedure Cliente;
+    procedure Produto;
+    procedure Vendas;
+    procedure VendasItens;
+    procedure Usuario;
+    procedure AcaoAcesso;
+    procedure UsuariosAcaoAcesso;
+end;
+
+implementation
+
+{ TAtualizacaoTableMSSQL }
+
+
+constructor TAtualizacaoTableMSSQL.Create(aConexao: TZConnection);
+begin
+    ConexaoDB := aConexao;
+end;
+
+destructor TAtualizacaoTableMSSQL.Destroy;
+begin
+
+  inherited;
+end;
+
+procedure TAtualizacaoTableMSSQL.AcaoAcesso;
+begin
+
+end;
+
+procedure TAtualizacaoTableMSSQL.Categoria;
+begin
+
+end;
+
+procedure TAtualizacaoTableMSSQL.Cliente;
+begin
+
+end;
+
+
+procedure TAtualizacaoTableMSSQL.Produto;
+begin
+
+end;
+
+function TAtualizacaoTableMSSQL.TabelaExiste(aNomeTabela: String): Boolean;
+Var Qry:TZQuery;
+    begin
+          Try
+            Result:=False;
+            Qry:=TZQuery.Create(nil);
+            Qry.Connection:=ConexaoDB;
+            Qry.SQL.Clear;
+            Qry.SQL.Add(' SELECT OBJECT_ID (:NomeTabela) As ID ');
+            Qry.ParamByName('NomeTabela').AsString:=aNomeTabela;
+            Qry.Open;
+
+            if Qry.FieldByName('ID').AsInteger>0 then
+               Result:=True;
+
+          Finally
+            Qry.Close;
+            if Assigned(Qry) then
+               FreeAndNil(Qry);
+          End;
+    end;
+
+procedure TAtualizacaoTableMSSQL.Usuario;
+begin
+
+end;
+
+procedure TAtualizacaoTableMSSQL.UsuariosAcaoAcesso;
+begin
+
+end;
+
+procedure TAtualizacaoTableMSSQL.Vendas;
+begin
+
+end;
+
+procedure TAtualizacaoTableMSSQL.VendasItens;
+begin
+
+end;
+
+end.

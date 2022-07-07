@@ -31,7 +31,10 @@ uses
   cUsuario in 'Classes\cUsuario.pas',
   uLogin in 'login\uLogin.pas' {frmLogin},
   uAlterarSenha in 'login\uAlterarSenha.pas' {frmAlterarSenha},
-  cUsuarioLogado in 'Classes\cUsuarioLogado.pas';
+  cUsuarioLogado in 'Classes\cUsuarioLogado.pas',
+  cAtualizacaoBancoDeDados in 'Classes\cAtualizacaoBancoDeDados.pas',
+  cAtualizacaoTabelaMSSQL in 'Classes\cAtualizacaoTabelaMSSQL.pas',
+  cAtualizacaoCampoMSSQL in 'cAtualizacaoCampoMSSQL.pas';
 
 {$R *.res}
 

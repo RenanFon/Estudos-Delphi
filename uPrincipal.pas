@@ -7,7 +7,7 @@ uses
   System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao,
    Enter, uFrmAtualizaDb,uProVendas,ucadUsuario,uLogin, uAlterarSenha,cUsuarioLogado,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls,cAtualizacaoBancoDeDados;
 
 type
   TfrmPrincipal = class(TForm)
@@ -195,40 +195,18 @@ procedure TfrmPrincipal.ALTERARSENHA1Click(Sender: TObject);
     end;
 
 procedure TfrmPrincipal.AtualizacaoDoBanco(aForm:TFrmAtualizaDb);
-    BEGIN
-        aForm.chkConexao.Checked := true;
-        aForm.Refresh;
+var oAtualizaMSSQL : TAtualizaBancoDadosMSSQL;
+   BEGIN
+            //aForm.chkConexao.Checked := true;
+            aForm.Refresh;
 
-        dtmPrincipal.qryScriptCategoria.ExecSQL;
-        aForm.chkCategoria.Checked := True;
-        aForm.Refresh;
-        Sleep(100);
-
-        dtmPrincipal.qryScriptCategoriaProdutos.ExecSQL;
-        aForm.chkProduto.Checked := True;
-        aForm.Refresh;
-        sleep(100);
-
-        dtmPrincipal.qryScriptClientes.ExecSQL;
-        aForm.chkCliente.Checked := True;
-        aForm.Refresh;
-        sleep(100);
-
-        dtmPrincipal.qryScriptVendas.ExecSQL;
-        aForm.chkVendas.Checked := True;
-        aForm.Refresh;
-        sleep(100);
-
-        dtmPrincipal.qryScriptItensVendas.ExecSQL;
-        aForm.chkItennsVendas.Checked := True;
-        aForm.Refresh;
-        sleep(100);
-
-         dtmPrincipal.qryScriptUsuario.ExecSQL;
-        aForm.chkUsuarios.Checked := True;
-        aForm.Refresh;
-        sleep(100);
-
-    END;
+      try
+        oAtualizaMSSQL:=TAtualizaBancoDadosMSSQL.Create(DtmPrincipal.ConexaoDB);
+        oAtualizaMSSQL.AtualizarBancoDeDadosMSSQL;
+      finally
+        if Assigned(oAtualizaMSSQL) then
+           FreeAndNil(oAtualizaMSSQL);
+      end;
+    end;
 
 end.

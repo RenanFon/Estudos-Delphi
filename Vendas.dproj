@@ -192,6 +192,9 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Classes\cUsuarioLogado.pas"/>
+        <DCCReference Include="Classes\cAtualizacaoBancoDeDados.pas"/>
+        <DCCReference Include="Classes\cAtualizacaoTabelaMSSQL.pas"/>
+        <DCCReference Include="cAtualizacaoCampoMSSQL.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

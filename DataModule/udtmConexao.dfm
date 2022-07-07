@@ -33,8 +33,8 @@ object dtmPrincipal: TdtmPrincipal
       #9'categoriaID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,'
       #9'descricao VARCHAR(30)'
       ');')
-    Left = 384
-    Top = 32
+    Left = 405
+    Top = 26
   end
   object qryScriptClientes: TZQuery
     Connection = conexaoDB
@@ -53,7 +53,7 @@ object dtmPrincipal: TdtmPrincipal
       ');')
     Params = <>
     Left = 544
-    Top = 32
+    Top = 24
   end
   object qryScriptCategoriaProdutos: TZQuery
     Connection = conexaoDB
@@ -70,8 +70,8 @@ object dtmPrincipal: TdtmPrincipal
       ');'
       '')
     Params = <>
-    Left = 656
-    Top = 40
+    Left = 671
+    Top = 24
   end
   object qryScriptVendas: TZQuery
     Connection = conexaoDB
@@ -85,8 +85,8 @@ object dtmPrincipal: TdtmPrincipal
       #9#9#9#9#9#9'REFERENCES clientes(clienteId)'
       #9#9#9#9#9#9');'#9)
     Params = <>
-    Left = 448
-    Top = 120
+    Left = 408
+    Top = 104
   end
   object qryScriptItensVendas: TZQuery
     Connection = conexaoDB
@@ -101,8 +101,8 @@ object dtmPrincipal: TdtmPrincipal
       #9#9'REFERENCES produtos(produtoId)'
       #9#9#9#9#9#9#9#9#9');'#9)
     Params = <>
-    Left = 576
-    Top = 144
+    Left = 672
+    Top = 104
   end
   object qryScriptUsuario: TZQuery
     Connection = conexaoDB
@@ -116,7 +116,7 @@ object dtmPrincipal: TdtmPrincipal
       #9#9#9#9');'
       #9#9#9#9)
     Params = <>
-    Left = 472
-    Top = 192
+    Left = 547
+    Top = 106
   end
 end
