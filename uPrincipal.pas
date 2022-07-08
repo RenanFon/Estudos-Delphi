@@ -65,7 +65,7 @@ implementation
 {$R *.dfm}
 
 uses uCadCategoria, uCadCliente,uCadProduto,cCadProduto,uRelCategoria,uRelClienteFicha,uRelCliente,
-        uSelecionarData,uRelCadProduto,uRelProVendaPorData,uRelCadProdutosComGrupoCategoria;
+        uSelecionarData,uRelCadProduto,uRelProVendaPorData,uRelCadProdutosComGrupoCategoria,cAquivoIni;
 
 procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
 begin
@@ -117,15 +117,31 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
          frmAtualizaDB.Show;
          frmAtualizaDB.Refresh;
 
-         dtmPrincipal := TdtmPrincipal.create(self);
-         dtmPrincipal.conexaoDB.SQLHourGlass := true;
-         dtmPrincipal.conexaoDB.Connected := true;
-         TeclaEnter := TMREnter.Create(Self);
-         TeclaEnter.FocusEnabled := True;
-         TeclaEnter.FocusColor := clInfoBk;
+          if not FileExists(TArquivoIni.ArquivoIni) then
+          begin
+            TArquivoIni.AtualizarIni('SERVER', 'TipoDataBase', 'MSSQL');
+            TArquivoIni.AtualizarIni('SERVER', 'HostName', '.\');
+            TArquivoIni.AtualizarIni('SERVER', 'Port', '1433');
+            TArquivoIni.AtualizarIni('SERVER', 'User', 'sa');
+            TArquivoIni.AtualizarIni('SERVER', 'Password', 'mudar@123');
+            TArquivoIni.AtualizarIni('SERVER', 'Database', 'vendas');
+            MessageDlg('Arquivo '+ TArquivoIni.ArquivoIni +' Criado com sucesso' +#13+
+                       'Configure o arquivo antes de inicializar aplicação',MtInformation,[mbok],0);
 
-         AtualizacaoDoBanco(frmAtualizaDB);
-         frmAtualizaDB.free;
+          end
+          else
+            begin
+
+             dtmPrincipal := TdtmPrincipal.create(self);
+             dtmPrincipal.conexaoDB.SQLHourGlass := true;
+             dtmPrincipal.conexaoDB.Connected := true;
+             TeclaEnter := TMREnter.Create(Self);
+             TeclaEnter.FocusEnabled := True;
+             TeclaEnter.FocusColor := clInfoBk;
+
+             AtualizacaoDoBanco(frmAtualizaDB);
+             frmAtualizaDB.free;
+            end;
     end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);

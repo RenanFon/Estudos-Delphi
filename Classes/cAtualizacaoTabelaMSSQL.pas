@@ -55,7 +55,16 @@ end;
 
 procedure TAtualizacaoTableMSSQL.AcaoAcesso;
 begin
-
+  if not TabelaExiste('acaoAcesso') then
+  begin
+    ExecutaDiretoBancoDeDados(
+      	'CREATE TABLE acaoAcesso(     '+
+        'acaoAcessoId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,  '+
+        'descricao VARCHAR(100) NOT NULL,  '+
+        'chave VARCHAR(60) NOT NULL    '+
+		')'
+    );
+  end;
 end;
 
 procedure TAtualizacaoTableMSSQL.Categoria;

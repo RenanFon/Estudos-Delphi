@@ -195,6 +195,8 @@
         <DCCReference Include="Classes\cAtualizacaoBancoDeDados.pas"/>
         <DCCReference Include="Classes\cAtualizacaoTabelaMSSQL.pas"/>
         <DCCReference Include="cAtualizacaoCampoMSSQL.pas"/>
+        <DCCReference Include="Classes\cAquivoIni.pas"/>
+        <DCCReference Include="Classes\cAcaoAcesso.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
