@@ -114,8 +114,38 @@ begin
 end;
 
 function TAcaoAcesso.ChaveExiste(aChave: String; aId: Integer): Boolean;
+var Qry:TZQuery;
 begin
+  try
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=ConexaoDB;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('SELECT COUNT(acaoAcessoId) AS Qtde '+
+                '  FROM acaoAcesso '+
+                ' WHERE chave =:chave ');
+    if aId > 0 then
+    begin
+      Qry.SQL.Add(' AND acaoAcessoId<>:acaoAcessoId');
+      Qry.ParamByName('acaoAcessoId').AsInteger :=aId;
+    end;
 
+    Qry.ParamByName('chave').AsString :=aChave;
+    Try
+      Qry.Open;
+
+      if Qry.FieldByName('Qtde').AsInteger>0 then
+         result := true
+      else
+         result := false;
+
+    Except
+      Result:=false;
+    End;
+
+  finally
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
 end;
 
 constructor TAcaoAcesso.Create(aConexao: TZConnection);
@@ -167,10 +197,35 @@ begin
 end;
 
 
-class procedure TAcaoAcesso.PreencherAcoes(aForm: TForm;
-  aConexao: TZConnection);
+class procedure TAcaoAcesso.PreencherAcoes(aForm: TForm; aConexao:TZConnection);
+var i:Integer;
+    oAcaoAcesso:TAcaoAcesso;
 begin
+  try
+    oAcaoAcesso:=TAcaoAcesso.Create(aConexao);
+    oAcaoAcesso.descricao := aForm.Caption;
+    oAcaoAcesso.Chave := aForm.Name;
+    if not oAcaoAcesso.ChaveExiste(oAcaoAcesso.Chave) then
+       oAcaoAcesso.Inserir;
 
+    for I := 0 to aForm.ComponentCount -1 do
+    begin
+      if (aForm.Components[i] is TBitBtn) then
+      begin
+        if TBitBtn(aForm.Components[i]).Tag=99 then
+        begin
+          oAcaoAcesso.descricao := '    - BOTÃO '+ StringReplace(TBitBtn(aForm.Components[i]).Caption, '&','',[rfReplaceAll]);
+          oAcaoAcesso.Chave     := aForm.Name+'_'+TBitBtn(aForm.Components[i]).Name;
+          if not oAcaoAcesso.ChaveExiste(oAcaoAcesso.Chave) then
+             oAcaoAcesso.Inserir;
+        end;
+      end;
+    end;
+
+  finally
+    if Assigned(oAcaoAcesso) then
+       FreeAndNil(oAcaoAcesso);
+  end;
 end;
 
 class procedure TAcaoAcesso.PreencherUsuariosVsAcoes(aConexao: TZConnection);

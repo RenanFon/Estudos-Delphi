@@ -2,8 +2,8 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Menu Principal'
-  ClientHeight = 547
-  ClientWidth = 1212
+  ClientHeight = 553
+  ClientWidth = 1111
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object frmPrincipal: TfrmPrincipal
   TextHeight = 13
   object stbPrincipal: TStatusBar
     Left = 0
-    Top = 528
-    Width = 1212
+    Top = 534
+    Width = 1111
     Height = 19
     Panels = <
       item
@@ -29,13 +29,19 @@ object frmPrincipal: TfrmPrincipal
       end>
   end
   object mainPrincipal: TMainMenu
-    Left = 896
-    Top = 8
+    BiDiMode = bdLeftToRight
+    ParentBiDiMode = False
+    Left = 968
+    Top = 16
     object Cadastro1: TMenuItem
       Caption = 'CADASTRO'
       object CLIENTE1: TMenuItem
         Caption = 'CLIENTE'
         OnClick = CLIENTE1Click
+      end
+      object menuFECHAR: TMenuItem
+        Caption = 'FECHAR'
+        OnClick = menuFECHARClick
       end
       object N1: TMenuItem
         Caption = '-'
@@ -59,12 +65,12 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'ALTERAR SENHA'
         OnClick = ALTERARSENHA1Click
       end
+      object AOA1: TMenuItem
+        Caption = 'A'#199#194'O ACESSO'
+        OnClick = AOA1Click
+      end
       object N4: TMenuItem
         Caption = '-'
-      end
-      object menuFECHAR: TMenuItem
-        Caption = 'FECHAR'
-        OnClick = menuFECHARClick
       end
     end
     object MOVIMENTAO1: TMenuItem

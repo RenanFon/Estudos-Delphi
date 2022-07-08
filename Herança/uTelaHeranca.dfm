@@ -53,6 +53,7 @@ object frmTelaHeranca: TfrmTelaHeranca
           OnChange = mskPesquisarChange
         end
         object btnPesquisar: TBitBtn
+          Tag = 99
           Left = 377
           Top = 31
           Width = 75
@@ -124,6 +125,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       995
       75)
     object btnNovo: TBitBtn
+      Tag = 99
       Left = 12
       Top = 20
       Width = 93
@@ -160,6 +162,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnNovoClick
     end
     object BtnAlterar: TBitBtn
+      Tag = 99
       Left = 123
       Top = 20
       Width = 94
@@ -232,6 +235,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnCancelarClick
     end
     object btnGravar: TBitBtn
+      Tag = 99
       Left = 347
       Top = 20
       Width = 94
@@ -268,6 +272,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       OnClick = btnGravarClick
     end
     object btnApagar: TBitBtn
+      Tag = 99
       Left = 459
       Top = 20
       Width = 94

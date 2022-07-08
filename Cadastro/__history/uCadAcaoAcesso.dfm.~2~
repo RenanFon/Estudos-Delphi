@@ -1,0 +1,69 @@
+inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
+  Caption = 'A'#231#227'o de acesso'
+  ClientWidth = 863
+  ExplicitWidth = 869
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pgcPrincipal: TPageControl
+    Width = 863
+    inherited TabListagem: TTabSheet
+      ExplicitWidth = 855
+      inherited pnlListagemTopo: TPanel
+        Width = 855
+      end
+      inherited grdListagem: TDBGrid
+        Width = 855
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'acaoAcessoId'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'descricao'
+            Width = 404
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'chave'
+            Visible = True
+          end>
+      end
+    end
+    inherited TabManutencao: TTabSheet
+      ExplicitWidth = 855
+    end
+  end
+  inherited btnlRodape: TPanel
+    Width = 863
+    inherited btnFechar: TBitBtn
+      Left = 734
+    end
+    inherited btnNavigator: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  inherited qryListagem: TZQuery
+    SQL.Strings = (
+      'SELECT acaoAcessoId, descricao,chave FROM acaoAcesso;'#9)
+    object qryListagemacaoAcessoId: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'acaoAcessoId'
+      Required = True
+    end
+    object qryListagemdescricao: TWideStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      Size = 100
+    end
+    object qryListagemchave: TWideStringField
+      DisplayLabel = 'Chave'
+      FieldName = 'chave'
+      Required = True
+      Size = 60
+    end
+  end
+end

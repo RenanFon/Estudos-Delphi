@@ -170,8 +170,22 @@ begin
 end;
 
 procedure TAtualizacaoTableMSSQL.UsuariosAcaoAcesso;
-begin
-
+    begin
+  if not TabelaExiste('usuariosAcaoAcesso') then
+  begin
+    ExecutaDiretoBancoDeDados(
+      'CREATE TABLE usuariosAcaoAcesso( '+
+      '	 usuarioId  int NOT NULL, '+
+      '	 acaoAcessoId int NOT NULL, '+
+      '	 ativo bit not null default 1, '+
+      '	 PRIMARY KEY (usuarioId, acaoAcessoId), '+
+      '	 CONSTRAINT FK_UsuarioAcaoAcessoUsuario '+
+      '	 FOREIGN KEY (usuarioId) references usuarios(usuarioId), '+
+      '	 CONSTRAINT FK_UsuarioAcaoAcessoAcaoAcesso '+
+      '	 FOREIGN KEY (acaoAcessoId) references acaoAcesso(acaoAcessoId), '+
+      '	) '
+    );
+  end;
 end;
 
 procedure TAtualizacaoTableMSSQL.Vendas;

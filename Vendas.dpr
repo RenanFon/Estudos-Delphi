@@ -36,7 +36,8 @@ uses
   cAtualizacaoTabelaMSSQL in 'Classes\cAtualizacaoTabelaMSSQL.pas',
   cAtualizacaoCampoMSSQL in 'cAtualizacaoCampoMSSQL.pas',
   cAquivoIni in 'Classes\cAquivoIni.pas',
-  cAcaoAcesso in 'Classes\cAcaoAcesso.pas';
+  cAcaoAcesso in 'Classes\cAcaoAcesso.pas',
+  uCadAcaoAcesso in 'Cadastro\uCadAcaoAcesso.pas' {frmCadAcaoAcesso};
 
 {$R *.res}
 

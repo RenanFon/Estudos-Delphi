@@ -1,0 +1,32 @@
+unit uCadAcaoAcesso;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls;
+
+type
+  TfrmCadAcaoAcesso = class(TfrmTelaHeranca)
+    qryListagemacaoAcessoId: TIntegerField;
+    qryListagemdescricao: TWideStringField;
+    qryListagemchave: TWideStringField;
+    edtDescricao: TLabeledEdit;
+    edtAcaoAcessoId: TLabeledEdit;
+    edtChave: TLabeledEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadAcaoAcesso: TfrmCadAcaoAcesso;
+
+implementation
+
+{$R *.dfm}
+
+end.

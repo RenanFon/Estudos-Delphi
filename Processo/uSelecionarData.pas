@@ -31,6 +31,8 @@ implementation
 
 procedure TfrmSelecionarData.BitBtn1Click(Sender: TObject);
     begin
+
+    showmessage('OPS! ALGO DEU ERRADO :(');
         if (edtDataFinal.Date) < (edtDataInicio.Date) then
             begin
                 MessageDlg('Data Final não pode ser maior que a data inicio ',TMsgDlgType.mtInformation,[MBOK],0);
