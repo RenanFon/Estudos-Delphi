@@ -49,7 +49,7 @@ type
     procedure PRODUTO2Click(Sender: TObject);
     procedure VENDAPORDATA1Click(Sender: TObject);
     procedure USUARIO1Click(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    //procedure FormShow(Sender: TObject);
     procedure ALTERARSENHA1Click(Sender: TObject);
     procedure AOA1Click(Sender: TObject);
     procedure UsuariosVSa1Click(Sender: TObject);
@@ -176,7 +176,7 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
             end;
     end;
 
-procedure TfrmPrincipal.FormShow(Sender: TObject);
+{procedure TfrmPrincipal.FormShow(Sender: TObject);
     begin
         try
           oUsuarioLogado := TUsuarioLogado.Create;
@@ -188,7 +188,7 @@ procedure TfrmPrincipal.FormShow(Sender: TObject);
         end;
 
 
-    end;
+    end;  }
 
 procedure TfrmPrincipal.menuFECHARClick(Sender: TObject);
 begin

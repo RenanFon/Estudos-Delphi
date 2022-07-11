@@ -8,7 +8,6 @@ object dtmPrincipal: TdtmPrincipal
     Properties.Strings = (
       'controls_cp=CP_UTF16')
     TransactIsolationLevel = tiReadCommitted
-    Connected = True
     SQLHourGlass = True
     HostName = 'localhost'
     Port = 3306
@@ -16,7 +15,7 @@ object dtmPrincipal: TdtmPrincipal
     User = 'root'
     Password = ''
     Protocol = 'mysql'
-    LibraryLocation = 'C:\Users\Bsoft\Desktop\CursoDElphi\CursoRevisado\libmysql.dll'
+    LibraryLocation = 'C:\Users\Pichau\Desktop\DelphiCurso\Estudos-Delphi\libmysql.dll'
     Left = 184
     Top = 40
   end
