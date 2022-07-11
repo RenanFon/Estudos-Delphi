@@ -78,8 +78,6 @@ implementation
 
 procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
-  if not TUsuarioLogado.TenhoAcesso(oUsuarioLogado.codigo, self.Name+'_'+TBitBtn(Sender).Name, DtmPrincipal.ConexaoDB) then
-begin
      ControlarBotoes(btnNovo,btnAlterar,btnCancelar,BtnGravar,btnApagar,btnNavigator,pgcPrincipal,false);
      EstadoDoCadastro := ecInserir;
      LimparEdits;
