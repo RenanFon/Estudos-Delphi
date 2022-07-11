@@ -6,8 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls,
-   Vcl.ComCtrls,cUsuario, uEnum,udtmConexao, cAcaoAcesso;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,cUsuario, uEnum,udtmConexao;
 
 type
   TfrmCadUsuario = class(TfrmTelaHeranca)
@@ -68,7 +67,7 @@ end;
 procedure TfrmCadUsuario.btnGravarClick(Sender: TObject);
 begin
   if oUsuario.UsuarioExiste(edtNome.Text) then begin
-    MessageDlg('Usu√°rio j√° cadastrado', mtInformation, [mbok],0);
+    MessageDlg('Usu·rio j· cadastrado', mtInformation, [mbok],0);
     edtNome.SetFocus;
     abort;
   end;
@@ -120,7 +119,6 @@ begin
      Result:= oUsuario.Inserir
   else if EstadoDoCadastro=ecAlterar then
      Result:= oUsuario.Atualizar;
-      TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);
 end;
 
 

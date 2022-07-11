@@ -52,7 +52,7 @@ type
        procedure ControlarIndiceTab(pgcPrincipal: TPageControl; indice: integer);
        function RetornarCampoTraduzido(Campo: String): string;
        procedure ExibirLabelIndice(campo: String; aLabel: Tlabel);
-       function ExisteCampoObrigat√≥rio: Boolean;
+       function ExisteCampoObrigatÛrio: Boolean;
        procedure DesabilitarEditPK;
        procedure LimparEdits;
 
@@ -63,7 +63,6 @@ type
         function Apagar:Boolean ; virtual;
         function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
         procedure BloqueiaCTRL_DBL_DBGrid(var Key: Word; Shift: TShiftState);
-
   end;
 
 var
@@ -74,7 +73,7 @@ implementation
 {$R *.dfm}
 
 
-//procedimento de COntrole de t√©la
+//procedimento de COntrole de tÈla
 
 procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
 begin
@@ -147,7 +146,7 @@ begin
 
 end;
 
- function  TfrmTelaHeranca.ExisteCampoObrigat√≥rio:Boolean;
+ function  TfrmTelaHeranca.ExisteCampoObrigatÛrio:Boolean;
  var i : integer;
 
  begin
@@ -160,7 +159,7 @@ end;
                     and (TLabeledEdit(components[i]).Text = EmptyStr) then
                         Begin
                               messageDlG(TLabeledEdit(components[i]).EditLabel.Caption   +
-                             ' Este √© um campo Obrigatorio',mtInformation,[mbOK],0);
+                             ' Este È um campo Obrigatorio',mtInformation,[mbOK],0);
                           TLabeledEdit(components[i]).SetFocus;
                           Result := True;
                           Break;
@@ -258,7 +257,7 @@ begin
           end
        else
           begin
-             MessageDlg('Erro na Exclus√£o ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+             MessageDlg('Erro na Exclus„o ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
           end;
        Finally
           EstadoDoCadastro := ecNenhum;
@@ -280,7 +279,7 @@ end;
 
 procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
 begin
-if (ExisteCampoObrigat√≥rio) then abort;
+if (ExisteCampoObrigatÛrio) then abort;
    Try
     if Gravar(EstadoDoCadastro) then begin
        ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavigator, pgcPrincipal, true);

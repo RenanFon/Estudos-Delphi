@@ -169,7 +169,7 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
             TAcaoAcesso.CriarAcoes(TfrmRelCadProdutosComGrupoCategoria,DtmPrincipal.ConexaoDB);
             TAcaoAcesso.CriarAcoes(TfrmRelCadProduto,DtmPrincipal.ConexaoDB);
             TAcaoAcesso.CriarAcoes(TfrmRelCategoria,DtmPrincipal.ConexaoDB);
-            //TAcaoAcesso.CriarAcoes(TfrmUsuarioVsAcoes,DtmPrincipal.ConexaoDB);
+            TAcaoAcesso.CriarAcoes(TfrmUsuarioVsAcoes,DtmPrincipal.ConexaoDB);
 
              frmAtualizaDB.free;
              TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);

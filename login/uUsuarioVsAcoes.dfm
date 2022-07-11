@@ -12,6 +12,7 @@ object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Splitter1: TSplitter
@@ -29,7 +30,7 @@ object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
     Height = 512
     Align = alLeft
     TabOrder = 0
-    object DBGrid1: TDBGrid
+    object grdUsuarios: TDBGrid
       Left = 1
       Top = 1
       Width = 272
@@ -67,7 +68,7 @@ object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
     ExplicitLeft = 393
     ExplicitTop = 8
     ExplicitWidth = 514
-    object DBGrid2: TDBGrid
+    object grdAcoes: TDBGrid
       Left = 1
       Top = 1
       Width = 604
@@ -202,7 +203,6 @@ object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
     object qryAcoesativo: TByteField
       FieldName = 'ativo'
       Required = True
-      Visible = False
     end
   end
   object dtsAcoes: TDataSource

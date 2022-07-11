@@ -63,6 +63,7 @@ type
         function Apagar:Boolean ; virtual;
         function Gravar(EstadoDoCadastro : TEstadoDoCadastro ):Boolean ; virtual;
         procedure BloqueiaCTRL_DBL_DBGrid(var Key: Word; Shift: TShiftState);
+
   end;
 
 var
