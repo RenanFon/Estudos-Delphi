@@ -86,7 +86,7 @@ begin
   begin
     ExecutaDiretoBancoDeDados(
        '     CREATE TABLE IF NOT EXISTS clientes(  '+
-       '    clienteId INT PRIMARY KEY NOT NULL UNIQUE AUTO_INCREMENT, '+
+       '    clienteId INT PRIMARY KEY NOT NULL AUTO_INCREMENT, '+
        '     nome VARCHAR(60)NOT NULL,           '+
        '     endereco VARCHAR(60) NOT NULL,      '+
        '     cidade VARCHAR(50) NOT NULL,        '+
@@ -173,24 +173,34 @@ procedure TAtualizacaoTableMSSQL.UsuariosAcaoAcesso;
     begin
   if not TabelaExiste('usuariosAcaoAcesso') then
   begin
-    ExecutaDiretoBancoDeDados(
-      'CREATE TABLE usuariosAcaoAcesso( '+
-      '	 usuarioId  int NOT NULL, '+
-      '	 acaoAcessoId int NOT NULL, '+
-      '	 ativo bit not null default 1, '+
-      '	 PRIMARY KEY (usuarioId, acaoAcessoId), '+
-      '	 CONSTRAINT FK_UsuarioAcaoAcessoUsuario '+
-      '	 FOREIGN KEY (usuarioId) references usuarios(usuarioId), '+
-      '	 CONSTRAINT FK_UsuarioAcaoAcessoAcaoAcesso '+
-      '	 FOREIGN KEY (acaoAcessoId) references acaoAcesso(acaoAcessoId), '+
-      '	) '
+      ExecutaDiretoBancoDeDados(
+       '  CREATE TABLE usuariosAcaoAcesso(  '+
+       '  usuarioId  int NOT NULL ,          '+
+       '  acaoAcessoId int NOT NULL,          '+
+       '  ativo bit not null default 1,        '+
+       '  PRIMARY KEY (usuarioId, acaoAcessoId), '+
+       '  CONSTRAINT FK_UsuarioAcaoAcessoUsuario    '+
+       '  FOREIGN KEY (usuarioId) references usuarios(usuarioId),   '+
+       '  CONSTRAINT FK_UsuarioAcaoAcessoAcaoAcesso    '+
+       '  FOREIGN KEY (acaoAcessoId) references acaoAcesso(acaoAcessoId) '
     );
   end;
 end;
 
 procedure TAtualizacaoTableMSSQL.Vendas;
 begin
-
+  if not TabelaExiste('vendas') then
+  begin
+    ExecutaDiretoBancoDeDados(
+                     '   CREATE TABLE vendas(      '+
+					 '	vendaId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,    '+
+					 '	clienteId INT NOT NULL,      '+
+					 '	datavenda DATETIME DEFAULT CURDATE(),       '+
+					 '	totalVenda DECIMAL(18,5) DEFAULT 0.00000,    '+
+					 '	CONSTRAINT FK_VendasCliente FOREIGN KEY (clienteid)     '+
+					 '	REFERENCES clientes(clienteId)    '
+    );
+  end;
 end;
 
 procedure TAtualizacaoTableMSSQL.VendasItens;

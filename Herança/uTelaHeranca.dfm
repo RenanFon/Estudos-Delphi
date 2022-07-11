@@ -5,7 +5,7 @@ object frmTelaHeranca: TfrmTelaHeranca
   Caption = 'Informe Aqui o Titulo'
   ClientHeight = 619
   ClientWidth = 995
-  Color = clBtnFace
+  Color = clHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -34,13 +34,23 @@ object frmTelaHeranca: TfrmTelaHeranca
         Width = 987
         Height = 81
         Align = alTop
+        Color = clHotLight
+        ParentBackground = False
         TabOrder = 0
         object lblIndice: TLabel
-          Left = 3
-          Top = 14
-          Width = 78
-          Height = 13
+          Left = 8
+          Top = 11
+          Width = 104
+          Height = 16
           Caption = 'Campo Pesquisa'
+          Color = clBtnHighlight
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
         end
         object mskPesquisar: TMaskEdit
           Left = 1
@@ -55,7 +65,7 @@ object frmTelaHeranca: TfrmTelaHeranca
         object btnPesquisar: TBitBtn
           Tag = 99
           Left = 377
-          Top = 31
+          Top = 29
           Width = 75
           Height = 25
           Caption = '&Pesquisar'
@@ -87,7 +97,6 @@ object frmTelaHeranca: TfrmTelaHeranca
             0E973B0FA65B36FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
             00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
           TabOrder = 1
-          Visible = False
         end
       end
       object grdListagem: TDBGrid
@@ -96,6 +105,7 @@ object frmTelaHeranca: TfrmTelaHeranca
         Width = 987
         Height = 435
         Align = alClient
+        Color = clSilver
         DataSource = dtsListagem
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 1

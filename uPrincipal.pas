@@ -7,7 +7,7 @@ uses
   System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao,
    Enter, uFrmAtualizaDb,uProVendas,ucadUsuario,uLogin, uAlterarSenha,cUsuarioLogado,
-  Vcl.ComCtrls,cAtualizacaoBancoDeDados,uCadAcaoAcesso,cAcaoAcesso,RLReport;
+  Vcl.ComCtrls,cAtualizacaoBancoDeDados,uCadAcaoAcesso,cAcaoAcesso,RLReport,uUsuarioVsAcoes;
 
 type
   TfrmPrincipal = class(TForm)
@@ -34,6 +34,8 @@ type
     ALTERARSENHA1: TMenuItem;
     stbPrincipal: TStatusBar;
     AOA1: TMenuItem;
+    UsuariosVSa1: TMenuItem;
+    N5: TMenuItem;
     procedure menuFECHARClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CATEGORIA1Click(Sender: TObject);
@@ -50,6 +52,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure ALTERARSENHA1Click(Sender: TObject);
     procedure AOA1Click(Sender: TObject);
+    procedure UsuariosVSa1Click(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter : TMREnter;
@@ -78,7 +81,10 @@ procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
 
 procedure TfrmPrincipal.Categoria2Click(Sender: TObject);
     begin
-        CriarForm(TfrmRelCategoria);
+        frmRelCategoria:= TfrmRelCategoria.Create(self);
+        frmRelCategoria.relatorio.PreviewModal;
+        frmRelCategoria.Release;
+        //CriarForm(TfrmRelCategoria);
     end;
 
 procedure TfrmPrincipal.CLIENTE1Click(Sender: TObject);
@@ -88,12 +94,21 @@ procedure TfrmPrincipal.CLIENTE1Click(Sender: TObject);
 
 procedure TfrmPrincipal.CLIENTE2Click(Sender: TObject);
     begin
-         CriarForm(TfrmRelCliente);
+
+        frmRelCliente:= TfrmRelCliente.create(self);
+        frmRelCliente.relatorio.PreviewModal;
+        frmRelCliente.Release;
+
+
+        //CriarForm(TfrmRelCliente);
     end;
 
 procedure TfrmPrincipal.FICHADOCLIENTE1Click(Sender: TObject);
     begin
-       CriarForm(TfrmRelClienteFicha);
+    frmRelClienteFicha:= TfrmRelClienteFicha.Create(self);
+    frmRelClienteFicha.relatorio.PreviewModal;
+    frmRelClienteFicha.Release
+       //CriarForm(TfrmRelClienteFicha);
     end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -122,6 +137,23 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
             MessageDlg('Arquivo '+ TArquivoIni.ArquivoIni +' Criado com sucesso' +#13+
                        'Configure o arquivo antes de inicializar aplicação',MtInformation,[mbok],0);
 
+
+          end
+
+          else
+            begin
+
+             dtmPrincipal := TdtmPrincipal.create(self);
+             dtmPrincipal.conexaoDB.SQLHourGlass := true;
+             dtmPrincipal.conexaoDB.Connected := true;
+             TeclaEnter := TMREnter.Create(Self);
+             TeclaEnter.FocusEnabled := True;
+             TeclaEnter.FocusColor := clInfoBk;
+
+
+
+
+
             AtualizacaoDoBanco(frmAtualizaDB);
 
             TAcaoAcesso.CriarAcoes(TfrmCadCategoria,DtmPrincipal.ConexaoDB);
@@ -140,40 +172,7 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
             //TAcaoAcesso.CriarAcoes(TfrmUsuarioVsAcoes,DtmPrincipal.ConexaoDB);
 
              frmAtualizaDB.free;
-
-          end
-          else
-            begin
-
-             dtmPrincipal := TdtmPrincipal.create(self);
-             dtmPrincipal.conexaoDB.SQLHourGlass := true;
-             dtmPrincipal.conexaoDB.Connected := true;
-             TeclaEnter := TMREnter.Create(Self);
-             TeclaEnter.FocusEnabled := True;
-             TeclaEnter.FocusColor := clInfoBk;
-
-
-
-
-
-             AtualizacaoDoBanco(frmAtualizaDB);
-
-            TAcaoAcesso.CriarAcoes(TfrmCadCategoria,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmCadCliente,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmCadProduto,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmCadUsuario,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmCadAcaoAcesso,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmAlterarSenha,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmProVendas,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmRelProVendaPorData,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmRelClienteFicha,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmRelCliente,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmRelCadProdutosComGrupoCategoria,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmRelCadProduto,DtmPrincipal.ConexaoDB);
-            TAcaoAcesso.CriarAcoes(TfrmRelCategoria,DtmPrincipal.ConexaoDB);
-            //TAcaoAcesso.CriarAcoes(TfrmUsuarioVsAcoes,DtmPrincipal.ConexaoDB);
-
-             frmAtualizaDB.free;
+             TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);
             end;
     end;
 
@@ -203,13 +202,21 @@ procedure TfrmPrincipal.PRODUTO1Click(Sender: TObject);
 
 procedure TfrmPrincipal.PRODUTO2Click(Sender: TObject);
     begin
-        CriarForm(TfrmRelCadProduto);
+          frmRelCadProduto:= TfrmRelCadProduto.Create(self);
+          frmRelCadProduto.relatorio.PreviewModal;
+          frmRelCadProduto.Release;
+        //CriarForm(TfrmRelCadProduto);
     end;
 
 procedure TfrmPrincipal.USUARIO1Click(Sender: TObject);
     begin
          CriarForm(TfrmCadUsuario);
     end;
+
+procedure TfrmPrincipal.UsuariosVSa1Click(Sender: TObject);
+begin
+     CriarForm(TfrmUsuarioVsAcoes);
+end;
 
 procedure TfrmPrincipal.VENDAPORDATA1Click(Sender: TObject);
     begin

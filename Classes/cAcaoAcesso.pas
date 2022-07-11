@@ -229,8 +229,40 @@ begin
 end;
 
 class procedure TAcaoAcesso.PreencherUsuariosVsAcoes(aConexao: TZConnection);
+var Qry:TZQuery;
+    QryAcaoAcesso:TZQuery;
 begin
+  try
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=aConexao;
+    Qry.SQL.Clear;
 
+    QryAcaoAcesso:=TZQuery.Create(nil);
+    QryAcaoAcesso.Connection:=aConexao;
+    QryAcaoAcesso.SQL.Clear;
+
+    Qry.SQL.Add('SELECT usuarioId FROM usuarios ');
+    Qry.Open;
+
+    QryAcaoAcesso.SQL.Add('SELECT acaoAcessoId FROM acaoAcesso ');
+    QryAcaoAcesso.Open;
+
+    while not Qry.Eof do
+    begin
+      QryAcaoAcesso.First;
+
+      while not QryAcaoAcesso.Eof do
+      begin
+        VerificarUsuarioAcao(Qry.FieldByName('usuarioId').AsInteger, QryAcaoAcesso.FieldByName('acaoAcessoId').AsInteger, aConexao);
+        QryAcaoAcesso.Next;
+      end;
+
+      Qry.Next;
+    end;
+  finally
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
 end;
 
 function TAcaoAcesso.Selecionar(id: Integer): Boolean;
@@ -265,7 +297,42 @@ end;
 
 class procedure TAcaoAcesso.VerificarUsuarioAcao(aUsuarioId,
   aAcaoAcessoId: Integer; aConexao: TZConnection);
+var Qry:TZQuery;
 begin
+  try
+    Qry:=TZQuery.Create(nil);
+    Qry.Connection:=aConexao;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('SELECT usuarioId '+
+                '  FROM usuariosAcaoAcesso '+
+                ' WHERE usuarioId=:usuarioId '+
+                '   AND acaoAcessoId=:acaoAcessoId ');
+    Qry.ParamByName('usuarioId').AsInteger:=aUsuarioId;
+    Qry.ParamByName('acaoAcessoId').AsInteger:=aAcaoAcessoId;
+    Qry.Open;
+
+    if Qry.IsEmpty then
+    begin
+       Qry.Close;
+       Qry.SQL.Clear;
+       Qry.SQL.Add('INSERT INTO usuariosAcaoAcesso (usuarioId, acaoAcessoId, ativo) '+
+                   '     VALUES (:usuarioId, :acaoAcessoId, :ativo) ');
+       Qry.ParamByName('usuarioId').AsInteger:=aUsuarioId;
+       Qry.ParamByName('acaoAcessoId').AsInteger:=aAcaoAcessoId;
+       Qry.ParamByName('ativo').AsBoolean:=true;
+       Try
+         aConexao.StartTransaction;
+         Qry.ExecSQL;
+         aConexao.Commit;
+       Except
+         aConexao.Rollback;
+       End;
+    end;
+
+  finally
+    if Assigned(Qry) then
+       FreeAndNil(Qry);
+  end;
 
 end;
 

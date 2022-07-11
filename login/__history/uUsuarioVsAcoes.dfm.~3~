@@ -1,0 +1,150 @@
+object frmUsuarioVsAcoes: TfrmUsuarioVsAcoes
+  Left = 0
+  Top = 0
+  Caption = 'Usuario Vs Acoes'
+  ClientHeight = 572
+  ClientWidth = 931
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 0
+    Width = 7
+    Height = 512
+    ExplicitLeft = 295
+    ExplicitTop = -6
+  end
+  object Panel1: TPanel
+    Left = 7
+    Top = 0
+    Width = 274
+    Height = 512
+    Align = alLeft
+    TabOrder = 0
+    object DBGrid1: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 272
+      Height = 510
+      Align = alClient
+      DataSource = dtsUsuario
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'usuarioId'
+          Width = 62
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'nome'
+          Width = 171
+          Visible = True
+        end>
+    end
+  end
+  object Panel2: TPanel
+    Left = 281
+    Top = 0
+    Width = 650
+    Height = 512
+    Align = alClient
+    TabOrder = 1
+    ExplicitLeft = 393
+    ExplicitTop = 8
+    ExplicitWidth = 514
+    object DBGrid2: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 648
+      Height = 510
+      Align = alClient
+      DataSource = dtsAcoes
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 512
+    Width = 931
+    Height = 60
+    Align = alBottom
+    TabOrder = 2
+  end
+  object qryAcoes: TZQuery
+    Connection = dtmPrincipal.conexaoDB
+    SQL.Strings = (
+      'SELECT ua.usuarioId,'
+      '      ua.AcaoACessoId,'
+      '      a.descricao,'
+      '      ua.ativo'
+      '      FROM usuariosAcaoAcesso AS ua'
+      
+        '        INNER JOIN acaoAcesso AS a ON a.acaoAcessoId = ua.acaoAc' +
+        'essoId'
+      '      WHERE ua.usuarioId = :usuarioId')
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'usuarioId'
+        ParamType = ptUnknown
+      end>
+    Left = 582
+    Top = 136
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'usuarioId'
+        ParamType = ptUnknown
+      end>
+  end
+  object dtsAcoes: TDataSource
+    DataSet = qryAcoes
+    Left = 734
+    Top = 128
+  end
+  object dtsUsuario: TDataSource
+    DataSet = qryUsuario
+    Left = 152
+    Top = 216
+  end
+  object qryUsuario: TZQuery
+    Connection = dtmPrincipal.conexaoDB
+    SQL.Strings = (
+      'SELECT usuarioId, nome '
+      '             FROM usuarios ')
+    Params = <>
+    Left = 80
+    Top = 184
+    object qryUsuariousuarioId: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'usuarioId'
+      Required = True
+    end
+    object qryUsuarionome: TWideStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'nome'
+      Required = True
+      Size = 50
+    end
+  end
+end

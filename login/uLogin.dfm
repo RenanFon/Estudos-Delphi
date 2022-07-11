@@ -6,7 +6,7 @@ object frmLogin: TfrmLogin
   Caption = 'frmLogin'
   ClientHeight = 333
   ClientWidth = 645
-  Color = clBtnFace
+  Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -18,64 +18,9 @@ object frmLogin: TfrmLogin
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 104
-    Top = 70
-    Width = 88
-    Height = 19
-    Caption = 'USUARIO :'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object Label2: TLabel
-    Left = 104
-    Top = 158
-    Width = 67
-    Height = 19
-    Caption = 'SENHA :'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object edtUsuario: TEdit
-    Left = 216
-    Top = 56
-    Width = 281
-    Height = 27
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    TabOrder = 0
-    Text = 'ADMIN'
-  end
-  object edtSenha: TEdit
-    Left = 216
-    Top = 155
-    Width = 281
-    Height = 27
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    PasswordChar = '*'
-    TabOrder = 1
-    Text = 'mudar@123'
-  end
   object btnAcessar: TBitBtn
-    Left = 384
-    Top = 232
+    Left = 434
+    Top = 271
     Width = 113
     Height = 41
     Caption = 'ACESSAR'
@@ -106,12 +51,12 @@ object frmLogin: TfrmLogin
       C5C8C68EDDA862DF863FCC6637C76134C55D33C35B32C35835C35737C24F65C1
       75C3C7C4FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFBACEC089DBA268DB8959
       D97851D46F55CE7371C986AFC6B3FF00FFFF00FFFF00FFFF00FF}
-    TabOrder = 2
+    TabOrder = 0
     OnClick = btnAcessarClick
   end
   object btnFechar: TBitBtn
-    Left = 216
-    Top = 232
+    Left = 85
+    Top = 271
     Width = 113
     Height = 41
     Caption = 'FECHAR'
@@ -142,7 +87,107 @@ object frmLogin: TfrmLogin
       2B8CB23192B53697B93C9CBC3FA0BF45A6C24AABC64FB0C954B5CD59BAD15FBF
       D363C4D7244E6EFF00FFFF00FF244E6E244E6E244E6E244E6E244E6E244E6E24
       4E6E244E6E244E6E244E6E244E6E244E6E244E6E244E6EFF00FF}
-    TabOrder = 3
+    TabOrder = 1
     OnClick = btnFecharClick
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 645
+    Height = 129
+    Align = alTop
+    BevelKind = bkSoft
+    TabOrder = 2
+    ExplicitLeft = 1
+    object Label1: TLabel
+      Left = 108
+      Top = 89
+      Width = 88
+      Height = 19
+      Caption = 'USUARIO :'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object edtUsuario: TEdit
+      Left = 264
+      Top = 86
+      Width = 281
+      Height = 27
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      Text = 'ADMIN'
+    end
+    object Panel2: TPanel
+      Left = 192
+      Top = 0
+      Width = 249
+      Height = 57
+      BevelInner = bvLowered
+      BevelKind = bkTile
+      Color = clHighlight
+      ParentBackground = False
+      TabOrder = 1
+      object Label3: TLabel
+        Left = 88
+        Top = 22
+        Width = 52
+        Height = 19
+        Caption = 'LOGIN'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+    end
+  end
+  object Panel3: TPanel
+    Left = -8
+    Top = 128
+    Width = 654
+    Height = 122
+    BevelInner = bvLowered
+    BevelKind = bkSoft
+    Color = clHighlight
+    ParentBackground = False
+    TabOrder = 3
+    object Label2: TLabel
+      Left = 137
+      Top = 47
+      Width = 67
+      Height = 19
+      Caption = 'SENHA :'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object edtSenha: TEdit
+      Left = 272
+      Top = 39
+      Width = 281
+      Height = 27
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      PasswordChar = '*'
+      TabOrder = 0
+      Text = 'mudar@123'
+    end
   end
 end

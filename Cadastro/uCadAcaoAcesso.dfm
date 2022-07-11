@@ -1,20 +1,20 @@
 inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
   Caption = 'A'#231#227'o de acesso'
-  ClientWidth = 863
-  ExplicitWidth = 869
+  ClientWidth = 946
+  ExplicitWidth = 952
   PixelsPerInch = 96
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    Width = 863
+    Width = 946
     ExplicitWidth = 863
     inherited TabListagem: TTabSheet
-      ExplicitWidth = 855
+      ExplicitWidth = 938
       inherited pnlListagemTopo: TPanel
-        Width = 855
+        Width = 938
         ExplicitWidth = 855
       end
       inherited grdListagem: TDBGrid
-        Width = 855
+        Width = 938
         Columns = <
           item
             Expanded = False
@@ -35,7 +35,7 @@ inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
       end
     end
     inherited TabManutencao: TTabSheet
-      ExplicitWidth = 855
+      ExplicitWidth = 938
       object edtDescricao: TLabeledEdit
         Tag = 2
         Left = 24
@@ -76,11 +76,11 @@ inherited frmCadAcaoAcesso: TfrmCadAcaoAcesso
     end
   end
   inherited btnlRodape: TPanel
-    Width = 863
+    Width = 946
     ExplicitWidth = 863
     inherited btnFechar: TBitBtn
-      Left = 734
-      ExplicitLeft = 734
+      Left = 825
+      ExplicitLeft = 825
     end
     inherited btnNavigator: TDBNavigator
       Hints.Strings = ()

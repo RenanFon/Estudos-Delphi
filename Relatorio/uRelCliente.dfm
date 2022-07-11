@@ -26,6 +26,8 @@ object frmRelCliente: TfrmRelCliente
     Font.Height = -13
     Font.Name = 'Arial'
     Font.Style = []
+    PreviewOptions.ShowModal = True
+    ShowDesigners = False
     object Cabecalho: TRLBand
       Left = 38
       Top = 38
