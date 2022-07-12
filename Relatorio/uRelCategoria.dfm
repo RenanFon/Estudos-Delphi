@@ -1,7 +1,7 @@
 object frmRelCategoria: TfrmRelCategoria
   Left = 0
   Top = 0
-  Caption = 'frmRelCategoria'
+  Caption = 'Relatorio de Categoria'
   ClientHeight = 662
   ClientWidth = 1195
   Color = clBtnFace

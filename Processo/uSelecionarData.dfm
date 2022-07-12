@@ -1,10 +1,10 @@
 object frmSelecionarData: TfrmSelecionarData
   Left = 0
   Top = 0
-  BorderStyle = bsSizeToolWin
-  Caption = 'Selecionar Data'
-  ClientHeight = 189
-  ClientWidth = 382
+  BorderStyle = bsDialog
+  Caption = 'Selecione a Data'
+  ClientHeight = 95
+  ClientWidth = 271
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,44 +16,42 @@ object frmSelecionarData: TfrmSelecionarData
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 56
-    Top = 35
+  object Label3: TLabel
+    Left = 8
+    Top = 13
     Width = 51
     Height = 13
     Caption = 'Data Inicio'
   end
-  object Label2: TLabel
-    Left = 217
-    Top = 35
+  object Label1: TLabel
+    Left = 135
+    Top = 13
     Width = 48
     Height = 13
     Caption = 'Data Final'
   end
-  object edtDataInicio: TDateEdit
-    Left = 56
-    Top = 54
+  object EdtDataInicio: TDateEdit
+    Left = 8
+    Top = 31
     Width = 121
     Height = 21
     ClickKey = 114
-    DialogTitle = 'Selecione a data'
     NumGlyphs = 2
     TabOrder = 0
   end
-  object edtDataFinal: TDateEdit
-    Left = 217
-    Top = 54
+  object EdtDataFinal: TDateEdit
+    Left = 135
+    Top = 31
     Width = 121
     Height = 21
     ClickKey = 114
-    DialogTitle = 'Selecione a data'
     NumGlyphs = 2
     TabOrder = 1
   end
-  object BitBtn1: TBitBtn
-    Left = 56
-    Top = 96
-    Width = 282
+  object btnGravar: TBitBtn
+    Left = 8
+    Top = 58
+    Width = 248
     Height = 25
     Caption = 'OK'
     Glyph.Data = {
@@ -84,6 +82,6 @@ object frmSelecionarData: TfrmSelecionarData
       75C3C7C4FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFBACEC089DBA268DB8959
       D97851D46F55CE7371C986AFC6B3FF00FFFF00FFFF00FFFF00FF}
     TabOrder = 2
-    OnClick = BitBtn1Click
+    OnClick = btnGravarClick
   end
 end

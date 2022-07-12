@@ -2,7 +2,7 @@ object frmRelProVendaPorData: TfrmRelProVendaPorData
   Left = 0
   Top = 0
   Caption = 'Relat'#243'rio de Venda por Data'
-  ClientHeight = 839
+  ClientHeight = 749
   ClientWidth = 825
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -34,9 +34,9 @@ object frmRelProVendaPorData: TfrmRelProVendaPorData
       object RLLabel1: TRLLabel
         Left = 3
         Top = 14
-        Width = 69
+        Width = 291
         Height = 24
-        Caption = 'Venda'
+        Caption = 'Listagem de Venda por Data'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -21
@@ -337,6 +337,7 @@ object frmRelProVendaPorData: TfrmRelProVendaPorData
   end
   object QryVendas: TZQuery
     Connection = dtmPrincipal.conexaoDB
+    Active = True
     SQL.Strings = (
       #9'SELECT vendas.vendaId,'
       #9'       vendas.clienteId,'

@@ -4,20 +4,22 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms,System.DateUtils, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,
   RxToolEdit;
 
 type
   TfrmSelecionarData = class(TForm)
-    edtDataInicio: TDateEdit;
+    EdtDataInicio: TDateEdit;
+    Label3: TLabel;
+    EdtDataFinal: TDateEdit;
     Label1: TLabel;
-    edtDataFinal: TDateEdit;
-    Label2: TLabel;
-    BitBtn1: TBitBtn;
-    procedure BitBtn1Click(Sender: TObject);
+    btnGravar: TBitBtn;
     procedure FormShow(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
   private
-    { Private declarations }
+    { Private decla
+    procedure btnGravarContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);rations }
   public
     { Public declarations }
   end;
@@ -27,31 +29,40 @@ var
 
 implementation
 
+uses System.DateUtils;
+
 {$R *.dfm}
 
-procedure TfrmSelecionarData.BitBtn1Click(Sender: TObject);
-    begin
+procedure TfrmSelecionarData.btnGravarClick(Sender: TObject);
+begin
+  if (EdtDataFinal.Date) < (EdtDataInicio.Date) then begin
+    MessageDlg('Data Final não pode ser maior que a data inicio',mtInformation,[mbok],0);
+    EdtDataFinal.SetFocus;
+    abort;
+  end;
 
-    showmessage('OPS! ALGO DEU ERRADO :(');
-        if (edtDataFinal.Date) < (edtDataInicio.Date) then
-            begin
-                MessageDlg('Data Final não pode ser maior que a data inicio ',TMsgDlgType.mtInformation,[MBOK],0);
-                edtDataFinal.setFOCUS;
-                abort;
-            end;
-         if (edtDataFinal.Date=0) or (edtDataInicio.Date=0) then
-            begin
-                MessageDlg('Data inicial ou final são campos obrigatorios ',TMsgDlgType.mtInformation,[MBOK],0);
-                edtDataFinal.setFOCUS;
-                abort;
-            end;
-        Close;
-    end;
+  if (EdtDataFinal.Date=0) OR (EdtDataInicio.Date=0) then begin
+    MessageDlg('Data Inicial ou Final são campo obrigatório',MtInformation,[mbok],0);
+    EdtDataInicio.SetFocus;
+    abort;
+  end;
+
+
+
+  Close;
+end;
 
 procedure TfrmSelecionarData.FormShow(Sender: TObject);
-    begin
-        edtDataInicio.Date := startOfTheMonth(Date);
-        edtDataFinal.Date  := EndOfTheMonth(Date);
-    end;
+begin
+  EdtDataInicio.Date := StartOfTheMonth(Date);
+  EdtDataFinal.Date  := EndOfTheMonth(Date);
+end;
 
 end.
+procedure TfrmSelecionarData.btnGravarContextPopup(Sender: TObject;
+  MousePos: TPoint; var Handled: Boolean);
+begin
+
+end;
+
+

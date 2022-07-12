@@ -333,8 +333,8 @@ object frmPrincipal: TfrmPrincipal
   object mainPrincipal: TMainMenu
     BiDiMode = bdLeftToRight
     ParentBiDiMode = False
-    Left = 968
-    Top = 16
+    Left = 624
+    Top = 32
     object Cadastro1: TMenuItem
       Caption = 'CADASTRO'
       object CLIENTE1: TMenuItem
