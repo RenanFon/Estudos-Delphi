@@ -1,0 +1,32 @@
+object dtmGrafico: TdtmGrafico
+  OldCreateOrder = False
+  Height = 427
+  Width = 477
+  object qryProdutoEstoque: TZQuery
+    Connection = dtmPrincipal.conexaoDB
+    SQL.Strings = (
+      'SELECT CONVERT(produtoId,CHAR), nome '
+      'AS Label, quantidade AS Value FROM produtos;')
+    Params = <>
+    Left = 48
+    Top = 17
+    object qryProdutoEstoqueCONVERTprodutoIdCHAR: TWideStringField
+      FieldName = 'CONVERT(produtoId,CHAR)'
+      ReadOnly = True
+      Size = 11
+    end
+    object qryProdutoEstoqueLabel: TWideStringField
+      FieldName = 'Label'
+      Required = True
+      Size = 60
+    end
+    object qryProdutoEstoqueValue: TFloatField
+      FieldName = 'Value'
+      Required = True
+    end
+  end
+  object dtsProdutoEstoque: TDataSource
+    Left = 112
+    Top = 17
+  end
+end

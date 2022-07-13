@@ -38,7 +38,8 @@ uses
   cAquivoIni in 'Classes\cAquivoIni.pas',
   cAcaoAcesso in 'Classes\cAcaoAcesso.pas',
   uCadAcaoAcesso in 'Cadastro\uCadAcaoAcesso.pas' {frmCadAcaoAcesso},
-  uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes};
+  uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes},
+  udtmGrafico in 'DataModule\udtmGrafico.pas' {dtmGrafico: TDataModule};
 
 {$R *.res}
 
@@ -47,5 +48,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmUsuarioVsAcoes, frmUsuarioVsAcoes);
+  Application.CreateForm(TdtmGrafico, dtmGrafico);
   Application.Run;
 end.

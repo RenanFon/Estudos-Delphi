@@ -2,8 +2,8 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Menu Principal'
-  ClientHeight = 553
-  ClientWidth = 1111
+  ClientHeight = 482
+  ClientWidth = 781
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -315,26 +315,243 @@ object frmPrincipal: TfrmPrincipal
     1FFFA3170000F5025FFFFFFF0000FA54BFFFFFFF0000FD017FFFFFFF0000}
   Menu = mainPrincipal
   OldCreateOrder = False
-  WindowState = wsMaximized
+  WindowState = wsMinimized
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object stbPrincipal: TStatusBar
     Left = 0
-    Top = 534
-    Width = 1111
+    Top = 463
+    Width = 781
     Height = 19
     Panels = <
       item
         Width = 150
       end>
+    ExplicitTop = 434
+    ExplicitWidth = 777
+  end
+  object Panel2: TPanel
+    Left = 390
+    Top = 200
+    Width = 389
+    Height = 228
+    TabOrder = 1
+    object DBChart3: TDBChart
+      Left = 1
+      Top = 1
+      Width = 387
+      Height = 226
+      Title.Text.Strings = (
+        'Produtos Mais Vendidos')
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 2
+      ExplicitTop = 2
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object PieSeries1: TPieSeries
+        HoverElement = []
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        Marks.Callout.Length = 20
+        Marks.OnTop = True
+        Marks.Tail.Margin = 2
+        DataSource = dtmGrafico.qryProdutosMaisVendidos
+        Title = 'ProdutosMaisVendidos'
+        XLabelsSource = 'label'
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        YValues.ValueSource = 'VALUE'
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
+      end
+    end
+  end
+  object Panel3: TPanel
+    Left = 390
+    Top = -1
+    Width = 389
+    Height = 201
+    TabOrder = 2
+    object DBChart2: TDBChart
+      Left = 1
+      Top = 1
+      Width = 387
+      Height = 199
+      Title.Text.Strings = (
+        'Valor de Venda Por Cliente')
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = -7
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series2: TPieSeries
+        HoverElement = []
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        Marks.Callout.Length = 20
+        Marks.OnTop = True
+        DataSource = dtmGrafico.qryProdutoEstoque
+        Title = 'ValorDeVendaPorCliente'
+        XLabelsSource = 'Label'
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
+      end
+    end
+  end
+  object Panel4: TPanel
+    Left = 2
+    Top = 200
+    Width = 382
+    Height = 228
+    TabOrder = 3
+  end
+  object Panel5: TPanel
+    Left = 0
+    Top = 0
+    Width = 385
+    Height = 201
+    TabOrder = 4
+    object DBChart1: TDBChart
+      Left = 1
+      Top = 1
+      Width = 383
+      Height = 199
+      Title.Text.Strings = (
+        'Produto Em Estoque')
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 65
+      ExplicitTop = 169
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series1: TBarSeries
+        HoverElement = []
+        ColorEachPoint = True
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        Marks.OnTop = True
+        DataSource = dtmGrafico.qryProdutoEstoque
+        Title = 'ProdutoEstoque'
+        XLabelsSource = 'Label'
+        XValues.Name = 'X'
+        XValues.Order = loAscending
+        YValues.Name = 'Bar'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+      end
+    end
   end
   object mainPrincipal: TMainMenu
     BiDiMode = bdLeftToRight
     ParentBiDiMode = False
-    Left = 624
-    Top = 32
+    Left = 648
+    Top = 65528
     object Cadastro1: TMenuItem
       Caption = 'CADASTRO'
       object CLIENTE1: TMenuItem

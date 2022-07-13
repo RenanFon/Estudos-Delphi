@@ -7,7 +7,10 @@ uses
   System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,udtmConexao,
    Enter, uFrmAtualizaDb,uProVendas,ucadUsuario,uLogin, uAlterarSenha,cUsuarioLogado,
-  Vcl.ComCtrls,cAtualizacaoBancoDeDados,uCadAcaoAcesso,cAcaoAcesso,RLReport,uUsuarioVsAcoes;
+  Vcl.ComCtrls,cAtualizacaoBancoDeDados,uCadAcaoAcesso,cAcaoAcesso,RLReport,uUsuarioVsAcoes,
+  Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.ExtCtrls,udtmGrafico,
+  VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs,
+  VCLTee.Chart, VCLTee.DBChart;
 
 type
   TfrmPrincipal = class(TForm)
@@ -36,6 +39,16 @@ type
     AOA1: TMenuItem;
     UsuariosVSa1: TMenuItem;
     N5: TMenuItem;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    DBChart1: TDBChart;
+    Series1: TBarSeries;
+    DBChart2: TDBChart;
+    Series2: TPieSeries;
+    DBChart3: TDBChart;
+    PieSeries1: TPieSeries;
     procedure menuFECHARClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CATEGORIA1Click(Sender: TObject);
@@ -58,6 +71,7 @@ type
     TeclaEnter : TMREnter;
     procedure AtualizacaoDoBanco(aForm: TFrmAtualizaDb);
     procedure CriarForm(aNomeForm: TFormClass);
+    procedure AtualizarDashbord;
     //procedure CriarRelatorio(oNomeForm: TFormClass);
   public
     { Public declarations }
@@ -72,7 +86,8 @@ implementation
 {$R *.dfm}
 
 uses uCadCategoria, uCadCliente,uCadProduto,cCadProduto,uRelCategoria,uRelClienteFicha,uRelCliente,
-        uSelecionarData,uRelCadProduto,uRelProVendaPorData,uRelCadProdutosComGrupoCategoria,cAquivoIni;
+        uSelecionarData,uRelCadProduto,uRelProVendaPorData,
+        uRelCadProdutosComGrupoCategoria,cAquivoIni;
 
 procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
     begin
@@ -115,7 +130,7 @@ procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
      FreeandNil(TeclaEnter);
      FreeAndNil(dtmPrincipal);
-
+     FreeAndNil(dtmGrafico);
      if assigned(oUsuarioLogado) then
         FreeAndNil(oUsuarioLogado);
 end;
@@ -170,6 +185,8 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
             TAcaoAcesso.CriarAcoes(TfrmRelCadProduto,DtmPrincipal.ConexaoDB);
             TAcaoAcesso.CriarAcoes(TfrmRelCategoria,DtmPrincipal.ConexaoDB);
             TAcaoAcesso.CriarAcoes(TfrmUsuarioVsAcoes,DtmPrincipal.ConexaoDB);
+             dtmGrafico := TdtmGrafico.Create(self);
+    AtualizarDashbord;
 
              frmAtualizaDB.free;
              TAcaoAcesso.PreencherUsuariosVsAcoes(DtmPrincipal.ConexaoDB);
@@ -269,8 +286,30 @@ var form : Tform;
         finally
             if assigned(form) then
                 Form.Release;
+               AtualizarDashbord;
         end;
     end;
+
+procedure TfrmPrincipal.AtualizarDashbord;
+begin
+  if DTMGrafico.QryProdutoEstoque.Active then
+     DTMGrafico.QryProdutoEstoque.Close;
+
+  if DTMGrafico.qryVendaValorPorCliente.Active then
+     DTMGrafico.qryVendaValorPorCliente.Close;
+
+  if DTMGrafico.qryProdutosMaisVendidos.Active then
+     DTMGrafico.qryProdutosMaisVendidos.Close;
+
+  //if DTMGrafico.Qry10ProdutosMaisVendidos.Active then
+    // DTMGrafico.Qry10ProdutosMaisVendidos.Close;
+
+  DTMGrafico.QryProdutoEstoque.Open;
+  DTMGrafico.qryVendaValorPorCliente.Open;
+  DTMGrafico.qryProdutosMaisVendidos.Open;
+  //DTMGrafico.Qry10ProdutosMaisVendidos.Open;
+
+end;
 
 
 
