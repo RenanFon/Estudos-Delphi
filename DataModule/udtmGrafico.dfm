@@ -1,7 +1,7 @@
 object dtmGrafico: TdtmGrafico
   OldCreateOrder = False
-  Height = 427
-  Width = 477
+  Height = 364
+  Width = 766
   object qryProdutoEstoque: TZQuery
     Connection = dtmPrincipal.conexaoDB
     SQL.Strings = (
@@ -32,7 +32,6 @@ object dtmGrafico: TdtmGrafico
   end
   object qryVendaValorPorCliente: TZQuery
     Connection = dtmPrincipal.conexaoDB
-    Active = True
     SQL.Strings = (
       
         'SELECT CONVERT(vendas.clienteId, CHAR),clientes.nome AS label, S' +
@@ -63,7 +62,6 @@ object dtmGrafico: TdtmGrafico
   end
   object qryProdutosMaisVendidos: TZQuery
     Connection = dtmPrincipal.conexaoDB
-    Active = True
     SQL.Strings = (
       'SELECT CONVERT(vi.produtoId,CHAR),p.nome AS label,'
       'SUM(vi.totalProduto) AS VALUE'
@@ -86,6 +84,26 @@ object dtmGrafico: TdtmGrafico
     object qryProdutosMaisVendidosVALUE: TFloatField
       FieldName = 'VALUE'
       ReadOnly = True
+    end
+  end
+  object qryVendasUltimasSemanas: TZQuery
+    Connection = dtmPrincipal.conexaoDB
+    SQL.Strings = (
+      
+        '  SELECT categorias.descricao AS Label , categorias.categoriaID ' +
+        'AS VALUE FROM categorias;  '
+      ''
+      '')
+    Params = <>
+    Left = 376
+    Top = 136
+    object qryVendasUltimasSemanasLabel: TWideStringField
+      FieldName = 'Label'
+      Size = 30
+    end
+    object qryVendasUltimasSemanasVALUE: TIntegerField
+      FieldName = 'VALUE'
+      Required = True
     end
   end
 end

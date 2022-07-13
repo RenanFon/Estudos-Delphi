@@ -15,7 +15,7 @@ object dtmPrincipal: TdtmPrincipal
     User = 'root'
     Password = ''
     Protocol = 'mysql'
-    LibraryLocation = 'C:\Users\Pichau\Desktop\DelphiCurso\Estudos-Delphi\libmysql.dll'
+    LibraryLocation = 'C:\Users\Bsoft\Desktop\cursoDelphiPro\libmysql.dll'
     Left = 184
     Top = 40
   end

@@ -1,10 +1,10 @@
 object frmPrincipal: TfrmPrincipal
-  Left = 0
+  Left = 206
   Top = 0
   Caption = 'Menu Principal'
-  ClientHeight = 482
-  ClientWidth = 781
-  Color = clBtnFace
+  ClientHeight = 1041
+  ClientWidth = 1637
+  Color = clHotLight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -315,199 +315,170 @@ object frmPrincipal: TfrmPrincipal
     1FFFA3170000F5025FFFFFFF0000FA54BFFFFFFF0000FD017FFFFFFF0000}
   Menu = mainPrincipal
   OldCreateOrder = False
-  WindowState = wsMinimized
+  Position = poDesigned
+  WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object stbPrincipal: TStatusBar
     Left = 0
-    Top = 463
-    Width = 781
+    Top = 1022
+    Width = 1637
     Height = 19
     Panels = <
       item
         Width = 150
       end>
-    ExplicitTop = 434
-    ExplicitWidth = 777
+    ExplicitWidth = 1182
   end
-  object Panel2: TPanel
-    Left = 390
-    Top = 200
-    Width = 389
-    Height = 228
+  object Panel4: TPanel
+    Left = -10
+    Top = 434
+    Width = 991
+    Height = 582
     TabOrder = 1
-    object DBChart3: TDBChart
+    object DBChart4: TDBChart
       Left = 1
       Top = 1
-      Width = 387
-      Height = 226
+      Width = 989
+      Height = 580
+      BackWall.Brush.Gradient.Direction = gdBottomTop
+      BackWall.Brush.Gradient.EndColor = clWhite
+      BackWall.Brush.Gradient.StartColor = 15395562
+      BackWall.Brush.Gradient.Visible = True
+      BackWall.Transparent = False
+      Foot.Font.Color = clBlue
+      Foot.Font.Name = 'Verdana'
+      Gradient.Direction = gdBottomTop
+      Gradient.EndColor = clWhite
+      Gradient.MidColor = 15395562
+      Gradient.StartColor = 15395562
+      Gradient.Visible = True
+      LeftWall.Color = 14745599
+      RightWall.Color = 14745599
+      Title.Font.Name = 'Verdana'
       Title.Text.Strings = (
-        'Produtos Mais Vendidos')
-      View3DOptions.Elevation = 315
-      View3DOptions.Orthogonal = False
-      View3DOptions.Perspective = 0
-      View3DOptions.Rotation = 360
+        'Categorias mais Vendidas')
+      BottomAxis.Axis.Color = 4210752
+      BottomAxis.Grid.Color = 11119017
+      BottomAxis.LabelsFormat.Font.Name = 'Verdana'
+      BottomAxis.TicksInner.Color = 11119017
+      BottomAxis.Title.Font.Name = 'Verdana'
+      DepthAxis.Axis.Color = 4210752
+      DepthAxis.Grid.Color = 11119017
+      DepthAxis.LabelsFormat.Font.Name = 'Verdana'
+      DepthAxis.TicksInner.Color = 11119017
+      DepthAxis.Title.Font.Name = 'Verdana'
+      DepthTopAxis.Axis.Color = 4210752
+      DepthTopAxis.Grid.Color = 11119017
+      DepthTopAxis.LabelsFormat.Font.Name = 'Verdana'
+      DepthTopAxis.TicksInner.Color = 11119017
+      DepthTopAxis.Title.Font.Name = 'Verdana'
+      LeftAxis.Axis.Color = 4210752
+      LeftAxis.Grid.Color = 11119017
+      LeftAxis.LabelsFormat.Font.Name = 'Verdana'
+      LeftAxis.TicksInner.Color = 11119017
+      LeftAxis.Title.Font.Name = 'Verdana'
+      Legend.Font.Name = 'Verdana'
+      Legend.Shadow.Transparency = 0
+      RightAxis.Axis.Color = 4210752
+      RightAxis.Grid.Color = 11119017
+      RightAxis.LabelsFormat.Font.Name = 'Verdana'
+      RightAxis.TicksInner.Color = 11119017
+      RightAxis.Title.Font.Name = 'Verdana'
+      TopAxis.Axis.Color = 4210752
+      TopAxis.Grid.Color = 11119017
+      TopAxis.LabelsFormat.Font.Name = 'Verdana'
+      TopAxis.TicksInner.Color = 11119017
+      TopAxis.Title.Font.Name = 'Verdana'
       Align = alClient
       TabOrder = 0
       ExplicitLeft = 2
       ExplicitTop = 2
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
-      object PieSeries1: TPieSeries
-        HoverElement = []
-        Marks.Brush.Gradient.Colors = <
-          item
-            Color = clRed
-          end
-          item
-            Color = 819443
-            Offset = 0.067915690866510540
-          end
-          item
-            Color = clYellow
-            Offset = 1.000000000000000000
-          end>
-        Marks.Brush.Gradient.Direction = gdTopBottom
-        Marks.Brush.Gradient.EndColor = clYellow
-        Marks.Brush.Gradient.MidColor = 819443
-        Marks.Brush.Gradient.StartColor = clRed
-        Marks.Brush.Gradient.Visible = True
-        Marks.Font.Color = 159
-        Marks.Font.Name = 'Tahoma'
-        Marks.Font.Style = [fsBold, fsItalic]
-        Marks.Frame.Color = 33023
-        Marks.RoundSize = 14
-        Marks.Callout.Length = 20
-        Marks.OnTop = True
-        Marks.Tail.Margin = 2
-        DataSource = dtmGrafico.qryProdutosMaisVendidos
-        Title = 'ProdutosMaisVendidos'
-        XLabelsSource = 'label'
+      object Series3: TLineSeries
+        HoverElement = [heCurrent]
+        DataSource = dtmGrafico.qryVendasUltimasSemanas
+        XLabelsSource = 'Label'
+        Brush.BackColor = clDefault
+        Pointer.InflateMargins = True
+        Pointer.Style = psRectangle
+        XValues.Name = 'X'
         XValues.Order = loAscending
-        YValues.Name = 'Pie'
+        YValues.DateTime = True
+        YValues.Name = 'Y'
         YValues.Order = loNone
         YValues.ValueSource = 'VALUE'
-        Frame.InnerBrush.BackColor = clRed
-        Frame.InnerBrush.Gradient.EndColor = clGray
-        Frame.InnerBrush.Gradient.MidColor = clWhite
-        Frame.InnerBrush.Gradient.StartColor = 4210752
-        Frame.InnerBrush.Gradient.Visible = True
-        Frame.MiddleBrush.BackColor = clYellow
-        Frame.MiddleBrush.Gradient.EndColor = 8553090
-        Frame.MiddleBrush.Gradient.MidColor = clWhite
-        Frame.MiddleBrush.Gradient.StartColor = clGray
-        Frame.MiddleBrush.Gradient.Visible = True
-        Frame.OuterBrush.BackColor = clGreen
-        Frame.OuterBrush.Gradient.EndColor = 4210752
-        Frame.OuterBrush.Gradient.MidColor = clWhite
-        Frame.OuterBrush.Gradient.StartColor = clSilver
-        Frame.OuterBrush.Gradient.Visible = True
-        Frame.Width = 4
-        OtherSlice.Legend.Visible = False
       end
     end
-  end
-  object Panel3: TPanel
-    Left = 390
-    Top = -1
-    Width = 389
-    Height = 201
-    TabOrder = 2
-    object DBChart2: TDBChart
-      Left = 1
-      Top = 1
-      Width = 387
-      Height = 199
-      Title.Text.Strings = (
-        'Valor de Venda Por Cliente')
-      View3DOptions.Elevation = 315
-      View3DOptions.Orthogonal = False
-      View3DOptions.Perspective = 0
-      View3DOptions.Rotation = 360
-      Align = alClient
-      TabOrder = 0
-      ExplicitLeft = -7
-      DefaultCanvas = 'TGDIPlusCanvas'
-      ColorPaletteIndex = 13
-      object Series2: TPieSeries
-        HoverElement = []
-        Marks.Brush.Gradient.Colors = <
-          item
-            Color = clRed
-          end
-          item
-            Color = 819443
-            Offset = 0.067915690866510540
-          end
-          item
-            Color = clYellow
-            Offset = 1.000000000000000000
-          end>
-        Marks.Brush.Gradient.Direction = gdTopBottom
-        Marks.Brush.Gradient.EndColor = clYellow
-        Marks.Brush.Gradient.MidColor = 819443
-        Marks.Brush.Gradient.StartColor = clRed
-        Marks.Brush.Gradient.Visible = True
-        Marks.Font.Color = 159
-        Marks.Font.Name = 'Tahoma'
-        Marks.Font.Style = [fsBold, fsItalic]
-        Marks.Frame.Color = 33023
-        Marks.RoundSize = 14
-        Marks.Callout.Length = 20
-        Marks.OnTop = True
-        DataSource = dtmGrafico.qryProdutoEstoque
-        Title = 'ValorDeVendaPorCliente'
-        XLabelsSource = 'Label'
-        XValues.Order = loAscending
-        YValues.Name = 'Pie'
-        YValues.Order = loNone
-        YValues.ValueSource = 'Value'
-        Frame.InnerBrush.BackColor = clRed
-        Frame.InnerBrush.Gradient.EndColor = clGray
-        Frame.InnerBrush.Gradient.MidColor = clWhite
-        Frame.InnerBrush.Gradient.StartColor = 4210752
-        Frame.InnerBrush.Gradient.Visible = True
-        Frame.MiddleBrush.BackColor = clYellow
-        Frame.MiddleBrush.Gradient.EndColor = 8553090
-        Frame.MiddleBrush.Gradient.MidColor = clWhite
-        Frame.MiddleBrush.Gradient.StartColor = clGray
-        Frame.MiddleBrush.Gradient.Visible = True
-        Frame.OuterBrush.BackColor = clGreen
-        Frame.OuterBrush.Gradient.EndColor = 4210752
-        Frame.OuterBrush.Gradient.MidColor = clWhite
-        Frame.OuterBrush.Gradient.StartColor = clSilver
-        Frame.OuterBrush.Gradient.Visible = True
-        Frame.Width = 4
-        OtherSlice.Legend.Visible = False
-      end
-    end
-  end
-  object Panel4: TPanel
-    Left = 2
-    Top = 200
-    Width = 382
-    Height = 228
-    TabOrder = 3
   end
   object Panel5: TPanel
-    Left = 0
-    Top = 0
-    Width = 385
-    Height = 201
-    TabOrder = 4
+    Left = -1
+    Top = 25
+    Width = 982
+    Height = 429
+    TabOrder = 2
     object DBChart1: TDBChart
       Left = 1
       Top = 1
-      Width = 383
-      Height = 199
+      Width = 980
+      Height = 427
+      BackWall.Brush.Gradient.Direction = gdBottomTop
+      BackWall.Brush.Gradient.EndColor = clWhite
+      BackWall.Brush.Gradient.StartColor = 15395562
+      BackWall.Brush.Gradient.Visible = True
+      BackWall.Transparent = False
+      Foot.Font.Color = clBlue
+      Foot.Font.Name = 'Verdana'
+      Gradient.Direction = gdBottomTop
+      Gradient.EndColor = clWhite
+      Gradient.MidColor = 15395562
+      Gradient.StartColor = 15395562
+      Gradient.Visible = True
+      LeftWall.Color = 14745599
+      RightWall.Color = 14745599
+      Title.Font.Name = 'Verdana'
       Title.Text.Strings = (
         'Produto Em Estoque')
+      BottomAxis.Axis.Color = 4210752
+      BottomAxis.Grid.Color = 11119017
+      BottomAxis.LabelsFormat.Font.Name = 'Verdana'
+      BottomAxis.TicksInner.Color = 11119017
+      BottomAxis.Title.Font.Name = 'Verdana'
+      DepthAxis.Axis.Color = 4210752
+      DepthAxis.Grid.Color = 11119017
+      DepthAxis.LabelsFormat.Font.Name = 'Verdana'
+      DepthAxis.TicksInner.Color = 11119017
+      DepthAxis.Title.Font.Name = 'Verdana'
+      DepthTopAxis.Axis.Color = 4210752
+      DepthTopAxis.Grid.Color = 11119017
+      DepthTopAxis.LabelsFormat.Font.Name = 'Verdana'
+      DepthTopAxis.TicksInner.Color = 11119017
+      DepthTopAxis.Title.Font.Name = 'Verdana'
+      LeftAxis.Axis.Color = 4210752
+      LeftAxis.Grid.Color = 11119017
+      LeftAxis.LabelsFormat.Font.Name = 'Verdana'
+      LeftAxis.TicksInner.Color = 11119017
+      LeftAxis.Title.Font.Name = 'Verdana'
+      Legend.Font.Name = 'Verdana'
+      Legend.Shadow.Transparency = 0
+      RightAxis.Axis.Color = 4210752
+      RightAxis.Grid.Color = 11119017
+      RightAxis.LabelsFormat.Font.Name = 'Verdana'
+      RightAxis.TicksInner.Color = 11119017
+      RightAxis.Title.Font.Name = 'Verdana'
+      TopAxis.Axis.Color = 4210752
+      TopAxis.Grid.Color = 11119017
+      TopAxis.LabelsFormat.Font.Name = 'Verdana'
+      TopAxis.TicksInner.Color = 11119017
+      TopAxis.Title.Font.Name = 'Verdana'
       Align = alClient
+      Color = clHighlight
       TabOrder = 0
-      ExplicitLeft = 65
-      ExplicitTop = 169
+      ExplicitTop = 0
       DefaultCanvas = 'TGDIPlusCanvas'
       ColorPaletteIndex = 13
       object Series1: TBarSeries
@@ -546,6 +517,251 @@ object frmPrincipal: TfrmPrincipal
         YValues.ValueSource = 'Value'
       end
     end
+  end
+  object Panel1: TPanel
+    Left = 986
+    Top = 434
+    Width = 991
+    Height = 582
+    Color = clMenuHighlight
+    ParentBackground = False
+    TabOrder = 3
+    object DBChart3: TDBChart
+      Left = 1
+      Top = 1
+      Width = 989
+      Height = 580
+      BackWall.Brush.Gradient.Direction = gdBottomTop
+      BackWall.Brush.Gradient.EndColor = clWhite
+      BackWall.Brush.Gradient.StartColor = 15395562
+      BackWall.Brush.Gradient.Visible = True
+      BackWall.Transparent = False
+      Foot.Font.Color = clBlue
+      Foot.Font.Name = 'Verdana'
+      Gradient.Direction = gdBottomTop
+      Gradient.EndColor = clWhite
+      Gradient.MidColor = 15395562
+      Gradient.StartColor = 15395562
+      Gradient.Visible = True
+      LeftWall.Color = 14745599
+      RightWall.Color = 14745599
+      Title.Font.Name = 'Verdana'
+      Title.Text.Strings = (
+        'Produtos Mais Vendidos')
+      BottomAxis.Axis.Color = 4210752
+      BottomAxis.Grid.Color = 11119017
+      BottomAxis.LabelsFormat.Font.Name = 'Verdana'
+      BottomAxis.TicksInner.Color = 11119017
+      BottomAxis.Title.Font.Name = 'Verdana'
+      DepthAxis.Axis.Color = 4210752
+      DepthAxis.Grid.Color = 11119017
+      DepthAxis.LabelsFormat.Font.Name = 'Verdana'
+      DepthAxis.TicksInner.Color = 11119017
+      DepthAxis.Title.Font.Name = 'Verdana'
+      DepthTopAxis.Axis.Color = 4210752
+      DepthTopAxis.Grid.Color = 11119017
+      DepthTopAxis.LabelsFormat.Font.Name = 'Verdana'
+      DepthTopAxis.TicksInner.Color = 11119017
+      DepthTopAxis.Title.Font.Name = 'Verdana'
+      LeftAxis.Axis.Color = 4210752
+      LeftAxis.Grid.Color = 11119017
+      LeftAxis.LabelsFormat.Font.Name = 'Verdana'
+      LeftAxis.TicksInner.Color = 11119017
+      LeftAxis.Title.Font.Name = 'Verdana'
+      Legend.Font.Name = 'Verdana'
+      Legend.Shadow.Transparency = 0
+      RightAxis.Axis.Color = 4210752
+      RightAxis.Grid.Color = 11119017
+      RightAxis.LabelsFormat.Font.Name = 'Verdana'
+      RightAxis.TicksInner.Color = 11119017
+      RightAxis.Title.Font.Name = 'Verdana'
+      TopAxis.Axis.Color = 4210752
+      TopAxis.Grid.Color = 11119017
+      TopAxis.LabelsFormat.Font.Name = 'Verdana'
+      TopAxis.TicksInner.Color = 11119017
+      TopAxis.Title.Font.Name = 'Verdana'
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      Align = alClient
+      TabOrder = 0
+      ExplicitTop = 2
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series4: THorizBarSeries
+        HoverElement = []
+        BarBrush.Gradient.Direction = gdLeftRight
+        Marks.OnTop = True
+        DataSource = dtmGrafico.qryProdutosMaisVendidos
+        XLabelsSource = 'label'
+        Gradient.Direction = gdLeftRight
+        XValues.Name = 'Bar'
+        XValues.Order = loNone
+        XValues.ValueSource = 'VALUE'
+        YValues.Name = 'Y'
+        YValues.Order = loAscending
+      end
+    end
+  end
+  object Panel6: TPanel
+    Left = 986
+    Top = 25
+    Width = 953
+    Height = 428
+    TabOrder = 4
+    object DBChart2: TDBChart
+      Left = 1
+      Top = 1
+      Width = 951
+      Height = 426
+      BackWall.Brush.Gradient.Direction = gdBottomTop
+      BackWall.Brush.Gradient.EndColor = clWhite
+      BackWall.Brush.Gradient.StartColor = 15395562
+      BackWall.Brush.Gradient.Visible = True
+      BackWall.Transparent = False
+      Foot.Font.Color = clBlue
+      Foot.Font.Name = 'Verdana'
+      Gradient.Direction = gdBottomTop
+      Gradient.EndColor = clWhite
+      Gradient.MidColor = 15395562
+      Gradient.StartColor = 15395562
+      Gradient.Visible = True
+      LeftWall.Color = 14745599
+      RightWall.Color = 14745599
+      Title.Font.Name = 'Verdana'
+      Title.Text.Strings = (
+        'Valor de Venda Por Cliente')
+      BottomAxis.Axis.Color = 4210752
+      BottomAxis.Grid.Color = 11119017
+      BottomAxis.LabelsFormat.Font.Name = 'Verdana'
+      BottomAxis.TicksInner.Color = 11119017
+      BottomAxis.Title.Font.Name = 'Verdana'
+      DepthAxis.Axis.Color = 4210752
+      DepthAxis.Grid.Color = 11119017
+      DepthAxis.LabelsFormat.Font.Name = 'Verdana'
+      DepthAxis.TicksInner.Color = 11119017
+      DepthAxis.Title.Font.Name = 'Verdana'
+      DepthTopAxis.Axis.Color = 4210752
+      DepthTopAxis.Grid.Color = 11119017
+      DepthTopAxis.LabelsFormat.Font.Name = 'Verdana'
+      DepthTopAxis.TicksInner.Color = 11119017
+      DepthTopAxis.Title.Font.Name = 'Verdana'
+      LeftAxis.Axis.Color = 4210752
+      LeftAxis.Grid.Color = 11119017
+      LeftAxis.LabelsFormat.Font.Name = 'Verdana'
+      LeftAxis.TicksInner.Color = 11119017
+      LeftAxis.Title.Font.Name = 'Verdana'
+      Legend.Font.Name = 'Verdana'
+      Legend.Shadow.Transparency = 0
+      RightAxis.Axis.Color = 4210752
+      RightAxis.Grid.Color = 11119017
+      RightAxis.LabelsFormat.Font.Name = 'Verdana'
+      RightAxis.TicksInner.Color = 11119017
+      RightAxis.Title.Font.Name = 'Verdana'
+      TopAxis.Axis.Color = 4210752
+      TopAxis.Grid.Color = 11119017
+      TopAxis.LabelsFormat.Font.Name = 'Verdana'
+      TopAxis.TicksInner.Color = 11119017
+      TopAxis.Title.Font.Name = 'Verdana'
+      View3DOptions.Elevation = 315
+      View3DOptions.Orthogonal = False
+      View3DOptions.Perspective = 0
+      View3DOptions.Rotation = 360
+      Align = alClient
+      Color = clHighlight
+      TabOrder = 0
+      DefaultCanvas = 'TGDIPlusCanvas'
+      ColorPaletteIndex = 13
+      object Series2: TPieSeries
+        HoverElement = []
+        Marks.Brush.Gradient.Colors = <
+          item
+            Color = clRed
+          end
+          item
+            Color = 819443
+            Offset = 0.067915690866510540
+          end
+          item
+            Color = clYellow
+            Offset = 1.000000000000000000
+          end>
+        Marks.Brush.Gradient.Direction = gdTopBottom
+        Marks.Brush.Gradient.EndColor = clYellow
+        Marks.Brush.Gradient.MidColor = 819443
+        Marks.Brush.Gradient.StartColor = clRed
+        Marks.Brush.Gradient.Visible = True
+        Marks.Font.Color = 159
+        Marks.Font.Name = 'Tahoma'
+        Marks.Font.Style = [fsBold, fsItalic]
+        Marks.Frame.Color = 33023
+        Marks.RoundSize = 14
+        Marks.Callout.Length = 20
+        Marks.OnTop = True
+        Marks.Tail.Margin = 2
+        DataSource = dtmGrafico.qryProdutoEstoque
+        Title = 'ValorDeVendaPorCliente'
+        XLabelsSource = 'Label'
+        XValues.Order = loAscending
+        YValues.Name = 'Pie'
+        YValues.Order = loNone
+        YValues.ValueSource = 'Value'
+        Frame.InnerBrush.BackColor = clRed
+        Frame.InnerBrush.Gradient.EndColor = clGray
+        Frame.InnerBrush.Gradient.MidColor = clWhite
+        Frame.InnerBrush.Gradient.StartColor = 4210752
+        Frame.InnerBrush.Gradient.Visible = True
+        Frame.MiddleBrush.BackColor = clYellow
+        Frame.MiddleBrush.Gradient.EndColor = 8553090
+        Frame.MiddleBrush.Gradient.MidColor = clWhite
+        Frame.MiddleBrush.Gradient.StartColor = clGray
+        Frame.MiddleBrush.Gradient.Visible = True
+        Frame.OuterBrush.BackColor = clGreen
+        Frame.OuterBrush.Gradient.EndColor = 4210752
+        Frame.OuterBrush.Gradient.MidColor = clWhite
+        Frame.OuterBrush.Gradient.StartColor = clSilver
+        Frame.OuterBrush.Gradient.Visible = True
+        Frame.Width = 4
+        OtherSlice.Legend.Visible = False
+      end
+    end
+  end
+  object BitBtn1: TBitBtn
+    Left = 928
+    Top = -4
+    Width = 105
+    Height = 41
+    Caption = 'ATUALIZAR'
+    Glyph.Data = {
+      36030000424D3603000000000000360000002800000010000000100000000100
+      18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+      C2A6A4C2A6A4C2A6A4C2A6A4C2A6A4C2A6A4C2A6A4C2A6A4C2A6A4C2A6A4C2A6
+      A4C2A6A4FF00FFFF00FFFF00FFFF00FFC2A6A4FEFCFBFEFCFBFEFCFBFEFCFBFE
+      FCFBFEFCFBFEFCFBFEFCFBFEFCFBFEFCFBC2A6A4FF00FFFF00FFFF00FFFF00FF
+      C2A6A4FEFCFBFEFCFBFEFCFBFEFCFBD8EBD6018A02018A02D8EBD6FEFCFBFEFC
+      FBC2A6A4FF00FFFF00FFFF00FFFF00FFC2A6A4FEFBF7FEFBF7018A02D8EAD201
+      8A02D8EAD2D8EAD2018A02FEFBF7FEFBF7C2A6A4FF00FFFF00FFFF00FFFF00FF
+      C2A6A4FEF9F4FEF9F4018A02018A02D8E8D0FEF9F4FEF9F4D8E8D0FEF9F4FEF9
+      F4C2A6A4FF00FFFF00FFFF00FFFF00FFC2A6A4FEF7F0FEF7F0018A02018A0201
+      8A02FEF7F0FEF7F0FEF7F0FEF7F0FEF7F0C2A6A4FF00FFFF00FFFF00FFFF00FF
+      C2A6A4FEF5ECFEF5ECFEF5ECFEF5ECFEF5EC018A02018A02018A02FEF5ECFEF5
+      ECC2A6A4FF00FFFF00FFFF00FFFF00FFC2A6A4FEF3E9FEF3E9D8E3C7FEF3E9FE
+      F3E9D8E3C7018A02018A02FEF3E9FEF3E9C2A6A4FF00FFFF00FFFF00FFFF00FF
+      C2A6A4FFF1E5FFF1E5018A02D9E2C3D9E2C3018A02D9E2C3018A02FFF1E5FFF1
+      E5C2A6A4FF00FFFF00FFFF00FFFF00FFC2A6A4FFF0E2FFF0E2D9E1C1018A0201
+      8A02D9E1C1DDCFC2DDCFC2DDCFC2DDCFC2C2A6A4FF00FFFF00FFFF00FFFF00FF
+      C2A6A4FFEEDEFFEEDEFFEEDEFFEEDEFFEEDEFFEEDEC5B5A9C3B4A8C2B3A7C1B2
+      A6C2A6A4FF00FFFF00FFFF00FFFF00FFC2A6A4FFECDAFFECDAFFECDAFFECDAFF
+      ECDAFFECDAB0A296B0A296B0A296B0A296C2A6A4FF00FFFF00FFFF00FFFF00FF
+      C2A6A4FFEAD7FFEAD7FFEAD7FFEAD7FFEAD7C9B9ACFBF8F4FBF8F4E6DAD9C2A6
+      A4FF00FFFF00FFFF00FFFF00FFFF00FFC2A6A4FFE8D3FFE8D3FFE8D3FFE8D3FF
+      E8D3C9B9ACFBF8F4DFCEC7C2A6A4FF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      C2A6A4FFE6D0FFE6D0FFE6D0FFE6D0FFE6D0C9B9ACDFCEC7C2A6A4FF00FFFF00
+      FFFF00FFFF00FFFF00FFFF00FFFF00FFC2A6A4C2A6A4C2A6A4C2A6A4C2A6A4C2
+      A6A4C2A6A4C2A6A4FF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+    TabOrder = 5
+    OnClick = BitBtn1Click
   end
   object mainPrincipal: TMainMenu
     BiDiMode = bdLeftToRight

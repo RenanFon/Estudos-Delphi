@@ -39,7 +39,9 @@ uses
   cAcaoAcesso in 'Classes\cAcaoAcesso.pas',
   uCadAcaoAcesso in 'Cadastro\uCadAcaoAcesso.pas' {frmCadAcaoAcesso},
   uUsuarioVsAcoes in 'login\uUsuarioVsAcoes.pas' {frmUsuarioVsAcoes},
-  udtmGrafico in 'DataModule\udtmGrafico.pas' {dtmGrafico: TDataModule};
+  udtmGrafico in 'DataModule\udtmGrafico.pas' {dtmGrafico: TDataModule},
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
@@ -47,7 +49,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TfrmUsuarioVsAcoes, frmUsuarioVsAcoes);
-  Application.CreateForm(TdtmGrafico, dtmGrafico);
   Application.Run;
 end.

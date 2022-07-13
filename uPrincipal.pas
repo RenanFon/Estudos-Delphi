@@ -10,7 +10,7 @@ uses
   Vcl.ComCtrls,cAtualizacaoBancoDeDados,uCadAcaoAcesso,cAcaoAcesso,RLReport,uUsuarioVsAcoes,
   Data.DB, ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.ExtCtrls,udtmGrafico,
   VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs,
-  VCLTee.Chart, VCLTee.DBChart;
+  VCLTee.Chart, VCLTee.DBChart, Vcl.StdCtrls, Vcl.Buttons;
 
 type
   TfrmPrincipal = class(TForm)
@@ -39,16 +39,19 @@ type
     AOA1: TMenuItem;
     UsuariosVSa1: TMenuItem;
     N5: TMenuItem;
-    Panel2: TPanel;
-    Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
+    Panel1: TPanel;
+    DBChart3: TDBChart;
+    Panel6: TPanel;
     DBChart1: TDBChart;
     Series1: TBarSeries;
     DBChart2: TDBChart;
     Series2: TPieSeries;
-    DBChart3: TDBChart;
-    PieSeries1: TPieSeries;
+    DBChart4: TDBChart;
+    Series3: TLineSeries;
+    Series4: THorizBarSeries;
+    BitBtn1: TBitBtn;
     procedure menuFECHARClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CATEGORIA1Click(Sender: TObject);
@@ -62,10 +65,12 @@ type
     procedure PRODUTO2Click(Sender: TObject);
     procedure VENDAPORDATA1Click(Sender: TObject);
     procedure USUARIO1Click(Sender: TObject);
-    //procedure FormShow(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure ALTERARSENHA1Click(Sender: TObject);
     procedure AOA1Click(Sender: TObject);
     procedure UsuariosVSa1Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    //procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     TeclaEnter : TMREnter;
@@ -131,6 +136,7 @@ begin
      FreeandNil(TeclaEnter);
      FreeAndNil(dtmPrincipal);
      FreeAndNil(dtmGrafico);
+
      if assigned(oUsuarioLogado) then
         FreeAndNil(oUsuarioLogado);
 end;
@@ -193,7 +199,9 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
             end;
     end;
 
-{procedure TfrmPrincipal.FormShow(Sender: TObject);
+
+
+procedure TfrmPrincipal.FormShow(Sender: TObject);
     begin
         try
           oUsuarioLogado := TUsuarioLogado.Create;
@@ -205,7 +213,7 @@ procedure TfrmPrincipal.FormCreate(Sender: TObject);
         end;
 
 
-    end;  }
+    end;
 
 procedure TfrmPrincipal.menuFECHARClick(Sender: TObject);
 begin
@@ -301,16 +309,21 @@ begin
   if DTMGrafico.qryProdutosMaisVendidos.Active then
      DTMGrafico.qryProdutosMaisVendidos.Close;
 
-  //if DTMGrafico.Qry10ProdutosMaisVendidos.Active then
-    // DTMGrafico.Qry10ProdutosMaisVendidos.Close;
+  if DTMGrafico.qryVendasUltimasSemanas.Active then
+     DTMGrafico.qryVendasUltimasSemanas.Close;
 
   DTMGrafico.QryProdutoEstoque.Open;
   DTMGrafico.qryVendaValorPorCliente.Open;
   DTMGrafico.qryProdutosMaisVendidos.Open;
-  //DTMGrafico.Qry10ProdutosMaisVendidos.Open;
+  DTMGrafico.qryVendasUltimasSemanas.Open;
 
 end;
 
 
+
+procedure TfrmPrincipal.BitBtn1Click(Sender: TObject);
+begin
+    AtualizarDashbord;
+end;
 
 end.

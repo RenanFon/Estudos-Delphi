@@ -21,6 +21,9 @@ type
     qryProdutosMaisVendidosCONVERTviprodutoIdCHAR: TWideStringField;
     qryProdutosMaisVendidoslabel: TWideStringField;
     qryProdutosMaisVendidosVALUE: TFloatField;
+    qryVendasUltimasSemanas: TZQuery;
+    qryVendasUltimasSemanasLabel: TWideStringField;
+    qryVendasUltimasSemanasVALUE: TIntegerField;
   private
     { Private declarations }
   public
